@@ -134,7 +134,7 @@
 	% ---- TEXTOS DE LA ZONA AZUL ----
 	\vspace*{-1cm} % Ajuste para subir el texto a la franja azul
 	\begin{flushleft}
-		{\fontsize{9}{12}\selectfont\color{white!80} GRADO EN INGENIERÍA DE SISTEMAS ELECTRÓNICOS}\\[1ex]
+		{\fontsize{9}{12}\selectfont\color{white!80} GRADO EN INGENIERÍA ELECTRÓNICA DE COMUNICACIONES}\\[1ex]
 		{\fontsize{24}{28}\selectfont\bfseries\color{white} Diseño Digital 2}\\[1ex]
 		{\fontsize{11}{14}\selectfont\color{white!80} Curso académico 2025--2026}
 	\end{flushleft}
@@ -200,7 +200,7 @@
 	% ---- PIE DE PÁGINA ----
 	\begin{center}
 		{\fontsize{8}{10}\selectfont\color{black!40}
-			Grado en Ingeniería de Sistemas Electrónicos \quad$\cdot$\quad Diseño Digital 2}
+			Grado en Ingeniería Electrónica de Comunicaciones \quad$\cdot$\quad Diseño Digital 2}
 	\end{center}
 	\vspace{0.5cm}
 	
@@ -383,38 +383,49 @@
 	\vspace{0.4em}
 	La calculadora tiene que poder mostrar resultados de hasta $999 \times 999 = 998\,001$, así que el conversor trabaja con 20 bits de entrada y produce 6 dígitos BCD (24 bits). Hacer esto con lógica combinacional pura sería inviable, así que hemos optado por una \textbf{arquitectura secuencial iterativa}.
 	
-	\subsection{Algoritmo: Double Dabble}
-	
-	Hemos implementado el algoritmo \textit{Double Dabble} (también llamado ``shift-and-add-3''), que procesa el número binario bit a bit, de más significativo a menos, en exactamente $N_{\text{BITS}} = 20$ ciclos de reloj. Cada ciclo hace lo siguiente:
-	
+	\subsection{Algoritmo: Suma de pesos (Horner en BCD)}
+
+	Hemos implementado el algoritmo de suma de pesos, que construye el resultado BCD
+	procesando el número binario bit a bit de más significativo a menos, en exactamente
+	$N_{\text{BITS}} = 20$ ciclos de reloj. La idea es aplicar el \textit{método de Horner}
+	pero realizando la aritmética directamente en BCD:
+
+	$$\text{acc} \leftarrow 2 \cdot \text{acc} + b_i \quad \text{(aritmética BCD)}, \qquad i = N-1, N-2, \ldots, 0$$
+
+	Cada ciclo hace lo siguiente:
+
 	\begin{enumerate}[leftmargin=1.8cm, label=\textbf{Paso \arabic*.}]
-		\item \textbf{Add-3}: para cada nibble BCD del acumulador, si su valor es
-		$\geq 5$, se le suma 3. Esto garantiza que tras el desplazamiento
-		siguiente el nibble no desborde el dígito decimal.
-		\vspace{2pt}\\
-		\textit{Justificación:} si un nibble vale $n \in [5, 9]$, tras un
-		shift izquierda valdría $2n \in [10, 18]$, desbordando un dígito decimal.
-		Sumando 3 antes ($n + 3 \in [8, 12]$), el shift produce $2(n+3) \in [16, 24]$,
-		cuyo carry transporta correctamente $+1$ al nibble superior.
-		
-		\item \textbf{Shift izquierda}: se desplaza un bit a la izquierda el registro
-		combinado $[\texttt{acc\_bcd} \mid \texttt{bin\_reg}]$, introduciendo
-		el MSB actual de \texttt{bin\_reg} por la derecha de \texttt{acc\_bcd}.
+		\item \textbf{Doblar en BCD}: para cada dígito BCD del acumulador se calcula
+		$\mathit{tmp} = 2 \cdot d_k + c_{\text{entrada}}$ (5~bits, rango 0--19). Si
+		$\mathit{tmp} \geq 10$, se resta 10 al resultado y se genera $c_{\text{salida}}=1$
+		que se propaga al dígito superior.
+
+		\item \textbf{Sumar el bit entrante}: el bit MSB de \texttt{bin\_reg} actúa
+		como $c_{\text{entrada}}$ del dígito de unidades (vale 0 o 1, por lo que nunca
+		causa desbordamiento por sí solo).
 	\end{enumerate}
-	
-	\begin{lstlisting}[caption={Núcleo del algoritmo Double Dabble en \texttt{bin\_to\_bcd.vhd}}]
-		-- Paso 1: Add-3 a cada nibble si su valor es >= 5
-		if acc_bcd(3  downto 0) >= "0101" then n0 := acc_bcd(3  downto 0) + "0011";
-		else n0 := acc_bcd(3  downto 0); end if;
-		if acc_bcd(7  downto 4) >= "0101" then n1 := acc_bcd(7  downto 4) + "0011";
-		else n1 := acc_bcd(7  downto 4); end if;
-		-- (idem para n2..n5: centenas, miles, decenas de miles, centenas de miles)
-		
-		-- Paso 2: Reconstruir vector ajustado y desplazar
-		bcd_adj := n5 & n4 & n3 & n2 & n1 & n0;
-		
-		acc_bcd <= bcd_adj(22 downto 0) & bin_reg(N_BITS-1); -- shift + MSB entrante
-		bin_reg <= bin_reg(N_BITS-2 downto 0) & '0';         -- avanzar registro binario
+
+	\begin{tcolorbox}[colback=SoftBlue, colframe=MainBlue, boxrule=0.8pt, arc=2pt,
+		left=0.4cm, right=0.4cm, top=0.2cm, bottom=0.2cm]
+		\small\faLightbulb\enspace\textbf{Ejemplo (8 bits, $10011101_2 = 157_{10}$):}
+		Peso$_{128}$=1,\ Peso$_{64}$=$2{\times}1{+}0=2$,\ Peso$_{32}$=$2{\times}2{+}0=4$,\
+		Peso$_{16}$=$2{\times}4{+}1=9$,\ Peso$_8$=$2{\times}9{+}1=19$,\
+		Peso$_4$=$2{\times}19{+}1=39$,\ Peso$_2$=$2{\times}39{+}0=78$,\
+		Peso$_1$=$2{\times}78{+}1=157$ (\textit{todo en BCD})
+	\end{tcolorbox}
+
+	\begin{lstlisting}[caption={Núcleo del algoritmo de suma de pesos en \texttt{bin\_to\_bcd.vhd}}]
+		-- tmp = 2*digito + carry_in  (5 bits, rango 0..19)
+		-- Si tmp >= 10: resultado = tmp(3:0) + 6  (resta 10 = suma 6 en nibble)
+		--               carry_out = 1
+		c := bin_reg(N_BITS-1);   -- bit entrante -> carry inicial del digito 0
+		tmp := ('0' & acc_bcd(3 downto 0)) + ('0' & acc_bcd(3 downto 0)) + ("0000" & c);
+		if tmp >= "01010" then n0 := tmp(3 downto 0) + "0110"; c := '1';
+		else n0 := tmp(3 downto 0); c := '0'; end if;
+		-- (idem para n1..n5: decenas, centenas, miles, decenas de miles, centenas de miles)
+
+		acc_bcd   <= n5 & n4 & n3 & n2 & n1 & n0;
+		bin_reg   <= bin_reg(N_BITS-2 downto 0) & '0';  -- avanzar registro binario
 		bits_left <= bits_left - 1;
 	\end{lstlisting}
 	
@@ -450,7 +461,7 @@
 			% Corrección: Sacamos el símbolo '>' del \texttt para evitar conflicto activo de babel
 			\draw[flecha] (calc) to[out=60, in=120, looseness=6]
 			node[above, font=\tiny\sffamily, align=center]
-			{\texttt{bits\_left} $>$ 0\\[-1pt]paso Double Dabble}
+			{	\texttt{bits\_left} $>$ 0\\[-1pt]Horner BCD}
 			(calc);
 			
 			% ---- CALC -> FINISH ----
@@ -481,7 +492,7 @@
 			Carga \texttt{bin\_reg} $\leftarrow$ \texttt{bin}.
 			& \texttt{done} $\leftarrow$ \texttt{'0'} \\[4pt]
 			\texttt{CALC}
-			& Ejecuta un paso Double Dabble por ciclo
+			& Ejecuta un paso Horner BCD por ciclo
 			durante \texttt{N\_BITS} ciclos.
 			& \texttt{acc\_bcd}, \texttt{bin\_reg} actualizados \\[4pt]
 			\texttt{FINISH}
@@ -549,7 +560,7 @@
 	\begin{itemize}[leftmargin=1.6cm, itemsep=4pt]
 		\item \textbf{\texttt{bcd\_to\_bin}}: completamente combinacional. Hemos resuelto la multiplicación por 100 y por 10 mediante desplazamientos y sumas, sin usar multiplicadores, lo que lo hace compatible con \texttt{std\_logic\_unsigned}. La latencia es nula (solo depende de la propagación de puertas).
 		
-		\item \textbf{\texttt{bin\_to\_bcd}}: secuencial con FSM de tres estados (\texttt{IDLE} / \texttt{CALC} / \texttt{FINISH}). El algoritmo \textit{Double Dabble} tarda exactamente 20 ciclos de reloj, lo que es más que suficiente para los valores que puede generar la calculadora ($999 \times 999 = 998\,001$ como máximo).
+		\item \textbf{\texttt{bin\_to\_bcd}}: secuencial con FSM de tres estados (\texttt{IDLE} / \texttt{CALC} / \texttt{FINISH}). El algoritmo de suma de pesos (Horner en BCD) tarda exactamente 20 ciclos de reloj, lo que es más que suficiente para los valores que puede generar la calculadora ($999 \times 999 = 998\,001$ como máximo).
 	\end{itemize}
 	
 	Todos los casos de prueba han dado el resultado esperado, incluyendo el cero, los valores de frontera y algunos intermedios. Los módulos quedan listos para integrarse en las siguientes fases.
@@ -571,19 +582,36 @@
 
 	Durante la realización de esta fase surgieron diversas dificultades técnicas cuya resolución requirió investigación adicional fuera del contenido impartido en clase. Se documentan a continuación los aspectos más relevantes.
 
-	\subsection{Algoritmo Double Dabble}
+	\subsection{Algoritmo de suma de pesos (Horner en BCD)}
 
-	En el planteamiento inicial del conversor binario a BCD no se disponía de ningún método conocido para realizar dicha conversión sin emplear divisiones o módulos, operaciones que no son directamente sintetizables con \texttt{std\_logic\_unsigned} y que resultan costosas en área hardware.
+	Para la conversión binario a BCD se buscaba un método que no requiriese divisiones
+	ni operaciones módulo, ya que no son sintetizables directamente con
+	\texttt{std\_logic\_unsigned} y resultan costosas en área hardware.
 
-	Tras investigar alternativas, se localizó el algoritmo \textit{Double Dabble} (también denominado \textit{shift-and-add-3}), cuya existencia era completamente desconocida para el grupo antes de esta fase. El algoritmo opera exclusivamente con desplazamientos de bits y sumas de la constante~3, dos operaciones triviales en hardware digital.
+	El algoritmo elegido se basa en la \textbf{representación polinómica} de un número
+	binario, evaluada mediante el método de Horner:
+	$$\text{bin} = b_{N-1} \cdot 2^{N-1} + \cdots + b_1 \cdot 2 + b_0
+	= (\cdots((b_{N-1}) \cdot 2 + b_{N-2}) \cdot 2 + \cdots) \cdot 2 + b_0$$
+
+	La clave es que esta evaluación se realiza \textit{íntegramente en aritmética BCD}:
+	en cada paso se dobla el acumulador BCD y se suma el siguiente bit. ``Doblar en BCD''
+	significa multiplicar cada dígito por 2, y si el resultado supera 9 se resta 10 y se
+	propaga un carry al dígito superior.
 
 	\begin{tcolorbox}[colback=SoftOrange, colframe=MainOrange, boxrule=0.8pt, arc=2pt,
 		left=0.5cm, right=0.5cm, top=0.3cm, bottom=0.3cm]
-		\small\faLightbulb\enspace\textbf{Intuición del algoritmo:}
-		El truco de sumar~3 cuando un nibble supera el valor~4 se basa en la diferencia entre la base~16 y la base~10: $16 - 10 = 6$, y la mitad de ese valor es~3. Al sumar~3 antes del desplazamiento se ``pre-compensa'' el desbordamiento decimal que ocurriría tras duplicar el nibble, de modo que el carry se propaga correctamente hacia el dígito BCD superior.
+		\small\faLightbulb\enspace\textbf{Intuición del doblado BCD:}
+		Dado un dígito $d \in [0,9]$, al doblar $d' = 2d + c_{\text{in}}$ (rango 0--19).
+		Si $d' \geq 10$: el resultado decimal es $d'-10$ con $c_{\text{out}}=1$ hacia el
+		dígito superior. En hardware se implementa como: si $d' \geq 10$, suma~6 al nibble
+		(porque $16 - 10 = 6$, lo que equivale a restar 10 aprovechando el desbordamiento
+		natural de 4~bits) y activa el carry.
 	\end{tcolorbox}
 
-	La comprensión del algoritmo requirió revisar su demostración formal bit a bit para todos los casos posibles de un nibble ($0$--$9$), verificando que la condición add-3 garantiza que ningún nibble supera el valor~9 en ningún momento del proceso. Una vez comprendido, su implementación en VHDL resultó directa.
+	La comprensión del algoritmo requirió trazar paso a paso el ejemplo de 8~bits con
+	el número $10011101_2 = 157_{10}$, verificando que en cada iteración el acumulador
+	BCD es exactamente el peso del bit ya procesado. Una vez comprendido, la
+	implementación en VHDL resultó directa.
 
 	\subsection{Multiplicación sin operador de multiplicación}
 

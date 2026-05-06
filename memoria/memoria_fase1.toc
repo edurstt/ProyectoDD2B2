@@ -7,12 +7,12 @@
 \contentsline {subsection}{\numberline {2.3}Verificación}{3}{subsection.2.3}%
 \contentsline {section}{\numberline {3}Conversor Binario a BCD (\texttt {bin\_to\_bcd})}{3}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Especificación}{3}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Algoritmo: Double Dabble}{3}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.2}Algoritmo: Suma de pesos (Horner en BCD)}{3}{subsection.3.2}%
 \contentsline {subsection}{\numberline {3.3}Máquina de Estados (FSM)}{4}{subsection.3.3}%
 \contentsline {subsection}{\numberline {3.4}Verificación}{5}{subsection.3.4}%
 \contentsline {section}{\numberline {4}Conclusiones}{5}{section.4}%
-\contentsline {section}{\numberline {A}Investigación y conocimientos adquiridos durante el desarrollo}{6}{appendix.Alph1}%
-\contentsline {subsection}{\numberline {A.1}Algoritmo Double Dabble}{6}{subsection.Alph1.1}%
-\contentsline {subsection}{\numberline {A.2}Multiplicación sin operador de multiplicación}{6}{subsection.Alph1.2}%
-\contentsline {subsection}{\numberline {A.3}Gestión de flancos de reloj en VHDL-93 (ModelSim 5.x)}{6}{subsection.Alph1.3}%
-\contentsline {subsection}{\numberline {A.4}Terminación controlada de simulaciones}{6}{subsection.Alph1.4}%
+\contentsline {section}{\numberline {A}Investigación y conocimientos adquiridos durante el desarrollo}{7}{appendix.Alph1}%
+\contentsline {subsection}{\numberline {A.1}Algoritmo de suma de pesos (Horner en BCD)}{7}{subsection.Alph1.1}%
+\contentsline {subsection}{\numberline {A.2}Multiplicación sin operador de multiplicación}{7}{subsection.Alph1.2}%
+\contentsline {subsection}{\numberline {A.3}Gestión de flancos de reloj en VHDL-93 (ModelSim 5.x)}{7}{subsection.Alph1.3}%
+\contentsline {subsection}{\numberline {A.4}Terminación controlada de simulaciones}{7}{subsection.Alph1.4}%

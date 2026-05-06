@@ -1,5 +1,5 @@
 # vsim -c work.tb_bin_to_bcd -do "debug\dump_bin_to_bcd.do" 
-# Start time: 10:20:22 on May 06,2026
+# Start time: 22:31:10 on May 06,2026
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
@@ -12,5 +12,5 @@
 #    Time: 5090 ns  Iteration: 0  Process: /tb_bin_to_bcd/stim_proc File: fase1/tb_bin_to_bcd.vhd
 # Break in Process stim_proc at fase1/tb_bin_to_bcd.vhd line 102
 # Stopped at fase1/tb_bin_to_bcd.vhd line 102
-# End time: 10:20:23 on May 06,2026, Elapsed time: 0:00:01
+# End time: 22:31:10 on May 06,2026, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
