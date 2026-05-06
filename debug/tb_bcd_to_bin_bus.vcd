@@ -1,0 +1,32 @@
+$date
+	Wed May 06 10:20:20 2026
+$end
+$version
+	ModelSim Version 10.4d
+$end
+$timescale
+	1ps
+$end
+
+$scope module tb_bcd_to_bin $end
+$var wire 12 Wbcd_in bcd_in $end
+$var wire 10 Wbin_ou bin_out $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b000000000000 Wbcd_in
+b0000000000 Wbin_ou
+$end
+#20000
+b000100100011 Wbcd_in
+b0001111011 Wbin_ou
+#40000
+b100110011001 Wbcd_in
+b1111100111 Wbin_ou
+#60000
+b000000010000 Wbcd_in
+b0000001010 Wbin_ou
+#80000
+b000100000000 Wbcd_in
+b0001100100 Wbin_ou

@@ -223,8 +223,7 @@
 	\vspace{0.5em}
 	\begin{tcolorbox}[colback=SoftBlue, colframe=MainBlue, boxrule=0.8pt, arc=2pt,
 		left=0.5cm, right=0.5cm, top=0.3cm, bottom=0.3cm]
-		\small\faInfoCircle\enspace\textbf{Restricción de librería:} Siguiendo las
-		directrices de la asignatura, todos los módulos emplean
+		\small\faInfoCircle\enspace\textbf{Todos los módulos} emplean
 		\texttt{ieee.std\_logic\_unsigned}. Este paquete no soporta la multiplicación
 		directa de vectores de longitud arbitraria, por lo que se recurre a
 		desplazamientos (shifts) y sumas, que son la representación hardware natural
@@ -497,18 +496,18 @@
 	
 	\subsection{Verificación}
 	
-	El testbench \texttt{tb\_bin\_to\_bcd} genera un reloj de 50\,MHz (periodo 20\,ns). Nos encontramos con problemas de condiciones de carrera al detectar \texttt{done='1'}, así que lo resolvimos con un procedimiento auxiliar (\texttt{run\_test}) que alinea todo con flancos de reloj. Para simular los diez casos completos en ModelSim hay que ejecutar \texttt{run 8000 ns}.
+	El testbench \texttt{tb\_bin\_to\_bcd} genera un reloj de 50\,MHz (periodo 20\,ns). Nos encontramos con problemas de condiciones de carrera al detectar \texttt{done='1'}, así que lo resolvimos con un procedimiento auxiliar (\texttt{run\_test}) que alinea todo con flancos de reloj. La simulación termina automáticamente mediante \texttt{assert false severity failure}, por lo que basta con ejecutar \texttt{run -all}.
 	
 	\begin{lstlisting}[caption={Procedimiento auxiliar \texttt{run\_test} del testbench secuencial}]
 		procedure run_test(val : std_logic_vector(19 downto 0)) is
 		begin
-		wait until rising_edge(clk);  -- alinear con el reloj antes de asignar
+		wait until clk'event and clk = '1';  -- alinear con el reloj antes de asignar
 		bin   <= val;
 		start <= '1';
-		wait until rising_edge(clk);  -- IDLE detecta start; done pasa a '0'
+		wait until clk'event and clk = '1';  -- IDLE detecta start; done pasa a '0'
 		start <= '0';
-		wait until done = '1';        -- esperar fin de la conversion (20 ciclos)
-		wait for clk_period * 2;      -- margen para visualizar en waveform
+		wait until done = '1';               -- esperar fin de la conversion (20 ciclos)
+		wait for clk_period * 2;             -- margen para visualizar en waveform
 		end procedure;
 	\end{lstlisting}
 	
@@ -563,5 +562,59 @@
 		con signo en complemento a dos (10 bits), con detección de desbordamiento
 		mediante la señal \texttt{overflow}.
 	\end{tcolorbox}
-	
+
+	% =====================================================================
+	\newpage
+	\appendix
+	\section{Investigación y conocimientos adquiridos durante el desarrollo}
+	% =====================================================================
+
+	Durante la realización de esta fase surgieron diversas dificultades técnicas cuya resolución requirió investigación adicional fuera del contenido impartido en clase. Se documentan a continuación los aspectos más relevantes.
+
+	\subsection{Algoritmo Double Dabble}
+
+	En el planteamiento inicial del conversor binario a BCD no se disponía de ningún método conocido para realizar dicha conversión sin emplear divisiones o módulos, operaciones que no son directamente sintetizables con \texttt{std\_logic\_unsigned} y que resultan costosas en área hardware.
+
+	Tras investigar alternativas, se localizó el algoritmo \textit{Double Dabble} (también denominado \textit{shift-and-add-3}), cuya existencia era completamente desconocida para el grupo antes de esta fase. El algoritmo opera exclusivamente con desplazamientos de bits y sumas de la constante~3, dos operaciones triviales en hardware digital.
+
+	\begin{tcolorbox}[colback=SoftOrange, colframe=MainOrange, boxrule=0.8pt, arc=2pt,
+		left=0.5cm, right=0.5cm, top=0.3cm, bottom=0.3cm]
+		\small\faLightbulb\enspace\textbf{Intuición del algoritmo:}
+		El truco de sumar~3 cuando un nibble supera el valor~4 se basa en la diferencia entre la base~16 y la base~10: $16 - 10 = 6$, y la mitad de ese valor es~3. Al sumar~3 antes del desplazamiento se ``pre-compensa'' el desbordamiento decimal que ocurriría tras duplicar el nibble, de modo que el carry se propaga correctamente hacia el dígito BCD superior.
+	\end{tcolorbox}
+
+	La comprensión del algoritmo requirió revisar su demostración formal bit a bit para todos los casos posibles de un nibble ($0$--$9$), verificando que la condición add-3 garantiza que ningún nibble supera el valor~9 en ningún momento del proceso. Una vez comprendido, su implementación en VHDL resultó directa.
+
+	\subsection{Multiplicación sin operador de multiplicación}
+
+	Para el conversor BCD a binario fue necesario calcular $c \times 100$ y $d \times 10$ sin disponer de un operador de multiplicación genérico. La solución se obtuvo descomponiendo cada factor como suma de potencias de dos:
+
+	$$100 = 2^6 + 2^5 + 2^2, \qquad 10 = 2^3 + 2^1$$
+
+	Multiplicar por una potencia de dos equivale a un desplazamiento a la izquierda, que en VHDL se implementa mediante concatenación de ceros, sin coste alguno en lógica combinacional. Este enfoque no era conocido de antemano y se dedujo a partir del análisis de la representación binaria de los factores.
+
+	\subsection{Gestión de flancos de reloj en VHDL-93 (ModelSim 5.x)}
+
+	Durante la escritura de los testbenches se utilizó inicialmente la función \texttt{rising\_edge(clk)}, disponible en VHDL-93 y posterior. Sin embargo, la versión de ModelSim del laboratorio presenta comportamientos inconsistentes con dicha función en procesos de estímulo, disparando la condición incluso desde estados indefinidos (\texttt{'U'}, \texttt{'X'}).
+
+	Tras investigar la especificación original de VHDL-87, se comprobó que la forma canónica y más robusta para este entorno es:
+
+	\begin{center}
+		\texttt{wait until clk'event and clk = '1';}
+	\end{center}
+
+	Esta construcción solo dispara la espera cuando el evento corresponde a una transición efectiva hacia \texttt{'1'}, ignorando transiciones desde valores no definidos, lo que resulta más adecuado para la versión de simulador disponible.
+
+	\subsection{Terminación controlada de simulaciones}
+
+	Inicialmente los procesos de estímulo finalizaban con un \texttt{wait} indefinido, lo que dejaba la simulación activa sin producir más eventos. Esto impedía que ModelSim detectase el fin de la simulación y requería detenerla manualmente.
+
+	Se investigó el mecanismo estándar de VHDL para forzar la terminación, encontrando que la forma correcta es:
+
+	\begin{center}
+		\texttt{assert false report "Fin de simulacion" severity failure;}
+	\end{center}
+
+	Al elevar la severidad a \texttt{failure}, el simulador interrumpe la ejecución de forma ordenada, imprime el mensaje en la consola y libera todos los recursos, sin necesidad de intervención manual.
+
 \end{document}

@@ -11,3 +11,8 @@
 \contentsline {subsection}{\numberline {3.3}Máquina de Estados (FSM)}{4}{subsection.3.3}%
 \contentsline {subsection}{\numberline {3.4}Verificación}{5}{subsection.3.4}%
 \contentsline {section}{\numberline {4}Conclusiones}{5}{section.4}%
+\contentsline {section}{\numberline {A}Investigación y conocimientos adquiridos durante el desarrollo}{6}{appendix.Alph1}%
+\contentsline {subsection}{\numberline {A.1}Algoritmo Double Dabble}{6}{subsection.Alph1.1}%
+\contentsline {subsection}{\numberline {A.2}Multiplicación sin operador de multiplicación}{6}{subsection.Alph1.2}%
+\contentsline {subsection}{\numberline {A.3}Gestión de flancos de reloj en VHDL-93 (ModelSim 5.x)}{6}{subsection.Alph1.3}%
+\contentsline {subsection}{\numberline {A.4}Terminación controlada de simulaciones}{6}{subsection.Alph1.4}%

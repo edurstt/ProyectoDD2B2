@@ -1,7 +1,6 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.1) (preloaded format=xelatex 2026.2.18)  6 MAY 2026 08:59
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.1) (preloaded format=xelatex 2026.2.18)  6 MAY 2026 10:47
 entering extended mode
  restricted \write18 enabled.
- file:line:error style messages enabled.
  %&-line parsing enabled.
 **./memoria_fase1.tex
 (memoria_fase1.tex
@@ -1280,19 +1279,14 @@ LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10> not available
 \openout5 = `memoria_fase1.toc'.
 
  [1]
-Underfull \hbox (badness 10000) in paragraph at lines 226--232
-[][]\TU/CMUSansSerif(0)/b/n/9 Restricción de librería: \TU/CMUSansSerif(0)/m/n/
-9 Siguiendo las directrices de la asignatura, todos los módulos emplean
- []
-
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 281.
-[2]
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 280.
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 313.
+nput line 312.
+ [2]
 LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <9> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 315.
- [3] [4] [5] (memoria_fase1.aux
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 314.
+ [3] [4] [5] [6] (memoria_fase1.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -1301,16 +1295,15 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `memoria_fase1.out' has not changed.
-(rerunfilecheck)             Checksum: 61FFA94CC50B4797A9A0169A20621CB9;2155.
+(rerunfilecheck)             Checksum: CD0563159FDF6898D11629CE9EBC392C;3667.
  ) 
 Here is how much of TeX's memory you used:
- 34959 strings out of 402982
- 725743 string characters out of 5446817
- 1442621 words of memory out of 5000000
- 63128 multiletter control sequences out of 15000+600000
+ 34968 strings out of 402982
+ 725718 string characters out of 5446817
+ 1444189 words of memory out of 5000000
+ 63137 multiletter control sequences out of 15000+600000
  636338 words of font info for 119 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 84i,12n,94p,504b,1117s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,13n,94p,504b,1917s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on c:\Users\Eduardo Muñoz\Downloads\Fase12\Fase12\memoria\memori
-a_fase1.pdf (6 pages).
+Output written on memoria_fase1.pdf (7 pages).

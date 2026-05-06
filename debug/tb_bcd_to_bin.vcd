@@ -1,0 +1,114 @@
+$date
+	Wed May 06 10:20:20 2026
+$end
+$version
+	ModelSim Version 10.4d
+$end
+$timescale
+	1ps
+$end
+
+$scope module tb_bcd_to_bin $end
+$var wire 1 ! bcd_in [11] $end
+$var wire 1 " bcd_in [10] $end
+$var wire 1 # bcd_in [9] $end
+$var wire 1 $ bcd_in [8] $end
+$var wire 1 % bcd_in [7] $end
+$var wire 1 & bcd_in [6] $end
+$var wire 1 ' bcd_in [5] $end
+$var wire 1 ( bcd_in [4] $end
+$var wire 1 ) bcd_in [3] $end
+$var wire 1 * bcd_in [2] $end
+$var wire 1 + bcd_in [1] $end
+$var wire 1 , bcd_in [0] $end
+$var wire 1 - bin_out [9] $end
+$var wire 1 . bin_out [8] $end
+$var wire 1 / bin_out [7] $end
+$var wire 1 0 bin_out [6] $end
+$var wire 1 1 bin_out [5] $end
+$var wire 1 2 bin_out [4] $end
+$var wire 1 3 bin_out [3] $end
+$var wire 1 4 bin_out [2] $end
+$var wire 1 5 bin_out [1] $end
+$var wire 1 6 bin_out [0] $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+0"
+0#
+0$
+0%
+0&
+0'
+0(
+0)
+0*
+0+
+0,
+0-
+0.
+0/
+00
+01
+02
+03
+04
+05
+06
+$end
+#20000
+1,
+1+
+1'
+1$
+16
+15
+13
+12
+11
+10
+#40000
+0+
+1)
+1(
+0'
+1%
+1!
+05
+03
+02
+01
+00
+1/
+15
+14
+11
+10
+1.
+1-
+#60000
+0,
+0)
+0%
+0$
+0!
+06
+13
+12
+01
+04
+02
+00
+0/
+0.
+0-
+#80000
+0(
+1$
+05
+14
+03
+11
+10
