@@ -1,6 +1,7 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.1) (preloaded format=xelatex 2026.2.18)  6 MAY 2026 22:43
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.1) (preloaded format=xelatex 2026.2.18)  6 MAY 2026 23:12
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
 **./memoria_fase1.tex
 (memoria_fase1.tex
@@ -1295,15 +1296,16 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `memoria_fase1.out' has not changed.
-(rerunfilecheck)             Checksum: 1BCA7585809C33EC2EAE2A6A16C430FF;3881.
+(rerunfilecheck)             Checksum: 0BCF6268CCF2F0788F9A1253842B792B;3247.
  ) 
 Here is how much of TeX's memory you used:
- 34974 strings out of 402982
- 726056 string characters out of 5446817
- 1444403 words of memory out of 5000000
- 63139 multiletter control sequences out of 15000+600000
+ 34973 strings out of 402982
+ 726197 string characters out of 5446817
+ 1443757 words of memory out of 5000000
+ 63137 multiletter control sequences out of 15000+600000
  636370 words of font info for 123 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  84i,13n,94p,504b,1917s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on memoria_fase1.pdf (8 pages).
+Output written on c:\Users\Eduardo Muñoz\Documents\DD2\ProyectoDD2\memoria\memo
+ria_fase1.pdf (8 pages).

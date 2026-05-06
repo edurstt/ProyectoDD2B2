@@ -621,28 +621,5 @@
 
 	Multiplicar por una potencia de dos equivale a un desplazamiento a la izquierda, que en VHDL se implementa mediante concatenación de ceros, sin coste alguno en lógica combinacional. Este enfoque no era conocido de antemano y se dedujo a partir del análisis de la representación binaria de los factores.
 
-	\subsection{Gestión de flancos de reloj en VHDL-93 (ModelSim 5.x)}
-
-	Durante la escritura de los testbenches se utilizó inicialmente la función \texttt{rising\_edge(clk)}, disponible en VHDL-93 y posterior. Sin embargo, la versión de ModelSim del laboratorio presenta comportamientos inconsistentes con dicha función en procesos de estímulo, disparando la condición incluso desde estados indefinidos (\texttt{'U'}, \texttt{'X'}).
-
-	Tras investigar la especificación original de VHDL-87, se comprobó que la forma canónica y más robusta para este entorno es:
-
-	\begin{center}
-		\texttt{wait until clk'event and clk = '1';}
-	\end{center}
-
-	Esta construcción solo dispara la espera cuando el evento corresponde a una transición efectiva hacia \texttt{'1'}, ignorando transiciones desde valores no definidos, lo que resulta más adecuado para la versión de simulador disponible.
-
-	\subsection{Terminación controlada de simulaciones}
-
-	Inicialmente los procesos de estímulo finalizaban con un \texttt{wait} indefinido, lo que dejaba la simulación activa sin producir más eventos. Esto impedía que ModelSim detectase el fin de la simulación y requería detenerla manualmente.
-
-	Se investigó el mecanismo estándar de VHDL para forzar la terminación, encontrando que la forma correcta es:
-
-	\begin{center}
-		\texttt{assert false report "Fin de simulacion" severity failure;}
-	\end{center}
-
-	Al elevar la severidad a \texttt{failure}, el simulador interrumpe la ejecución de forma ordenada, imprime el mensaje en la consola y libera todos los recursos, sin necesidad de intervención manual.
-
+	
 \end{document}

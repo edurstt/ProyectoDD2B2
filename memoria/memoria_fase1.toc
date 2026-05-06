@@ -14,5 +14,3 @@
 \contentsline {section}{\numberline {A}Investigación y conocimientos adquiridos durante el desarrollo}{7}{appendix.Alph1}%
 \contentsline {subsection}{\numberline {A.1}Algoritmo de suma de pesos (Horner en BCD)}{7}{subsection.Alph1.1}%
 \contentsline {subsection}{\numberline {A.2}Multiplicación sin operador de multiplicación}{7}{subsection.Alph1.2}%
-\contentsline {subsection}{\numberline {A.3}Gestión de flancos de reloj en VHDL-93 (ModelSim 5.x)}{7}{subsection.Alph1.3}%
-\contentsline {subsection}{\numberline {A.4}Terminación controlada de simulaciones}{7}{subsection.Alph1.4}%
