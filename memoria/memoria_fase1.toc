@@ -1,0 +1,13 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Introducción y Objetivos}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Arquitectura jerárquica del sistema}{2}{subsection.1.1}%
+\contentsline {section}{\numberline {2}Conversor BCD a Binario (\texttt {bcd\_to\_bin})}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Especificación}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Implementación mediante desplazamientos}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Verificación}{3}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Conversor Binario a BCD (\texttt {bin\_to\_bcd})}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Especificación}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Algoritmo: Double Dabble}{3}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Máquina de Estados (FSM)}{4}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Verificación}{5}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Conclusiones}{5}{section.4}%

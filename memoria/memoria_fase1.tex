@@ -1,0 +1,567 @@
+\documentclass[10pt, a4paper]{article}
+
+% --- PAQUETES PRINCIPALES ---
+\usepackage[table,xcdraw,svgnames]{xcolor}
+\usepackage{geometry}
+\usepackage{fontspec}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage[spanish]{babel}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{placeins}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage[official]{eurosym}
+\usepackage{tikz}
+% Añadimos la librería 'babel' para evitar conflictos con los caracteres < y >
+\usetikzlibrary{shapes, arrows.meta, positioning, fit, calc, shadows, backgrounds, automata, babel}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+\usepackage{fontawesome5}
+\usepackage{listings}
+\usepackage[colorlinks=true, linkcolor=DarkBlue, urlcolor=DarkBlue]{hyperref}
+
+% --- CONFIGURACIÓN ---
+\setmainfont{CMU Sans Serif}
+\setsansfont{CMU Sans Serif}
+\renewcommand{\familydefault}{\sfdefault}
+\geometry{a4paper,left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+
+% --- DEFINICIÓN DE COLORES ---
+\definecolor{MainBlue}{RGB}{0, 75, 145}
+\definecolor{SoftBlue}{RGB}{235, 245, 255}
+\definecolor{MainGreen}{RGB}{20, 100, 40}
+\definecolor{SoftGreen}{RGB}{235, 250, 240}
+\definecolor{MainOrange}{RGB}{200, 80, 0}
+\definecolor{SoftOrange}{RGB}{255, 245, 230}
+\definecolor{DarkBlue}{HTML}{00008B}
+\definecolor{DarkRed}{HTML}{8B0000}
+\definecolor{SafeZone}{RGB}{225, 250, 225}
+\definecolor{PowerZone}{RGB}{250, 225, 225}
+\definecolor{vhdlbg}{RGB}{248, 250, 255}
+\definecolor{vhdlkw}{RGB}{0, 0, 180}
+\definecolor{vhdlcmt}{RGB}{100, 100, 100}
+\definecolor{vhdlstr}{RGB}{0, 128, 0}
+
+% --- ESTILOS TIKZ ---
+\tikzset{
+	bloque/.style={rectangle, draw=MainBlue, thick, fill=SoftBlue,
+		text width=3cm, align=center, minimum height=1.3cm,
+		rounded corners=4pt, drop shadow, font=\sffamily\small},
+	nucleo/.style={rectangle, draw=black!60, thick, dashed,
+		fill=white!90!gray, inner sep=0.4cm, align=center, rounded corners=4pt},
+	comunicacion/.style={draw=red, line width=1.5pt, <->, >=Latex},
+	esquema/.style={rectangle, draw=black, thick, fill=white,
+		align=center, minimum height=0.8cm},
+	estado/.style={circle, draw=MainBlue, thick, fill=SoftBlue,
+		minimum size=1.8cm, align=center, font=\sffamily\small\bfseries, drop shadow},
+	flecha/.style={->, >=Latex, thick, color=MainBlue}
+}
+
+% --- VHDL LISTINGS ---
+\lstdefinelanguage{VHDLcustom}{
+	morekeywords={library, use, entity, is, port, in, out, inout, end,
+		architecture, of, signal, begin, process, variable,
+		if, then, else, elsif, case, when, others,
+		rising_edge, falling_edge, wait, until, for,
+		generic, map, all, downto, to, not, and, or, xor,
+		nand, nor, type, integer, range, natural,
+		std_logic, std_logic_vector, ieee},
+	sensitive=false,
+	morecomment=[l]{--},
+	morestring=[b]"
+}
+\lstset{
+	language=VHDLcustom,
+	basicstyle=\ttfamily\small,
+	keywordstyle=\bfseries\color{vhdlkw},
+	commentstyle=\itshape\color{vhdlcmt},
+	stringstyle=\color{vhdlstr},
+	backgroundcolor=\color{vhdlbg},
+	frame=single, framerule=0.5pt,
+	rulecolor=\color{MainBlue!40},
+	numbers=left, numberstyle=\tiny\color{gray!70},
+	numbersep=8pt,
+	breaklines=true, captionpos=b,
+	showstringspaces=false,
+	tabsize=4,
+	xleftmargin=0.6cm,
+	aboveskip=8pt, belowskip=6pt
+}
+\renewcommand{\lstlistingname}{Listado}
+
+% --- CABECERA INTERACTIVA ---
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{25pt}
+\fancyhead[L]{\small\textbf{\hyperlink{inicio}{Diseño Digital 2}}}
+\fancyhead[R]{\small\textbf{\hyperlink{section.\thesection}{Memoria --- Fase 1}}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% --- ESTILOS DE SECCIÓN ---
+\titleformat{\section}{\Large\bfseries\color{MainBlue}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries\color{MainBlue}}{\thesubsection.}{0.5em}{}
+
+% =====================================================================
+\begin{document}
+	\hypertarget{inicio}{}
+	
+	% =====================================================================
+	%  PORTADA
+	% =====================================================================
+\begin{titlepage}
+	\thispagestyle{empty}
+	
+	% ---- Fondo simplificado (Solo franja superior) ----
+	\begin{tikzpicture}[remember picture, overlay]
+		% Fondo blanco completo
+		\fill[white] (current page.south west) rectangle (current page.north east);
+		
+		% Franja azul superior limpia (~20% de la página)
+		\fill[MainBlue]
+		(current page.north west) rectangle
+		([yshift=-0.22\paperheight]current page.north east);
+		
+		% Línea de acento sutil
+		\draw[MainBlue!40, line width=2pt]
+		([yshift=-0.22\paperheight]current page.north west) --
+		([yshift=-0.22\paperheight]current page.north east);
+	\end{tikzpicture}
+	
+	% ---- TEXTOS DE LA ZONA AZUL ----
+	\vspace*{-1cm} % Ajuste para subir el texto a la franja azul
+	\begin{flushleft}
+		{\fontsize{9}{12}\selectfont\color{white!80} GRADO EN INGENIERÍA DE SISTEMAS ELECTRÓNICOS}\\[1ex]
+		{\fontsize{24}{28}\selectfont\bfseries\color{white} Diseño Digital 2}\\[1ex]
+		{\fontsize{11}{14}\selectfont\color{white!80} Curso académico 2025--2026}
+	\end{flushleft}
+	
+	% ---- CONTENIDO PRINCIPAL ----
+	\vspace*{0.12\paperheight}
+	\begin{center}
+		
+		% Subtítulo / Fase
+		{\Large\color{MainBlue!80}\textbf{BLOQUE II} \quad\textbullet\quad Conversores de Código}\\[1cm]
+		
+		% Título Principal
+		{\fontsize{30}{38}\selectfont\bfseries\color{MainBlue}
+			Memoria del Proyecto}\\[0.2cm]
+		{\fontsize{22}{28}\selectfont\bfseries\color{MainBlue!80}
+			Bloque II (Fase I)}\\[0.6cm]
+		
+		% Descripción técnica y versión
+		{\fontsize{12}{18}\selectfont\color{black!60}
+			Diseño, implementación y verificación en VHDL}\\[0.2cm]
+		{\fontsize{12}{18}\selectfont\ttfamily\color{black!50}
+			bcd\_to\_bin \quad$\longleftrightarrow$\quad bin\_to\_bcd}\\[0.5cm]
+		
+		{\fontsize{11}{14}\selectfont\bfseries\color{MainBlue}
+			(Versión 1.0 --- Mayo 2026)}
+		
+		\vspace{1.2cm}
+		
+		% Tarjeta de metadatos (Simplificada sin bordes pesados)
+		\renewcommand{\arraystretch}{1.5}
+		\begin{tabular}{@{}r@{\hspace{1em}}l@{}}
+			{\small\color{MainBlue}\faLayerGroup}\enspace\textbf{Fase:} & Bloque II (Fase I) \\
+			{\small\color{MainBlue}\faCalendar}\enspace\textbf{Fecha:}  & 6 Mayo de 2026 \\
+		\end{tabular}
+		
+		\vspace{1.2cm}
+		
+		% ---- SECCIÓN DE AUTORES / GRUPO ----
+		\begin{tcolorbox}[
+			enhanced, width=0.80\textwidth, % Ligeramente más ancho para que quepan bien los correos largos
+			colback=SoftBlue, colframe=MainBlue,
+			boxrule=0.8pt, arc=4pt,
+			title={\centering\textbf{\faUsers\quad Miembros del Grupo}},
+			coltitle=white,
+			fonttitle=\large
+			]
+			\begin{center}
+				\renewcommand{\arraystretch}{1.3}
+				\begin{tabular}{@{}ll@{}}
+					\textbf{Lucía Llana Carmona} & \small \texttt{lucia.llana@alumnos.upm.es} \\
+					\textbf{María Moya Marcilla} & \small \texttt{maria.moya.marcilla@alumnos.upm.es} \\
+					\textbf{Pedro Gil Bolaños} & \small \texttt{pedro.gilb@alumnos.upm.es} \\
+					\textbf{Pedro Osma Moya} & \small \texttt{p.osma@alumnos.upm.es} \\
+					\textbf{Eduardo Muñoz de Maya} & \small \texttt{eduardo.mdemaya@alumnos.upm.es} \\
+				\end{tabular}
+			\end{center}
+		\end{tcolorbox}
+		
+	\end{center}
+	
+	\vfill
+	
+	% ---- PIE DE PÁGINA ----
+	\begin{center}
+		{\fontsize{8}{10}\selectfont\color{black!40}
+			Grado en Ingeniería de Sistemas Electrónicos \quad$\cdot$\quad Diseño Digital 2}
+	\end{center}
+	\vspace{0.5cm}
+	
+\end{titlepage}
+	% =====================================================================
+	%  ÍNDICE
+	% =====================================================================
+	\newpage
+	\tableofcontents
+	\newpage
+	
+	% =====================================================================
+	\section{Introducción y Objetivos}
+	% =====================================================================
+	
+	En esta primera fase el trabajo ha consistido en proponer el \textbf{diseño jerárquico} de la calculadora y en modelar, simular y depurar los dos conversores de código: \textbf{BCD a Binario} (\texttt{bcd\_to\_bin}) y \textbf{Binario a BCD} (\texttt{bin\_to\_bcd}).
+	
+	Estos dos módulos son los más importantes de cara a la interfaz del sistema. El usuario introduce y recibe los datos en BCD (teclado y display de siete segmentos), pero toda la aritmética interna ---suma, resta y multiplicación--- se hace en binario en complemento a dos. Por eso necesitamos estos conversores: actúan de puente entre los dos dominios.
+	
+	\vspace{0.5em}
+	\begin{tcolorbox}[colback=SoftBlue, colframe=MainBlue, boxrule=0.8pt, arc=2pt,
+		left=0.5cm, right=0.5cm, top=0.3cm, bottom=0.3cm]
+		\small\faInfoCircle\enspace\textbf{Restricción de librería:} Siguiendo las
+		directrices de la asignatura, todos los módulos emplean
+		\texttt{ieee.std\_logic\_unsigned}. Este paquete no soporta la multiplicación
+		directa de vectores de longitud arbitraria, por lo que se recurre a
+		desplazamientos (shifts) y sumas, que son la representación hardware natural
+		de las potencias de dos.
+	\end{tcolorbox}
+	
+	\subsection{Arquitectura jerárquica del sistema}
+	
+	La calculadora se estructura de forma jerárquica con los siguientes bloques principales:
+	
+	\vspace{0.8em}
+	\begin{center}
+		\begin{tikzpicture}[node distance=0.9cm and 1.4cm]
+			% Bloques principales
+			\node[bloque, text width=2.6cm] (bcd2bin)
+			{\texttt{bcd\_to\_bin}\\[2pt]{\tiny BCD $\to$ Binario\\combinacional}};
+			\node[bloque, text width=2.6cm, right=2.0cm of bcd2bin] (alu)
+			{ALU\\[2pt]{\tiny Aritmética Binaria\\suma / resta / mult.}};
+			\node[bloque, text width=2.6cm, right=2.0cm of alu] (bin2bcd)
+			{\texttt{bin\_to\_bcd}\\[2pt]{\tiny Binario $\to$ BCD\\secuencial}};
+			
+			% Bloques periféricos
+			\node[bloque, text width=2.6cm, below=1.1cm of bcd2bin,
+			fill=SoftGreen, draw=MainGreen] (entrada)
+			{Entrada BCD\\[2pt]{\tiny Teclado / Switches}};
+			\node[bloque, text width=2.6cm, below=1.1cm of bin2bcd,
+			fill=SoftGreen, draw=MainGreen] (salida)
+			{Salida BCD\\[2pt]{\tiny Display 7 segmentos}};
+			\node[bloque, text width=2.6cm, below=1.1cm of alu,
+			fill=SoftOrange, draw=MainOrange] (ctrl)
+			{Control\\[2pt]{\tiny FSM Principal}};
+			
+			% Buses de datos
+			\draw[flecha] (bcd2bin) -- node[above,font=\tiny]{10 bits} (alu);
+			\draw[flecha] (alu)     -- node[above,font=\tiny]{20 bits} (bin2bcd);
+			\draw[flecha] (entrada) -- (bcd2bin);
+			\draw[flecha] (bin2bcd) -- (salida);
+			\draw[flecha, dashed, color=MainOrange] (ctrl) -- (alu);
+			
+			% Marco de Fase 1
+			\begin{scope}[on background layer]
+				\node[nucleo, fit=(bcd2bin)(bin2bcd)(alu),
+				label={[font=\small\bfseries\color{MainBlue}]above:
+					\textbf{Fase 1} --- Conversores de Código}] {};
+			\end{scope}
+		\end{tikzpicture}
+	\end{center}
+	\FloatBarrier
+	
+	\vspace{0.4em}
+	Los bloques \texttt{bcd\_to\_bin} y \texttt{bin\_to\_bcd} son, por tanto, la frontera entre el dominio decimal del usuario y el binario interno. En esta fase nos hemos centrado en diseñarlos y verificarlos con sus respectivos testbenches.
+	
+	% =====================================================================
+	\section{Conversor BCD a Binario (\texttt{bcd\_to\_bin})}
+	% =====================================================================
+	
+	\subsection{Especificación}
+	
+	\begin{tcolorbox}[colback=SoftGreen, colframe=MainGreen, boxrule=0.8pt, arc=2pt,
+		left=0.5cm, right=0.5cm, top=0.3cm, bottom=0.3cm]
+		\small
+		\begin{tabular}{ll}
+			\textbf{Tipo:}    & Lógica combinacional pura (sin reloj).\\[3pt]
+			\textbf{Entrada:} & \texttt{bcd(11..0)} --- tres nibbles:
+			centenas \texttt{bcd[11:8]}, decenas \texttt{bcd[7:4]},
+			unidades \texttt{bcd[3:0]}.\\[3pt]
+			\textbf{Salida:}  & \texttt{bin(9..0)} --- valor binario en
+			$\left[0,\,999\right]$.
+		\end{tabular}
+	\end{tcolorbox}
+	
+	\vspace{0.4em}
+	La conversión es simplemente:
+	$$\texttt{bin} \;=\; c \times 100 \;+\; d \times 10 \;+\; u$$
+	
+	El máximo posible es $9 \times 100 + 9 \times 10 + 9 = 999$. Con 10 bits se pueden representar hasta $2^{10}-1 = 1023$, así que no hay riesgo de desbordamiento en ningún caso válido.
+	
+	\subsection{Implementación mediante desplazamientos}
+	
+	Como no se puede usar multiplicación directa con \texttt{std\_logic\_unsigned}, hemos descompuesto los factores 100 y 10 como suma de potencias de dos y los hemos implementado con concatenaciones de ceros (equivalente a desplazamientos a la izquierda):
+	$$c \times 100 \;=\; c \times 64 + c \times 32 + c \times 4
+	\;=\; (c \!\ll\! 6) + (c \!\ll\! 5) + (c \!\ll\! 2)$$
+	$$d \times 10 \;=\; d \times 8 + d \times 2
+	\;=\; (d \!\ll\! 3) + (d \!\ll\! 1)$$
+	
+	\begin{lstlisting}[caption={Núcleo de \texttt{bcd\_to\_bin.vhd} --- multiplicación por desplazamientos}]
+		-- Extender los tres digitos BCD a 10 bits cada uno
+		c <= "000000" & bcd(11 downto 8);   -- centenas
+		d <= "000000" & bcd( 7 downto 4);   -- decenas
+		u <= "000000" & bcd( 3 downto 0);   -- unidades
+		
+		-- c * 100 = c*64 + c*32 + c*4  (64+32+4 = 100)
+		c100 <= (c(3 downto 0) & "000000")   -- c * 64  (shift 6)
+		+ (c(4 downto 0) & "00000")    -- c * 32  (shift 5)
+		+ (c(7 downto 0) & "00");      -- c * 4   (shift 2)
+		
+		-- d * 10 = d*8 + d*2  (8+2 = 10)
+		d10  <= (d(6 downto 0) & "000")      -- d * 8   (shift 3)
+		+ (d(8 downto 0) & '0');       -- d * 2   (shift 1)
+		
+		bin <= c100 + d10 + u;
+	\end{lstlisting}
+	
+	\begin{tcolorbox}[colback=SoftOrange, colframe=MainOrange, boxrule=0.8pt, arc=2pt,
+		left=0.5cm, right=0.5cm, top=0.3cm, bottom=0.3cm]
+		\small\faExclamationTriangle\enspace\textbf{Anchos de bits:} Cada
+		concatenación produce exactamente 10 bits, igual que la señal destino.
+		Por ejemplo, \texttt{c(3 downto 0) \& "000000"} produce
+		$4 + 6 = 10$ bits. Con \texttt{std\_logic\_unsigned} las sumas operan
+		en ese ancho fijo, descartando cualquier carry sin riesgo de
+		desbordamiento silencioso.
+	\end{tcolorbox}
+	
+	\subsection{Verificación}
+	
+	El testbench \texttt{tb\_bcd\_to\_bin} simplemente va cambiando la entrada cada 20\,ns sin necesidad de reloj, ya que el módulo es puramente combinacional. Los casos cubren los extremos y algunos valores intermedios:
+	
+	\begin{table}[H]
+		\centering
+		\caption{Casos de prueba del testbench \texttt{tb\_bcd\_to\_bin}}
+		\begin{tabular}{ccc}
+			\toprule
+			\textbf{Entrada BCD (hex)} & \textbf{Salida binaria (decimal)} & \textbf{Propósito} \\
+			\midrule
+			\texttt{0x000} & 0   & Cero absoluto \\
+			\texttt{0x010} & 10  & Solo decenas  \\
+			\texttt{0x100} & 100 & Solo centenas \\
+			\texttt{0x123} & 123 & Valor mixto representativo \\
+			\texttt{0x999} & 999 & Máximo absoluto \\
+			\bottomrule
+		\end{tabular}
+		\label{tab:tb-bcd2bin}
+	\end{table}
+	
+	\FloatBarrier
+	
+	% =====================================================================
+	\section{Conversor Binario a BCD (\texttt{bin\_to\_bcd})}
+	% =====================================================================
+	
+	\subsection{Especificación}
+	
+	\begin{tcolorbox}[colback=SoftGreen, colframe=MainGreen, boxrule=0.8pt, arc=2pt,
+		left=0.5cm, right=0.5cm, top=0.3cm, bottom=0.3cm]
+		\small
+		\begin{tabular}{ll}
+			\textbf{Tipo:}      & Lógica secuencial --- FSM de tres estados.\\[3pt]
+			\textbf{Entradas:}  & \texttt{clk} (50\,MHz), \texttt{nRst} (reset activo bajo),
+			\texttt{start}, \texttt{bin(N\_BITS-1..0)}.\\[3pt]
+			\textbf{Salidas:}   & \texttt{done} (pulso de un ciclo),
+			\texttt{bcd(23..0)} --- seis dígitos BCD.\\[3pt]
+			\textbf{Genérico:}  & \texttt{N\_BITS = 20} $\;\Rightarrow\;$
+			rango $\left[0,\, 2^{20}-1\right] = \left[0,\,1\,048\,575\right]$.
+		\end{tabular}
+	\end{tcolorbox}
+	
+	\vspace{0.4em}
+	La calculadora tiene que poder mostrar resultados de hasta $999 \times 999 = 998\,001$, así que el conversor trabaja con 20 bits de entrada y produce 6 dígitos BCD (24 bits). Hacer esto con lógica combinacional pura sería inviable, así que hemos optado por una \textbf{arquitectura secuencial iterativa}.
+	
+	\subsection{Algoritmo: Double Dabble}
+	
+	Hemos implementado el algoritmo \textit{Double Dabble} (también llamado ``shift-and-add-3''), que procesa el número binario bit a bit, de más significativo a menos, en exactamente $N_{\text{BITS}} = 20$ ciclos de reloj. Cada ciclo hace lo siguiente:
+	
+	\begin{enumerate}[leftmargin=1.8cm, label=\textbf{Paso \arabic*.}]
+		\item \textbf{Add-3}: para cada nibble BCD del acumulador, si su valor es
+		$\geq 5$, se le suma 3. Esto garantiza que tras el desplazamiento
+		siguiente el nibble no desborde el dígito decimal.
+		\vspace{2pt}\\
+		\textit{Justificación:} si un nibble vale $n \in [5, 9]$, tras un
+		shift izquierda valdría $2n \in [10, 18]$, desbordando un dígito decimal.
+		Sumando 3 antes ($n + 3 \in [8, 12]$), el shift produce $2(n+3) \in [16, 24]$,
+		cuyo carry transporta correctamente $+1$ al nibble superior.
+		
+		\item \textbf{Shift izquierda}: se desplaza un bit a la izquierda el registro
+		combinado $[\texttt{acc\_bcd} \mid \texttt{bin\_reg}]$, introduciendo
+		el MSB actual de \texttt{bin\_reg} por la derecha de \texttt{acc\_bcd}.
+	\end{enumerate}
+	
+	\begin{lstlisting}[caption={Núcleo del algoritmo Double Dabble en \texttt{bin\_to\_bcd.vhd}}]
+		-- Paso 1: Add-3 a cada nibble si su valor es >= 5
+		if acc_bcd(3  downto 0) >= "0101" then n0 := acc_bcd(3  downto 0) + "0011";
+		else n0 := acc_bcd(3  downto 0); end if;
+		if acc_bcd(7  downto 4) >= "0101" then n1 := acc_bcd(7  downto 4) + "0011";
+		else n1 := acc_bcd(7  downto 4); end if;
+		-- (idem para n2..n5: centenas, miles, decenas de miles, centenas de miles)
+		
+		-- Paso 2: Reconstruir vector ajustado y desplazar
+		bcd_adj := n5 & n4 & n3 & n2 & n1 & n0;
+		
+		acc_bcd <= bcd_adj(22 downto 0) & bin_reg(N_BITS-1); -- shift + MSB entrante
+		bin_reg <= bin_reg(N_BITS-2 downto 0) & '0';         -- avanzar registro binario
+		bits_left <= bits_left - 1;
+	\end{lstlisting}
+	
+	\subsection{Máquina de Estados (FSM)}
+	
+	El control secuencial se implementa mediante una FSM de tres estados:
+	
+	\vspace{0.8em}
+	\begin{center}
+		\begin{tikzpicture}[
+			>=Latex,
+			every node/.style={font=\sffamily\small}
+			]
+			% ---- Nodos en triángulo ----
+			% IDLE  abajo-izquierda, CALC  arriba-centro, FINISH  abajo-derecha
+			\node[estado] (idle)   at (0,0)    {IDLE};
+			\node[estado] (calc)   at (4,3)    {CALC};
+			\node[estado] (finish) at (8,0)    {FINISH};
+			
+			% ---- IDLE self-loop (lado izquierdo del nodo) ----
+			\draw[flecha] (idle) to[out=210, in=150, looseness=6]
+			node[left, font=\tiny\sffamily, align=right, xshift=-2pt]
+			{\texttt{start='0'}}
+			(idle);
+			
+			% ---- IDLE -> CALC ----
+			\draw[flecha] (idle) to[bend left=12]
+			node[above left, font=\tiny\sffamily, align=center, xshift=2pt]
+			{\texttt{start='1'}\\[-1pt]carga \texttt{bin\_reg}}
+			(calc);
+			
+			% ---- CALC self-loop (arriba del nodo) ----
+			% Corrección: Sacamos el símbolo '>' del \texttt para evitar conflicto activo de babel
+			\draw[flecha] (calc) to[out=60, in=120, looseness=6]
+			node[above, font=\tiny\sffamily, align=center]
+			{\texttt{bits\_left} $>$ 0\\[-1pt]paso Double Dabble}
+			(calc);
+			
+			% ---- CALC -> FINISH ----
+			\draw[flecha] (calc) to[bend left=12]
+			node[above right, font=\tiny\sffamily, align=center, xshift=-2pt]
+			{\texttt{bits\_left = 0}}
+			(finish);
+			
+			% ---- FINISH -> IDLE (arco inferior) ----
+			\draw[flecha] (finish) to[bend left=25]
+			node[below, font=\tiny\sffamily, align=center]
+			{\texttt{done} $\leftarrow$ \texttt{'1'}}
+			(idle);
+			
+		\end{tikzpicture}
+	\end{center}
+	\FloatBarrier
+	
+	\begin{table}[H]
+		\centering
+		\caption{Estados de la FSM del conversor \texttt{bin\_to\_bcd}}
+		\begin{tabular}{lll}
+			\toprule
+			\textbf{Estado} & \textbf{Descripción} & \textbf{Acción sobre señales} \\
+			\midrule
+			\texttt{IDLE}
+			& Espera activa de \texttt{start='1'}.
+			Carga \texttt{bin\_reg} $\leftarrow$ \texttt{bin}.
+			& \texttt{done} $\leftarrow$ \texttt{'0'} \\[4pt]
+			\texttt{CALC}
+			& Ejecuta un paso Double Dabble por ciclo
+			durante \texttt{N\_BITS} ciclos.
+			& \texttt{acc\_bcd}, \texttt{bin\_reg} actualizados \\[4pt]
+			\texttt{FINISH}
+			& Pulso de fin; retorna inmediatamente a \texttt{IDLE}.
+			& \texttt{done} $\leftarrow$ \texttt{'1'} \\
+			\bottomrule
+		\end{tabular}
+		\label{tab:fsm}
+	\end{table}
+	
+	\FloatBarrier
+	
+	\subsection{Verificación}
+	
+	El testbench \texttt{tb\_bin\_to\_bcd} genera un reloj de 50\,MHz (periodo 20\,ns). Nos encontramos con problemas de condiciones de carrera al detectar \texttt{done='1'}, así que lo resolvimos con un procedimiento auxiliar (\texttt{run\_test}) que alinea todo con flancos de reloj. Para simular los diez casos completos en ModelSim hay que ejecutar \texttt{run 8000 ns}.
+	
+	\begin{lstlisting}[caption={Procedimiento auxiliar \texttt{run\_test} del testbench secuencial}]
+		procedure run_test(val : std_logic_vector(19 downto 0)) is
+		begin
+		wait until rising_edge(clk);  -- alinear con el reloj antes de asignar
+		bin   <= val;
+		start <= '1';
+		wait until rising_edge(clk);  -- IDLE detecta start; done pasa a '0'
+		start <= '0';
+		wait until done = '1';        -- esperar fin de la conversion (20 ciclos)
+		wait for clk_period * 2;      -- margen para visualizar en waveform
+		end procedure;
+	\end{lstlisting}
+	
+	\begin{table}[H]
+		\centering
+		\caption{Casos de prueba del testbench \texttt{tb\_bin\_to\_bcd}}
+		\begin{tabular}{ccl}
+			\toprule
+			\textbf{Binario (decimal)} & \textbf{BCD esperado (hex)} & \textbf{Propósito} \\
+			\midrule
+			0         & \texttt{0x000000} & Cero absoluto \\
+			1         & \texttt{0x000001} & Unidad mínima \\
+			9         & \texttt{0x000009} & Máximo de un dígito \\
+			10        & \texttt{0x000010} & Decena exacta \\
+			100       & \texttt{0x000100} & Centena exacta \\
+			255       & \texttt{0x000255} & Potencia de 2 menos 1 \\
+			999       & \texttt{0x000999} & Máximo operando de entrada \\
+			1\,000    & \texttt{0x001000} & Paso de millar \\
+			9\,999    & \texttt{0x009999} & Máximo de cuatro dígitos \\
+			999\,999  & \texttt{0x999999} & Máximo BCD representable (6 dígitos) \\
+			\bottomrule
+		\end{tabular}
+		\label{tab:tb-bin2bcd}
+	\end{table}
+	
+	\noindent
+	\textit{Nota: el valor máximo operacional de la calculadora es $999 \times 999 = 998\,001$.
+		El último caso de prueba utiliza $999\,999$ porque es el máximo que los 24 bits BCD de
+		salida pueden representar, ofreciendo así una verificación de frontera más exigente.}
+	
+	\FloatBarrier
+	
+	% =====================================================================
+	\section{Conclusiones}
+	% =====================================================================
+	
+	En esta primera fase hemos diseñado, implementado y verificado los dos conversores de código que forman la base del proyecto:
+	
+	\begin{itemize}[leftmargin=1.6cm, itemsep=4pt]
+		\item \textbf{\texttt{bcd\_to\_bin}}: completamente combinacional. Hemos resuelto la multiplicación por 100 y por 10 mediante desplazamientos y sumas, sin usar multiplicadores, lo que lo hace compatible con \texttt{std\_logic\_unsigned}. La latencia es nula (solo depende de la propagación de puertas).
+		
+		\item \textbf{\texttt{bin\_to\_bcd}}: secuencial con FSM de tres estados (\texttt{IDLE} / \texttt{CALC} / \texttt{FINISH}). El algoritmo \textit{Double Dabble} tarda exactamente 20 ciclos de reloj, lo que es más que suficiente para los valores que puede generar la calculadora ($999 \times 999 = 998\,001$ como máximo).
+	\end{itemize}
+	
+	Todos los casos de prueba han dado el resultado esperado, incluyendo el cero, los valores de frontera y algunos intermedios. Los módulos quedan listos para integrarse en las siguientes fases.
+	
+	\vspace{1em}
+	\begin{tcolorbox}[colback=SoftBlue, colframe=MainBlue, boxrule=0.8pt, arc=2pt,
+		left=0.5cm, right=0.5cm, top=0.3cm, bottom=0.3cm]
+		\small\faArrowRight\enspace\textbf{Próxima fase:}
+		En la Fase 2 habrá que diseñar la ALU: suma, resta y multiplicación de operandos
+		con signo en complemento a dos (10 bits), con detección de desbordamiento
+		mediante la señal \texttt{overflow}.
+	\end{tcolorbox}
+	
+\end{document}

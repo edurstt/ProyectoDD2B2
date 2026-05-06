@@ -1,0 +1,43 @@
+C:/Users/posma/Desktop/DD2/Fase12/bin_to_bcd.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/posma/Desktop/DD2/Fase12/bin_to_bcd.vhd
+Model Technology ModelSim ALTERA vcom 10.4d Compiler 2015.12 Dec 30 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bin_to_bcd
+-- Compiling architecture rtl of bin_to_bcd
+
+} {} {}} C:/Users/posma/Desktop/DD2/Fase12/bcd_to_bin.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/posma/Desktop/DD2/Fase12/bcd_to_bin.vhd
+Model Technology ModelSim ALTERA vcom 10.4d Compiler 2015.12 Dec 30 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity bcd_to_bin
+-- Compiling architecture rtl of bcd_to_bin
+
+} {} {}} C:/Users/posma/Desktop/DD2/Fase12/tb_bin_to_bcd.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/posma/Desktop/DD2/Fase12/tb_bin_to_bcd.vhd
+Model Technology ModelSim ALTERA vcom 10.4d Compiler 2015.12 Dec 30 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity tb_bin_to_bcd
+-- Compiling architecture sim of tb_bin_to_bcd
+-- Loading entity bin_to_bcd
+
+} {} {}} C:/Users/posma/Desktop/DD2/Fase12/tb_bcd_to_bin.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/posma/Desktop/DD2/Fase12/tb_bcd_to_bin.vhd
+Model Technology ModelSim ALTERA vcom 10.4d Compiler 2015.12 Dec 30 2015
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package std_logic_arith
+-- Loading package STD_LOGIC_UNSIGNED
+-- Compiling entity tb_bcd_to_bin
+-- Compiling architecture sim of tb_bcd_to_bin
+-- Loading entity bcd_to_bin
+
+} {} {}}

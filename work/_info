@@ -1,0 +1,184 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/altera/16.0
+Ebcd_to_bin
+Z0 w1778017549
+Z1 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z2 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z5 dC:/Users/posma/Desktop/DD2/Fase12
+Z6 8C:/Users/posma/Desktop/DD2/Fase12/bcd_to_bin.vhd
+Z7 FC:/Users/posma/Desktop/DD2/Fase12/bcd_to_bin.vhd
+l0
+L11
+V:LogC_1Vg]iLg^a4W<SjR3
+!s100 z@8lPdaJ2IXfFEZQVF7Wz3
+Z8 OV;C;10.4d;61
+32
+Z9 !s110 1778017935
+!i10b 1
+Z10 !s108 1778017935.000000
+Z11 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/posma/Desktop/DD2/Fase12/bcd_to_bin.vhd|
+Z12 !s107 C:/Users/posma/Desktop/DD2/Fase12/bcd_to_bin.vhd|
+!i113 1
+Z13 o-work work -2002 -explicit
+Z14 tExplicit 1
+Artl
+R1
+R2
+R3
+R4
+Z15 DEx4 work 10 bcd_to_bin 0 22 :LogC_1Vg]iLg^a4W<SjR3
+l25
+L18
+V15DiT_^OG:I9PQ`6307YJ3
+!s100 24G7Z?AJNg>5HWJA@o0n60
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Ebin_to_bcd
+Z16 w1778017929
+R1
+R2
+R3
+R4
+R5
+Z17 8C:/Users/posma/Desktop/DD2/Fase12/bin_to_bcd.vhd
+Z18 FC:/Users/posma/Desktop/DD2/Fase12/bin_to_bcd.vhd
+l0
+L10
+Vk;bzFLOICI3H_>BAPH=C01
+!s100 U[1X5FH[S`<I?A;[gcAQT0
+R8
+32
+R9
+!i10b 1
+R10
+Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/posma/Desktop/DD2/Fase12/bin_to_bcd.vhd|
+Z20 !s107 C:/Users/posma/Desktop/DD2/Fase12/bin_to_bcd.vhd|
+!i113 1
+R13
+R14
+Artl
+R1
+R2
+R3
+R4
+Z21 DEx4 work 10 bin_to_bcd 0 22 k;bzFLOICI3H_>BAPH=C01
+l30
+L22
+VI@KH2?GJN7M<h3=ld7P_;0
+!s100 Y;_@JkC9l]`RTe6^Zd89B2
+R8
+32
+R9
+!i10b 1
+R10
+R19
+R20
+!i113 1
+R13
+R14
+Etb_bcd_to_bin
+Z22 w1778017560
+R1
+R2
+R3
+R4
+R5
+Z23 8C:/Users/posma/Desktop/DD2/Fase12/tb_bcd_to_bin.vhd
+Z24 FC:/Users/posma/Desktop/DD2/Fase12/tb_bcd_to_bin.vhd
+l0
+L9
+ViTMOF>KQNi8oONTIj9DUk0
+!s100 VGI>A4kUZ990B[F84gkNG3
+R8
+32
+R9
+!i10b 1
+R10
+Z25 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/posma/Desktop/DD2/Fase12/tb_bcd_to_bin.vhd|
+Z26 !s107 C:/Users/posma/Desktop/DD2/Fase12/tb_bcd_to_bin.vhd|
+!i113 1
+R13
+R14
+Asim
+R15
+R1
+R2
+R3
+R4
+DEx4 work 13 tb_bcd_to_bin 0 22 iTMOF>KQNi8oONTIj9DUk0
+l15
+L12
+VDVijF`MPA`9n?N>VTRLZV3
+!s100 TV6mEhkY>Ibka0`N0c7<43
+R8
+32
+R9
+!i10b 1
+R10
+R25
+R26
+!i113 1
+R13
+R14
+Etb_bin_to_bcd
+Z27 w1778017932
+R1
+R2
+R3
+R4
+R5
+Z28 8C:/Users/posma/Desktop/DD2/Fase12/tb_bin_to_bcd.vhd
+Z29 FC:/Users/posma/Desktop/DD2/Fase12/tb_bin_to_bcd.vhd
+l0
+L10
+VeEPiQn89Qj2Z:XWQS:^9i3
+!s100 lC=EMmbL><>ZcKXLWKn8V2
+R8
+32
+R9
+!i10b 1
+R10
+Z30 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/posma/Desktop/DD2/Fase12/tb_bin_to_bcd.vhd|
+Z31 !s107 C:/Users/posma/Desktop/DD2/Fase12/tb_bin_to_bcd.vhd|
+!i113 1
+R13
+R14
+Asim
+R21
+R1
+R2
+R3
+R4
+DEx4 work 13 tb_bin_to_bcd 0 22 eEPiQn89Qj2Z:XWQS:^9i3
+l22
+L13
+VclGKJjB`5knae3^VCRTR12
+!s100 mdLW5`bPCGZAG@`e@]e^D2
+R8
+32
+R9
+!i10b 1
+R10
+R30
+R31
+!i113 1
+R13
+R14
