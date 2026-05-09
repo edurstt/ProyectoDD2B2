@@ -1,0 +1,616 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/EDUARD~1/DOCUME~1/DD2/PROYEC~2
+Ealu
+Z1 w1778162738
+Z2 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z3 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z4 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z5 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R0
+Z6 8fase2\alu.vhd
+Z7 Ffase2\alu.vhd
+l0
+L21
+V5;I4ER2Q1FC>=k1^P>_BD3
+!s100 PbMUlJKFT]jGWkXia4T`J1
+Z8 OV;C;10.4d;61
+31
+Z9 !s110 1778163287
+!i10b 1
+Z10 !s108 1778163287.000000
+Z11 !s90 -93|-work|work|fase1\bcd_to_bin.vhd|fase1\bin_to_bcd.vhd|fase2\lpm_mult.vhd|fase2\alu.vhd|fase2\timer.vhd|fase2\clk_div.vhd|fase2\rebotes.vhd|fase2\ctrl_teclado.vhd|fase2\interfaz_teclado.vhd|fase2\displays.vhd|fase2\tb_alu.vhd|fase3\controlador.vhd|fase3\calculadora.vhd|fase3\tb_calculadora.vhd|
+Z12 !s107 fase3\tb_calculadora.vhd|fase3\calculadora.vhd|fase3\controlador.vhd|fase2\tb_alu.vhd|fase2\displays.vhd|fase2\interfaz_teclado.vhd|fase2\ctrl_teclado.vhd|fase2\rebotes.vhd|fase2\clk_div.vhd|fase2\timer.vhd|fase2\alu.vhd|fase2\lpm_mult.vhd|fase1\bin_to_bcd.vhd|fase1\bcd_to_bin.vhd|
+!i113 1
+Z13 o-93 -work work
+Z14 tExplicit 1
+Artl
+R2
+R3
+R4
+R5
+Z15 DEx4 work 3 alu 0 22 5;I4ER2Q1FC>=k1^P>_BD3
+l51
+L32
+V_j]4<;Ufb@BFE3H`zf_K^2
+!s100 Jg]X4d_N4I0ALDD`HoeFe1
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Ebcd_to_bin
+Z16 w1778045874
+R2
+R3
+R4
+R5
+R0
+Z17 8fase1\bcd_to_bin.vhd
+Z18 Ffase1\bcd_to_bin.vhd
+l0
+L11
+ViBc3=2Da56:^0;9l76:Lh3
+!s100 z@8lPdaJ2IXfFEZQVF7Wz3
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Artl
+R2
+R3
+R4
+R5
+Z19 DEx4 work 10 bcd_to_bin 0 22 iBc3=2Da56:^0;9l76:Lh3
+l25
+L18
+VEizMQ`RRbW=6oM[fR8X`a2
+!s100 24G7Z?AJNg>5HWJA@o0n60
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Ebin_to_bcd
+Z20 w1778100206
+R2
+R3
+R4
+R5
+R0
+Z21 8fase1\bin_to_bcd.vhd
+Z22 Ffase1\bin_to_bcd.vhd
+l0
+L10
+V>LmH1<4WHKC[2XDUIP1UZ3
+!s100 U[1X5FH[S`<I?A;[gcAQT0
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Artl
+R2
+R3
+R4
+R5
+Z23 DEx4 work 10 bin_to_bcd 0 22 >LmH1<4WHKC[2XDUIP1UZ3
+l28
+L22
+VnETG3dSKW?0[Q?LJ21KJ>0
+!s100 8@CzC<MXWa5QPI9?C]L142
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Ecalculadora
+Z24 w1778163088
+R2
+R3
+R4
+R5
+R0
+Z25 8fase3\calculadora.vhd
+Z26 Ffase3\calculadora.vhd
+l0
+L24
+Vo1VTQS@RzcHTEdnPYkU_61
+!s100 BRJUofXiM0mV6MGj>0W;Z2
+R8
+31
+Z27 !s110 1778163316
+!i10b 1
+Z28 !s108 1778163316.000000
+Z29 !s90 -93|-work|work|fase2\rebotes.vhd|fase2\ctrl_teclado.vhd|fase2\interfaz_teclado.vhd|fase2\displays.vhd|fase2\tb_alu.vhd|fase3\controlador.vhd|fase3\calculadora.vhd|fase3\tb_calculadora.vhd|
+Z30 !s107 fase3\tb_calculadora.vhd|fase3\calculadora.vhd|fase3\controlador.vhd|fase2\tb_alu.vhd|fase2\displays.vhd|fase2\interfaz_teclado.vhd|fase2\ctrl_teclado.vhd|fase2\rebotes.vhd|
+!i113 1
+R13
+R14
+Aestructural
+Z31 DEx4 work 8 displays 0 22 <ZLn:<6G0<c=N>2NZ;?b90
+Z32 DEx4 work 5 timer 0 22 <ljPZbbiY1G=cYD5@8Wj43
+R23
+R15
+R19
+Z33 DEx4 work 11 controlador 0 22 9[K;CWWHdfGZHh42U;M[W1
+Z34 DEx4 work 16 interfaz_teclado 0 22 aLSc:8eRRo=`c^nF@Z89:3
+R2
+R3
+R4
+R5
+Z35 DEx4 work 11 calculadora 0 22 o1VTQS@RzcHTEdnPYkU_61
+l87
+L51
+VSYQf74b33D_aM<:AnJ1Mj0
+!s100 ccQG8^nOFBzV;SI=ID4=@2
+R8
+31
+R27
+!i10b 1
+R28
+R29
+R30
+!i113 1
+R13
+R14
+Eclk_div
+Z36 w1778162789
+R2
+R3
+R4
+R5
+R0
+Z37 8fase2\clk_div.vhd
+Z38 Ffase2\clk_div.vhd
+l0
+L11
+VBao5EZ7jC]daRY^;o`L?C0
+!s100 F>AKNIWcjLmX0jzV@h67h1
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Artl
+R2
+R3
+R4
+R5
+Z39 DEx4 work 7 clk_div 0 22 Bao5EZ7jC]daRY^;o`L?C0
+l25
+L22
+Vh:XDX8PPZenefUh9d<0jT2
+!s100 KVl<@5>GDlAZYOaZoUNCU3
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Econtrolador
+Z40 w1778163047
+R2
+R3
+R4
+R5
+R0
+Z41 8fase3\controlador.vhd
+Z42 Ffase3\controlador.vhd
+l0
+L25
+V9[K;CWWHdfGZHh42U;M[W1
+!s100 4nLT2n:JjYmae^]M?6<hL2
+R8
+31
+R27
+!i10b 1
+R28
+R29
+R30
+!i113 1
+R13
+R14
+Artl
+R2
+R3
+R4
+R5
+R33
+l69
+L54
+VlY[HVZ?D5EVPRbZel@=Z92
+!s100 62KM4BaHMgSG^0d?N=E5]0
+R8
+31
+R27
+!i10b 1
+R28
+R29
+R30
+!i113 1
+R13
+R14
+Ectrl_teclado
+Z43 w1778162846
+R2
+R3
+R4
+R5
+R0
+Z44 8fase2\ctrl_teclado.vhd
+Z45 Ffase2\ctrl_teclado.vhd
+l0
+L25
+VZ=XmQWX095?0cAZ<KOW]i1
+!s100 N@;bXlPoD?zJ;H>c<g;aA0
+R8
+31
+R27
+!i10b 1
+R28
+R29
+R30
+!i113 1
+R13
+R14
+Artl
+R2
+R3
+R4
+R5
+Z46 DEx4 work 12 ctrl_teclado 0 22 Z=XmQWX095?0cAZ<KOW]i1
+l58
+L46
+VC`[?BR=o5ZdXQ4=S^_E7N3
+!s100 Dhz]jdbTDnAfS7>351S0L3
+R8
+31
+R27
+!i10b 1
+R28
+R29
+R30
+!i113 1
+R13
+R14
+Edisplays
+Z47 w1778162969
+R2
+R3
+R4
+R5
+R0
+Z48 8fase2\displays.vhd
+Z49 Ffase2\displays.vhd
+l0
+L38
+V<ZLn:<6G0<c=N>2NZ;?b90
+!s100 3:zfa<Uml_a^QiBNZEg>c1
+R8
+31
+R27
+!i10b 1
+R28
+R29
+R30
+!i113 1
+R13
+R14
+Artl
+R2
+R3
+R4
+R5
+R31
+l137
+L58
+VfMe<nMWHnl`n_Ha7zZa2a0
+!s100 Y4BZ7]o0N[32J5d5gd4oW2
+R8
+31
+R27
+!i10b 1
+R28
+R29
+R30
+!i113 1
+R13
+R14
+Einterfaz_teclado
+Z50 w1778162868
+R4
+R5
+R0
+Z51 8fase2\interfaz_teclado.vhd
+Z52 Ffase2\interfaz_teclado.vhd
+l0
+L12
+VaLSc:8eRRo=`c^nF@Z89:3
+!s100 @cFc3NzK=cRAHFQT?JmM>1
+R8
+31
+R27
+!i10b 1
+R28
+R29
+R30
+!i113 1
+R13
+R14
+Aestructural
+R46
+Z53 DEx4 work 7 rebotes 0 22 B2fYM>VjgC7fZINkkg?Cb1
+R2
+R3
+R39
+R4
+R5
+R34
+l41
+L35
+V91BOk[d2KH9hYn2hiOSa[0
+!s100 `f@81bknP@F@i@ahK>ok<3
+R8
+31
+R27
+!i10b 1
+R28
+R29
+R30
+!i113 1
+R13
+R14
+Elpm_mult
+Z54 w1778162713
+Z55 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+R4
+R5
+R0
+Z56 8fase2\lpm_mult.vhd
+Z57 Ffase2\lpm_mult.vhd
+l0
+L12
+VcNf_nY1Y^991_`F=6VEIj2
+!s100 FkZnUkU33IHg;5h>OG[^j2
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Abehavioral
+R55
+R4
+R5
+DEx4 work 8 lpm_mult 0 22 cNf_nY1Y^991_`F=6VEIj2
+l21
+L20
+V8?O6DLWi5UPnD8]SJMWoz3
+!s100 52_XZn4C]KT9:zU016fPb1
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Erebotes
+Z58 w1778163307
+R4
+R5
+R0
+Z59 8fase2\rebotes.vhd
+Z60 Ffase2\rebotes.vhd
+l0
+L12
+VB2fYM>VjgC7fZINkkg?Cb1
+!s100 GV?gW1NjFI04`lMMY`oUB3
+R8
+31
+R27
+!i10b 1
+R28
+R29
+R30
+!i113 1
+R13
+R14
+Artl
+R4
+R5
+R53
+l27
+L21
+VUUnE6IB`]TVzW5VkSBoK51
+!s100 ^QIdZj=D8mzRX4A=b0^gD0
+R8
+31
+R27
+!i10b 1
+R28
+R29
+R30
+!i113 1
+R13
+R14
+Etb_alu
+Z61 w1778162997
+R2
+R3
+R4
+R5
+R0
+Z62 8fase2\tb_alu.vhd
+Z63 Ffase2\tb_alu.vhd
+l0
+L26
+VEk=;ALKCEE5[Hh0X]O7661
+!s100 0VIYJLm4?_>E4Tdj<L0N<2
+R8
+31
+R27
+!i10b 1
+R28
+R29
+R30
+!i113 1
+R13
+R14
+Asim
+R15
+R2
+R3
+R4
+R5
+DEx4 work 6 tb_alu 0 22 Ek=;ALKCEE5[Hh0X]O7661
+l73
+L29
+VhN>@EPAGbJ?ZaRY<E5[^E1
+!s100 @=a]CUadlmOG81?Le^o4;2
+R8
+31
+R27
+!i10b 1
+R28
+R29
+R30
+!i113 1
+R13
+R14
+Etb_calculadora
+Z64 w1778163175
+R2
+R3
+R4
+R5
+R0
+Z65 8fase3\tb_calculadora.vhd
+Z66 Ffase3\tb_calculadora.vhd
+l0
+L30
+V;]<h1SXoZe5FYc3<b:<110
+!s100 8D]aH7HDQkmN^V2RNcI^A3
+R8
+31
+R27
+!i10b 1
+R28
+R29
+R30
+!i113 1
+R13
+R14
+Asim
+R35
+R2
+R3
+R4
+R5
+DEx4 work 14 tb_calculadora 0 22 ;]<h1SXoZe5FYc3<b:<110
+l74
+L33
+Vhe7jc:<JCYAOmiS[]=KLQ2
+!s100 oAoXERaaDY1T0:0SdcIXN0
+R8
+31
+R27
+!i10b 1
+R28
+R29
+R30
+!i113 1
+R13
+R14
+Etimer
+Z67 w1778162755
+R2
+R3
+R4
+R5
+R0
+Z68 8fase2\timer.vhd
+Z69 Ffase2\timer.vhd
+l0
+L14
+V<ljPZbbiY1G=cYD5@8Wj43
+!s100 `;2X<[J2;A@:khMoUCkI^3
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Artl
+R2
+R3
+R4
+R5
+R32
+l32
+L27
+V_JRBcj>MDF@fSbQ>NP2Ze1
+!s100 mnM@nfAYW1@6=E5HmI8Q00
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14

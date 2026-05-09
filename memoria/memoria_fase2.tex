@@ -1,0 +1,1014 @@
+\documentclass[memoria_final]{subfiles}
+\begin{document}
+% Deteccion standalone vs. incluido en memoria_final
+% \jobname = 'memoria_fase2' cuando se compila solo
+% \jobname = 'memoria_final' cuando se incluye desde el documento final
+\edef\@currjob{\jobname}
+\def\@mainjob{memoria_final}
+\ifx\@currjob\@mainjob
+  % ---- incluido en memoria_final: solo separador de parte ----
+  \clearpage
+  \part{Fase 2: ALU, Teclado y Displays}
+\else
+  % ---- standalone: mostrar portada e indice propios ----
+\hypertarget{inicio}{}
+
+% -------------------------------------------------------------------
+%  PORTADA
+% -------------------------------------------------------------------
+\begin{titlepage}
+  \thispagestyle{empty}
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[white](current page.south west)rectangle(current page.north east);
+    \fill[MainBlue]
+      (current page.north west)rectangle
+      ([yshift=-0.22\paperheight]current page.north east);
+    \draw[MainBlue!40,line width=2pt]
+      ([yshift=-0.22\paperheight]current page.north west)--
+      ([yshift=-0.22\paperheight]current page.north east);
+  \end{tikzpicture}
+
+  \vspace*{-1cm}
+  \begin{flushleft}
+    {\fontsize{9}{12}\selectfont\color{white!80}
+      GRADO EN INGENIERÍA ELECTRÓNICA DE COMUNICACIONES}\\[1ex]
+    {\fontsize{24}{28}\selectfont\bfseries\color{white}
+      Diseño Digital 2}\\[1ex]
+    {\fontsize{11}{14}\selectfont\color{white!80}
+      Curso académico 2025--2026}
+  \end{flushleft}
+
+  \vspace*{0.11\paperheight}
+  \begin{center}
+    {\Large\color{MainBlue!80}\textbf{BLOQUE II}
+      \quad\textbullet\quad ALU, Teclado y Displays}\\[0.8cm]
+
+    {\fontsize{30}{38}\selectfont\bfseries\color{MainBlue}
+      Memoria del Proyecto}\\[0.2cm]
+    {\fontsize{22}{28}\selectfont\bfseries\color{MainBlue!80}
+      Bloque II --- Fase 2}\\[0.5cm]
+
+    {\fontsize{12}{18}\selectfont\color{black!60}
+      Diseño, implementación y verificación en VHDL-93}\\[0.2cm]
+    {\fontsize{11}{14}\selectfont\ttfamily\color{black!50}
+      alu \quad clk\_div \quad timer \quad ctrl\_tec
+      \quad interfaz\_teclado \quad displays}\\[0.4cm]
+
+    {\fontsize{11}{14}\selectfont\bfseries\color{MainBlue}
+      Versión 1.0 --- Mayo 2026}
+
+    \vspace{1cm}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{@{}r@{\hspace{1em}}l@{}}
+      {\small\color{MainBlue}\faLayerGroup}\enspace\textbf{Fase:}
+        & Bloque II --- Fase 2 \\
+      {\small\color{MainBlue}\faCalendar}\enspace\textbf{Entrega:}
+        & 14 de Mayo de 2026 \\
+      {\small\color{MainBlue}\faMicrochip}\enspace\textbf{Plataforma:}
+        & DECA MAX10 + conector XDECA \\
+      {\small\color{MainBlue}\faClock}\enspace\textbf{Reloj:}
+        & 50\,MHz \\
+    \end{tabular}
+
+    \vspace{1cm}
+    \begin{tcolorbox}[
+      enhanced,width=0.80\textwidth,
+      colback=SoftBlue,colframe=MainBlue,
+      boxrule=0.8pt,arc=4pt,
+      title={\centering\textbf{\faUsers\quad Miembros del Grupo}},
+      coltitle=white,fonttitle=\large]
+      \begin{center}
+        \renewcommand{\arraystretch}{1.3}
+        \begin{tabular}{@{}ll@{}}
+          \textbf{Lucía Llana Carmona}   &\small\texttt{lucia.llana@alumnos.upm.es}\\
+          \textbf{María Moya Marcilla}    &\small\texttt{maria.moya.marcilla@alumnos.upm.es}\\
+          \textbf{Pedro Gil Bolaños}      &\small\texttt{pedro.gilb@alumnos.upm.es}\\
+          \textbf{Pedro Osma Moya}        &\small\texttt{p.osma@alumnos.upm.es}\\
+          \textbf{Eduardo Muñoz de Maya}  &\small\texttt{eduardo.mdemaya@alumnos.upm.es}\\
+        \end{tabular}
+      \end{center}
+    \end{tcolorbox}
+  \end{center}
+  \vfill
+  \begin{center}
+    {\fontsize{8}{10}\selectfont\color{black!40}
+      Grado en Ingeniería Electrónica de Comunicaciones
+      \quad$\cdot$\quad Diseño Digital 2}
+  \end{center}
+  \vspace{0.5cm}
+\end{titlepage}
+\newpage
+\tableofcontents
+\newpage
+\fi% fin \ifx\@currjob\@mainjob
+\fancyhead[R]{\small\textbf{Memoria --- Fase 2 (ALU, Teclado, Displays)}}
+
+% ===================================================================
+\section{Introducción y objetivos}
+% ===================================================================
+
+En esta segunda fase se han diseñado, implementado y verificado los bloques
+intermedios de la calculadora: la \textbf{unidad aritmético-lógica} (ALU),
+el \textbf{sistema de temporización}, el \textbf{controlador de teclado
+matricial} y el \textbf{controlador de displays multiplexados}. Estos módulos
+constituyen el núcleo de la \textit{capa de interfaz} del sistema.
+
+El objetivo de la fase es disponer de un camino de datos completamente funcional
+y simulable que pueda integrarse directamente con el controlador (FSM) y los
+conversores de código desarrollados en la Fase~1.
+
+\vspace{0.5em}
+\begin{tcolorbox}[colback=SoftBlue,colframe=MainBlue,boxrule=0.8pt,arc=2pt,
+  left=0.5cm,right=0.5cm,top=0.3cm,bottom=0.3cm]
+  \small\faInfoCircle\enspace\textbf{Criterio de codificación adoptado en todo
+  el proyecto:}
+  todos los módulos RTL emplean \textbf{señales} en lugar de variables.
+  Una señal modela directamente un cable o un registro físico: su valor solo se
+  actualiza al término del proceso (equivalente al flanco de reloj), igual que
+  ocurre en el circuito real. Por el contrario, una variable se actualiza de
+  forma inmediata dentro del proceso---comportamiento propio del software---lo
+  que dificulta la correspondencia con el hardware y oculta la señal al
+  simulador (no aparece en las formas de onda). Este criterio se justifica con
+  detalle en el Apéndice~\ref{sec:senales-variables}.
+\end{tcolorbox}
+
+% ===================================================================
+\section{Arquitectura global del sistema}
+% ===================================================================
+
+La figura~\ref{fig:arq-global} muestra la jerarquía completa con todos los
+módulos, señales de interconexión y agrupación por fases de desarrollo.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[node distance=0.65cm and 1.0cm,font=\sffamily\footnotesize]
+
+  % ---- Fila 1: entrada -------------------------------------------------
+  \node[bloqueg,text width=2.2cm](hwtec)
+    {Teclado\\4$\times$4\\{\tiny XDECA}};
+
+  \node[bloqueg,text width=2.6cm,right=1.0cm of hwtec](itec)
+    {\texttt{interfaz\_}\\\texttt{teclado}\\[2pt]
+     {\tiny clk\_div + ctrl\_tec}};
+
+  \node[bloqueo,text width=2.6cm,right=1.2cm of itec](ctrl)
+    {\texttt{controlador}\\[2pt]
+     {\tiny FSM principal\\Fase~3}};
+
+  % ---- Fila 2: conversores BCD->bin ------------------------------------
+  \node[bloque,text width=2.3cm,
+        below right=1.0cm and 0.2cm of ctrl](b2b1)
+    {\texttt{bcd\_to\_bin}\\[2pt]{\tiny op1}};
+
+  \node[bloque,text width=2.3cm,
+        right=0.5cm of b2b1](b2b2)
+    {\texttt{bcd\_to\_bin}\\[2pt]{\tiny op2}};
+
+  % ---- Fila 3: ALU -----------------------------------------------------
+  \node[bloque,text width=2.6cm,
+        below=1.1cm of $(b2b1)!0.5!(b2b2)$](alu)
+    {\texttt{alu}\\[2pt]
+     {\tiny suma / resta / mult\\comp.\ a~2}};
+
+  \node[bloqueip,below=0.45cm of alu](mult)
+    {\texttt{lpm\_mult}\\{\tiny IP Altera\\$11{\times}11$\,b}};
+
+  % ---- Fila 4: bin_to_bcd + timer -------------------------------------
+  \node[bloque,text width=2.4cm,
+        below left=1.5cm and 1.0cm of alu](b2bcd)
+    {\texttt{bin\_to\_bcd}\\[2pt]
+     {\tiny Horner BCD\\20\,ciclos}};
+
+  \node[bloque,text width=2.2cm,
+        right=2.4cm of b2bcd](timer)
+    {\texttt{timer}\\[2pt]
+     {\tiny tic\_1ms\\tic\_5ms}};
+
+  % ---- Fila 5: displays -----------------------------------------------
+  \node[bloqueg,text width=2.4cm,
+        below=1.1cm of $(b2bcd)!0.5!(timer)$](disp)
+    {\texttt{displays}\\[2pt]
+     {\tiny mux 8$\times$7\,seg\\125\,Hz}};
+
+  \node[bloqueg,text width=2.0cm,
+        right=1.0cm of disp](hwdisp)
+    {Displays\\8$\times$7\,seg\\{\tiny DECA}};
+
+  % ---- Flechas: teclado -----------------------------------------------
+  \draw[flecha](hwtec)  -- node[above,font=\tiny]{col/fila} (itec);
+  \draw[flecha](itec)   -- node[above,font=\tiny]{tecla[3:0]\\tp} (ctrl);
+
+  % ---- Flechas: datapath ----------------------------------------------
+  \draw[flecha](ctrl.south east)
+    -- node[right,font=\tiny,xshift=2pt]{op1\_bcd} (b2b1.north);
+  \draw[flecha](ctrl.south east)
+    -- node[right,font=\tiny,xshift=2pt]{op2\_bcd} (b2b2.north);
+  \draw[bus](b2b1.south) -- node[left,font=\tiny]{10\,b} (alu.north west);
+  \draw[bus](b2b2.south) -- node[right,font=\tiny]{10\,b} (alu.north east);
+  \draw[bus](alu.south)  -- node[right,font=\tiny]{20\,b} (b2bcd.north east);
+  \draw[bus](b2bcd.south east) -- node[above,font=\tiny]{BCD\,24\,b} (disp.north west);
+  \draw[flecha](timer.south) -- node[right,font=\tiny]{tic\_1ms} (disp.north east);
+  \draw[flecha](disp) -- (hwdisp);
+
+  % ---- Flechas: control -----------------------------------------------
+  \draw[flechaO](ctrl.south)
+    |- node[right,font=\tiny,yshift=4pt]{start\_bcd} (b2bcd.west);
+  \draw[flechaO](b2bcd.north)
+    -- node[left,font=\tiny]{done} ++(0,0.5)
+    -| (ctrl.south);
+  \draw[flechaO](ctrl.south)
+    |- node[below,font=\tiny]{pres / res\_sgn} (disp.west);
+  \draw[flechaO](alu.west)
+    -- node[above,font=\tiny]{op\_sel} ++(-0.6,0)
+    |- (ctrl.west);
+
+  % ---- ALU <-> lpm_mult -----------------------------------------------
+  \draw[flecha,color=gray](alu.south) -- (mult.north);
+  \draw[flecha,color=gray](mult.north) -- (alu.south);
+
+  % ---- Marcos de fase -------------------------------------------------
+  \begin{scope}[on background layer]
+    \node[nucleo,fit=(b2b1)(b2b2)(b2bcd),
+      label={[font=\tiny\bfseries\color{MainBlue},yshift=2pt]above:Fase~1}]{};
+    \node[nucleo,fit=(itec)(alu)(timer)(disp),
+      label={[font=\tiny\bfseries\color{MainBlue},yshift=2pt]above:Fase~2}]{};
+    \node[nucleo,fit=(ctrl),
+      label={[font=\tiny\bfseries\color{MainOrange},yshift=2pt]above:Fase~3}]{};
+  \end{scope}
+
+\end{tikzpicture}
+\caption{Arquitectura jerárquica completa de la calculadora.}
+\label{fig:arq-global}
+\end{figure}
+\FloatBarrier
+
+\subsection{Señales de interconexión principales}
+
+\begin{table}[H]
+  \centering
+  \caption{Señales clave entre módulos}
+  \begin{tabular}{llll}
+    \toprule
+    \textbf{Señal} & \textbf{Ancho} & \textbf{De} & \textbf{A} \\
+    \midrule
+    \texttt{tecla[3:0]}       & 4\,b  & \texttt{ctrl\_tec}    & \texttt{controlador} \\
+    \texttt{tecla\_pulsada}   & 1\,b  & \texttt{ctrl\_tec}    & \texttt{controlador} \\
+    \texttt{op1\_bcd[11:0]}   & 12\,b & \texttt{controlador}  & \texttt{bcd\_to\_bin}, \texttt{displays} \\
+    \texttt{op2\_bcd[11:0]}   & 12\,b & \texttt{controlador}  & \texttt{bcd\_to\_bin}, \texttt{displays} \\
+    \texttt{op1\_bin[10:0]}   & 11\,b & lógica inline C2      & \texttt{alu} \\
+    \texttt{op2\_bin[10:0]}   & 11\,b & lógica inline C2      & \texttt{alu} \\
+    \texttt{res[19:0]}        & 20\,b & \texttt{alu}          & \texttt{bin\_to\_bcd} \\
+    \texttt{res\_sgn}         & 1\,b  & \texttt{alu}          & \texttt{controlador}, \texttt{displays} \\
+    \texttt{bcd[23:0]}        & 24\,b & \texttt{bin\_to\_bcd} & \texttt{displays} \\
+    \texttt{done}             & 1\,b  & \texttt{bin\_to\_bcd} & \texttt{controlador} \\
+    \texttt{tic\_1ms}         & 1\,b  & \texttt{timer}        & \texttt{displays} \\
+    \texttt{pres[1:0]}        & 2\,b  & \texttt{controlador}  & \texttt{displays} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\FloatBarrier
+
+% ===================================================================
+\section{Unidad Aritmético-Lógica (\texttt{alu.vhd})}
+% ===================================================================
+
+\subsection{Especificación}
+
+\begin{tcolorbox}[colback=SoftGreen,colframe=MainGreen,boxrule=0.8pt,arc=2pt,
+  left=0.5cm,right=0.5cm,top=0.3cm,bottom=0.3cm]
+  \small
+  \begin{tabular}{ll}
+    \textbf{Tipo:}      & Lógica combinacional (sin reloj).\\[3pt]
+    \textbf{Entradas:}  &
+      \texttt{op1[10:0]}, \texttt{op2[10:0]} en complemento a 2,
+      rango $[-999,\,+999]$;\\
+    & \texttt{op[1:0]}: ``\texttt{00}''=suma, ``\texttt{01}''=resta,
+      ``\texttt{10}''=multiplicación.\\[3pt]
+    \textbf{Salidas:}   &
+      \texttt{res[19:0]} magnitud del resultado;
+      \texttt{res\_sgn} signo (\texttt{'1'} = negativo);\\
+    & \texttt{overflow} (fijado a \texttt{'0'}: los operandos $\pm999$
+      no pueden desbordar 20\,bits).\\[3pt]
+    \textbf{Rango máx.} & $999\times999 = 998\,001 < 2^{20}$.
+  \end{tabular}
+\end{tcolorbox}
+
+\subsection{Camino de datos}
+
+La figura siguiente muestra el camino de datos interno de la ALU.
+
+\begin{center}
+\begin{tikzpicture}[node distance=0.6cm and 1.3cm,font=\sffamily\footnotesize]
+
+  % Entradas
+  \node[bloque,text width=1.8cm](op1n){op1[10:0]\\{\tiny C2, 11\,b}};
+  \node[bloque,text width=1.8cm,right=0.3cm of op1n](op2n){op2[10:0]\\{\tiny C2, 11\,b}};
+
+  % Extensión de signo
+  \node[bloqueo,text width=2.8cm,below=0.8cm of $(op1n)!0.5!(op2n)$](ext)
+    {Extensión de signo\\{\tiny 11\,b $\to$ 12\,b}\\
+     {\tiny \texttt{op1(10)\&op1}}};
+
+  % Operaciones
+  \node[bloque,text width=1.6cm,below left=0.8cm and 0.5cm of ext](suma)
+    {Suma\\{\tiny \texttt{op1\_12 + op2\_12}}\\12\,b};
+  \node[bloque,text width=1.6cm,right=0.3cm of suma](resta)
+    {Resta\\{\tiny \texttt{op1\_12 - op2\_12}}\\12\,b};
+  \node[bloqueip,text width=1.6cm,right=0.3cm of resta](mult)
+    {\texttt{lpm\_mult}\\{\tiny $11\times11 \to 22$\,b}};
+
+  % Complementos a 2
+  \node[bloqueg,text width=4.5cm,below=1.0cm of $(suma)!0.5!(resta)$](c2)
+    {Extracción de magnitud\\{\tiny
+     \texttt{sum\_neg} $\leftarrow$ \texttt{(not sum\_12)+1}\\
+     \texttt{sub\_neg} $\leftarrow$ \texttt{(not sub\_12)+1}\\
+     \texttt{mul\_neg} $\leftarrow$ \texttt{(not mult\_res)+1}}};
+
+  % MUX de salida
+  \node[bloqueo,text width=3.8cm,below=0.8cm of c2](mux)
+    {Selección \texttt{when/else}\\{\tiny según \texttt{op} y bit de signo}};
+
+  % Salidas
+  \node[bloque,text width=1.6cm,below left=0.8cm and 0.3cm of mux](sres)
+    {\texttt{res[19:0]}\\{\tiny magnitud}};
+  \node[bloque,text width=1.6cm,right=0.3cm of sres](ssgn)
+    {\texttt{res\_sgn}\\{\tiny signo}};
+
+  % Flechas
+  \draw[flecha](op1n.south)--(ext.north west);
+  \draw[flecha](op2n.south)--(ext.north east);
+  \draw[flecha](ext.south west)--(suma.north);
+  \draw[flecha](ext.south)--(resta.north);
+  \draw[flecha](op1n.south east)--(mult.north west);
+  \draw[flecha](op2n.south east)--(mult.north);
+  \draw[flecha](suma.south)--(c2.north west);
+  \draw[flecha](resta.south)--(c2.north);
+  \draw[flecha](mult.south)--(c2.north east);
+  \draw[flecha](c2.south)--(mux.north);
+  \draw[flecha](mux.south west)--(sres.north);
+  \draw[flecha](mux.south east)--(ssgn.north);
+\end{tikzpicture}
+\end{center}
+\FloatBarrier
+
+\subsection{Implementación en VHDL}
+
+Los operandos se extienden de 11 a 12 bits replicando el bit de signo (MSB),
+lo que permite realizar suma y resta directamente en aritmética de complemento
+a 2 con un bit extra que actúa como indicador de signo del resultado:
+
+\begin{lstlisting}[caption={Extensión de signo y operaciones aritméticas en \texttt{alu.vhd}}]
+-- Extension de signo: 11 -> 12 bits (replica op(10) en la posicion 11)
+op1_12 <= op1(10) & op1;
+op2_12 <= op2(10) & op2;
+
+-- Suma y resta en complemento a 2 (12 bits)
+sum_12 <= op1_12 + op2_12;
+sub_12 <= op1_12 - op2_12;
+\end{lstlisting}
+
+Para la multiplicación se instancia el componente \texttt{lpm\_mult}, que es
+el modelo de simulación de una IP de Altera (multiplicador con signo de
+$11 \times 11 \to 22$ bits):
+
+\begin{lstlisting}[caption={Instanciación del multiplicador IP en \texttt{alu.vhd}}]
+U_MULT: lpm_mult
+    port map(
+        dataa  => op1,
+        datab  => op2,
+        result => mult_res    -- 22 bits, complemento a 2
+    );
+\end{lstlisting}
+
+La extracción de la magnitud y el signo se realiza íntegramente con
+\textbf{asignaciones concurrentes} \texttt{when/else}, sin ningún proceso ni
+variable. Primero se calculan los complementos a~2 de los resultados posibles
+(para tener la magnitud en el caso negativo), y luego se selecciona:
+
+\begin{lstlisting}[caption={Extracción de magnitud sin variables ni proceso en \texttt{alu.vhd}}]
+-- Complementos a 2: magnitud cuando el resultado es negativo
+sum_neg <= (not sum_12)   + 1;
+sub_neg <= (not sub_12)   + 1;
+mul_neg <= (not mult_res) + 1;
+
+-- Seleccion de magnitud segun operacion y bit de signo del resultado
+res <= "00000000" & sum_neg     when op="00" and sum_12(11)  ='1' else
+       "00000000" & sum_12      when op="00"                      else
+       "00000000" & sub_neg     when op="01" and sub_12(11)  ='1' else
+       "00000000" & sub_12      when op="01"                      else
+       mul_neg(19 downto 0)     when op="10" and mult_res(21)='1' else
+       mult_res(19 downto 0);
+
+-- Signo: '1' cuando el resultado es negativo
+res_sgn <= '1' when (op="00" and sum_12(11)  ='1') or
+                    (op="01" and sub_12(11)  ='1') or
+                    (op="10" and mult_res(21)='1') else '0';
+\end{lstlisting}
+
+\begin{tcolorbox}[colback=SoftOrange,colframe=MainOrange,boxrule=0.8pt,arc=2pt,
+  left=0.5cm,right=0.5cm,top=0.3cm,bottom=0.3cm]
+  \small\faLightbulb\enspace\textbf{¿Por qué \texttt{when/else} y no un
+  proceso?} Porque la ALU es combinacional: no hay reloj ni estado. Un
+  proceso con lista de sensibilidad sería equivalente, pero las asignaciones
+  concurrentes expresan directamente la intención --- ``este cable vale X o
+  Y dependiendo de la condición'' --- sin necesitar variables intermedias.
+\end{tcolorbox}
+
+\subsection{Verificación: \texttt{tb\_alu.vhd}}
+
+El testbench es puramente combinacional (sin reloj). Cambia las entradas cada
+20\,ns y comprueba el resultado mediante la función auxiliar \texttt{check},
+que genera un \texttt{report} de error si la magnitud o el signo no coinciden
+con los esperados:
+
+\begin{lstlisting}[caption={Procedimiento \texttt{check} del testbench \texttt{tb\_alu}}]
+procedure check(
+    tag     : in string;
+    got_mag : in std_logic_vector(19 downto 0);
+    got_sgn : in std_logic;
+    exp_mag : in integer;
+    exp_sgn : in std_logic
+) is
+begin
+    assert got_sgn = exp_sgn
+        report tag & ": signo incorrecto." severity error;
+    assert got_mag = exp_mag
+        report tag & ": magnitud incorrecta." severity error;
+end procedure;
+\end{lstlisting}
+
+\begin{table}[H]
+  \centering
+  \caption{Casos de prueba del testbench \texttt{tb\_alu} (10 casos)}
+  \begin{tabular}{rrlrcc}
+    \toprule
+    \textbf{op1} & \textbf{op2} & \textbf{Operación} &
+    \textbf{Magnitud esperada} & \textbf{Signo} &
+    \textbf{Propósito} \\
+    \midrule
+    $+100$ & $+200$ & suma  & 300     & $+$ & Suma positivos \\
+    $-100$ & $-200$ & suma  & 300     & $-$ & Suma negativos \\
+    $-100$ & $+200$ & suma  & 100     & $+$ & Suma signos distintos \\
+    $+300$ & $+100$ & resta & 200     & $+$ & Resta normal \\
+    $+100$ & $+300$ & resta & 200     & $-$ & Resultado negativo \\
+    $-100$ & $+200$ & resta & 300     & $-$ & Resta con negativo \\
+    $+12$  & $+12$  & mult  & 144     & $+$ & Producto simple \\
+    $-3$   & $+5$   & mult  & 15      & $-$ & Producto negativo \\
+    $+999$ & $+999$ & mult  & 998\,001 & $+$ & Valor máximo posible \\
+    $0$    & $+999$ & mult  & 0       & $+$ & Cero en multiplicación \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\noindent La simulación termina con \textbf{Errors: 0, Warnings: 0} en
+ModelSim~10.4d con VHDL-93.
+\FloatBarrier
+
+% ===================================================================
+\section{Temporización: \texttt{clk\_div.vhd} y \texttt{timer.vhd}}
+% ===================================================================
+
+\subsection{Divisor de reloj genérico (\texttt{clk\_div})}
+
+Genera un pulso \texttt{tic} de \textbf{exactamente un ciclo de reloj} de
+anchura cada \texttt{DIV+1} ciclos. El genérico \texttt{DIV} permite
+instanciar el mismo módulo para distintos periodos:
+
+\begin{lstlisting}[caption={Implementación de \texttt{clk\_div.vhd}}]
+process(clk, nRst)
+begin
+    if nRst = '0' then
+        cnt     <= 0;
+        tic_reg <= '0';
+    elsif clk'event and clk = '1' then
+        tic_reg <= '0';          -- por defecto pulso bajo
+        if cnt = DIV then
+            tic_reg <= '1';      -- pulso de 1 ciclo
+            cnt     <= 0;
+        else
+            cnt <= cnt + 1;
+        end if;
+    end if;
+end process;
+tic <= tic_reg;                  -- asignacion concurrente fuera del proceso
+\end{lstlisting}
+
+\begin{table}[H]
+  \centering
+  \caption{Instancias de \texttt{clk\_div} en el proyecto}
+  \begin{tabular}{lcc}
+    \toprule
+    \textbf{Uso} & \textbf{DIV} & \textbf{Periodo resultante} \\
+    \midrule
+    Tic teclado (\texttt{interfaz\_teclado}) & 249\,999 & 5\,ms a 50\,MHz \\
+    Simulación (genérico reducido)           & 4        & 100\,ns \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Temporizador doble (\texttt{timer})}
+
+Genera dos pulsos independientes a partir del mismo reloj de 50\,MHz:
+\texttt{tic\_1ms} para la multiplexación de displays y \texttt{tic\_5ms}
+como referencia temporal adicional.
+
+\begin{lstlisting}[caption={Generación de \texttt{tic\_1ms} y \texttt{tic\_5ms} en \texttt{timer.vhd}}]
+-- Tic cada 1 ms
+if cnt_1ms = DIV_1ms then
+    t1ms_reg <= '1';
+    cnt_1ms  <= 0;
+    -- Tic cada 5 ms (cada 5 tics de 1 ms)
+    if cnt_5ms = DIV_5ms then
+        t5ms_reg <= '1';
+        cnt_5ms  <= 0;
+    else
+        cnt_5ms <= cnt_5ms + 1;
+    end if;
+else
+    cnt_1ms <= cnt_1ms + 1;
+end if;
+\end{lstlisting}
+
+Los dos contadores son completamente independientes en el proceso y se resetean
+con el mismo \texttt{nRst} activo bajo.
+
+% ===================================================================
+\section{Controlador de teclado (\texttt{ctrl\_tec.vhd})}
+% ===================================================================
+
+\subsection{Descripción general y especificación de puertos}
+
+El módulo gestiona un teclado matricial 4$\times$4 conectado al conector XDECA.
+La interfaz utiliza buses de 4 bits en lugar de señales individuales, lo que
+simplifica el cableado en la jerarquía superior:
+
+\begin{tcolorbox}[colback=SoftGreen,colframe=MainGreen,boxrule=0.8pt,arc=2pt,
+  left=0.5cm,right=0.5cm,top=0.3cm,bottom=0.3cm]
+  \small
+  \begin{tabular}{lll}
+    \textbf{Puerto} & \textbf{Dirección} & \textbf{Descripción} \\
+    \hline
+    \texttt{clk}           & entrada & Reloj 50\,MHz \\
+    \texttt{nRst}          & entrada & Reset activo bajo \\
+    \texttt{tic}           & entrada & Pulso 5\,ms (de \texttt{clk\_div}) \\
+    \texttt{columna[3:0]}  & entrada & Columnas activo bajo \\
+    \texttt{fila[3:0]}     & buffer  & Filas de escaneo, activo bajo \\
+    \texttt{tecla[3:0]}    & buffer  & Código hex de la última tecla \\
+    \texttt{tecla\_pulsada}& buffer  & Pulso 1 ciclo al soltar la tecla \\
+    \texttt{pulso\_largo}  & buffer  & Activo tras 2\,s mantenida \\
+  \end{tabular}\\[4pt]
+  \small\textbf{Genérico:} \texttt{TICS\_2s = 400}
+  (400 tics $\times$ 5\,ms = 2\,s a 50\,MHz).
+\end{tcolorbox}
+
+\subsection{Mapa del teclado}
+
+La distribución física del teclado 4$\times$4 se codifica en complemento
+one-hot activo bajo para filas y columnas:
+
+\begin{table}[H]
+  \centering
+  \caption{Distribución de teclas: código hex asignado a cada posición}
+  \begin{tabular}{ccccc}
+    \toprule
+    \textbf{fila} & \textbf{col\,``1110''} & \textbf{col\,``1101''} &
+    \textbf{col\,``1011''} & \textbf{col\,``0111''} \\
+    \midrule
+    \texttt{"1110"} fila~0 & \texttt{1} & \texttt{2} & \texttt{3} & \texttt{F} \\
+    \texttt{"1101"} fila~1 & \texttt{4} & \texttt{5} & \texttt{6} & \texttt{E}~(×) \\
+    \texttt{"1011"} fila~2 & \texttt{7} & \texttt{8} & \texttt{9} & \texttt{D}~(−) \\
+    \texttt{"0111"} fila~3 & \texttt{A}~(+) & \texttt{0} & \texttt{B}~(=) & \texttt{C}~(±) \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Mecanismo de escaneo de filas}
+
+El módulo activa una fila a la vez poniendo su bit a \texttt{'0'} (activo bajo),
+manteniendo las demás a \texttt{'1'}. En cada tic de 5\,ms rota el patrón
+one-hot hacia la izquierda:
+
+$$\texttt{fila} \;:\; \texttt{"1110"} \to \texttt{"1101"} \to \texttt{"1011"} \to \texttt{"0111"} \to \texttt{"1110"} \to \cdots$$
+
+\begin{lstlisting}[caption={Rotación one-hot de filas en \texttt{ctrl\_tec.vhd}}]
+process(clk, nRst)
+begin
+    if nRst = '0' then
+        fila <= (others => '1');   -- todas inactivas en reset
+    elsif clk'event and clk = '1' then
+        if tic = '1' then
+            if ena_muestreo = '1' then
+                if fila = X"F" then
+                    fila <= "1110";                      -- inicio del escaneo
+                else
+                    fila <= fila(2 downto 0) & fila(3);  -- rotacion izquierda
+                end if;
+            end if;
+        end if;
+    end if;
+end process;
+\end{lstlisting}
+
+El escaneo se pausa (\texttt{ena\_muestreo = '0'}) mientras se detecta
+actividad en las columnas, para evitar capturar una columna en medio del
+cambio de fila.
+
+\subsection{Antirebote integrado}
+
+No se usa ningún módulo externo de antirebote. La columna leída se registra
+en dos etapas:
+
+\begin{enumerate}[leftmargin=1.8cm,itemsep=2pt]
+  \item \textbf{\texttt{col\_reb}}: muestreo síncrono de \texttt{columna} en
+    cada ciclo de reloj (elimina los metaestables por cruce de dominios de
+    reloj).
+  \item \textbf{\texttt{col\_ok}}: se actualiza con el valor de
+    \texttt{col\_reb} solo en cada tic de 5\,ms, garantizando que el valor
+    lleva al menos 5\,ms estable antes de ser aceptado.
+\end{enumerate}
+
+\begin{lstlisting}[caption={Antirebote de dos etapas en \texttt{ctrl\_tec.vhd}}]
+process(clk, nRst)
+begin
+    if nRst = '0' then
+        col_reb <= (others => '1');
+        col_ok  <= (others => '1');
+    elsif clk'event and clk = '1' then
+        col_reb <= columna;           -- etapa 1: sincronizar
+        if tic = '1' then
+            col_ok <= col_reb;        -- etapa 2: validar cada 5 ms
+        end if;
+    end if;
+end process;
+\end{lstlisting}
+
+\subsection{Detección de pulsación corta y larga}
+
+La señal interna \texttt{ctrl\_tecla\_pulsada} indica si hay alguna columna
+activa en \texttt{col\_ok}. La lógica de detección es la siguiente:
+
+\begin{itemize}[leftmargin=1.6cm,itemsep=3pt]
+  \item \textbf{Pulsación corta} (\texttt{tecla\_pulsada}): pulso de
+    1~ciclo generado en el \textit{flanco de bajada} de
+    \texttt{ctrl\_tecla\_pulsada} (es decir, cuando se suelta la tecla),
+    siempre que no haya habido pulsación larga:
+    \begin{lstlisting}[numbers=none,aboveskip=4pt,belowskip=4pt]
+tecla_pulsada <= '1' when pulso_hab_tecla     = '1'
+                       and ctrl_tecla_pulsada = '0'
+                       and pulso_hab_largo    = '0'
+                 else '0';
+    \end{lstlisting}
+  \item \textbf{Pulsación larga} (\texttt{pulso\_largo}): se activa cuando
+    la tecla lleva pulsada \texttt{TICS\_2s} = 400 tics $\times$ 5\,ms
+    = 2\,s. En ese caso se suprime el evento de \textit{release} para evitar
+    registrar una pulsación corta fantasma.
+\end{itemize}
+
+\begin{tcolorbox}[colback=SoftBlue,colframe=MainBlue,boxrule=0.8pt,arc=2pt,
+  left=0.5cm,right=0.5cm,top=0.3cm,bottom=0.3cm]
+  \small\faInfoCircle\enspace\textbf{¿Por qué detectar en el release y no en
+  el press?} Detectar en la pulsación produce problemas si el usuario mantiene
+  la tecla más de lo necesario (se registran múltiples pulsaciones). Detectar
+  en el release garantiza exactamente un evento por pulsación, y permite
+  además distinguir pulsaciones cortas de largas antes de generar el evento.
+\end{tcolorbox}
+
+\subsection{Decodificador fila × columna}
+
+El decodificador es un registro síncrono con reset que evalúa la combinación
+de \texttt{fila} y \texttt{col\_ok} y guarda el código de tecla en
+\texttt{tecla\_aux}. El resultado se transfiere a la salida \texttt{tecla}
+únicamente en el momento de la pulsación (corta o larga):
+
+\begin{lstlisting}[caption={Decodificador fila/columna (fragmento) en \texttt{ctrl\_tec.vhd}}]
+process(clk, nRst)
+begin
+    if nRst = '0' then
+        tecla_aux <= (others => '0');
+    elsif clk'event and clk = '1' then
+        if    fila="1110" and col_ok="1110" then tecla_aux <= X"1";
+        elsif fila="1110" and col_ok="1101" then tecla_aux <= X"2";
+        -- ... (16 combinaciones en total)
+        elsif fila="0111" and col_ok="0111" then tecla_aux <= X"C";
+        end if;
+    end if;
+end process;
+\end{lstlisting}
+
+\subsection{Jerarquía: \texttt{interfaz\_teclado.vhd}}
+
+El módulo \texttt{interfaz\_teclado} agrupa \texttt{clk\_div} y
+\texttt{ctrl\_tec} en un único bloque con la interfaz estándar del sistema.
+Los puertos de tipo \texttt{buffer} de \texttt{ctrl\_tec} se conectan a través
+de señales internas para cumplir la restricción de VHDL-93 (no se puede
+conectar un puerto \texttt{buffer} directamente a un puerto \texttt{out} del
+módulo padre):
+
+\begin{lstlisting}[caption={Integración en \texttt{interfaz\_teclado.vhd}}]
+signal fila_s, tec_s : std_logic_vector(3 downto 0);
+signal tp_s, pl_s    : std_logic;
+
+U_DIV:  entity work.clk_div(rtl)
+    generic map(DIV => DIV_TEC)
+    port map(clk => clk, nRst => nRst, tic => tic_s);
+
+U_CTRL: entity work.ctrl_tec(rtl)
+    generic map(TICS_2s => TICS_2s)
+    port map(
+        clk => clk, nRst => nRst, tic => tic_s,
+        columna => columna,     fila  => fila_s,
+        tecla_pulsada => tp_s,  tecla => tec_s,
+        pulso_largo   => pl_s
+    );
+
+-- Señales intermedias -> salidas del modulo padre
+fila <= fila_s;  tecla <= tec_s;
+tecla_pulsada <= tp_s;  pulso_largo <= pl_s;
+\end{lstlisting}
+
+% ===================================================================
+\section{Controlador de displays (\texttt{displays.vhd})}
+% ===================================================================
+
+\subsection{Especificación}
+
+\begin{tcolorbox}[colback=SoftGreen,colframe=MainGreen,boxrule=0.8pt,arc=2pt,
+  left=0.5cm,right=0.5cm,top=0.3cm,bottom=0.3cm]
+  \small
+  \begin{tabular}{ll}
+    \textbf{Hardware:}     &
+      8 displays de 7 segmentos, cátodo común, activo alto (DECA + XDECA).\\[3pt]
+    \textbf{Multiplexación:} &
+      Registro \texttt{mux\_reg} one-hot activo bajo; rota en cada
+      \texttt{tic\_1ms}.\\
+    & Frecuencia de refresco: $1000\,\text{Hz} / 8 = 125\,\text{Hz}$
+      (sin parpadeo visible).\\[3pt]
+    \textbf{Formato:} &
+      \texttt{disp[7:0]}: bits \textit{dp, a, b, c, d, e, f, g}
+      (bit 7 = punto decimal, bit 0 = g).\\[3pt]
+    \textbf{Selector \texttt{pres[1:0]}:} &
+      \texttt{"00"} = op1 en D4--D1;\quad
+      \texttt{"01"} = op2 en D4--D1;\quad
+      \texttt{"10"} = resultado en D8--D1.
+  \end{tabular}
+\end{tcolorbox}
+
+\subsection{Multiplexación}
+
+El registro \texttt{mux\_reg} es un one-hot activo bajo que rota hacia la
+izquierda en cada \texttt{tic\_1ms}, activando un display diferente en cada
+ciclo de refresco:
+
+\begin{lstlisting}[caption={Registro de multiplexación en \texttt{displays.vhd}}]
+process(clk, nRst)
+begin
+    if nRst = '0' then
+        mux_reg <= "11111110";   -- display 1 activo (bit 0 = '0')
+    elsif clk'event and clk = '1' then
+        if tic_1ms = '1' then
+            mux_reg <= mux_reg(6 downto 0) & mux_reg(7);  -- rotacion izq
+        end if;
+    end if;
+end process;
+\end{lstlisting}
+
+\subsection{Cálculo de los 8 dígitos a mostrar}
+
+Los 8 dígitos se calculan combinacionalmente como señales concurrentes
+\texttt{sig\_d1} \ldots \texttt{sig\_d8}, sin variables ni proceso. Cada
+señal usa una cadena \texttt{when/else} que considera el modo
+\texttt{pres} y aplica la supresión de ceros a la izquierda:
+
+\begin{lstlisting}[caption={Supresión de ceros en \texttt{displays.vhd} (fragmento)}]
+-- D2 (decenas): blanco si tanto centenas como decenas son cero
+sig_d2 <= x"E" when pres="00" and op1_bcd(11 downto 4) = x"00" else
+          op1_bcd(7 downto 4) when pres="00" else
+          x"E" when pres="01" and op2_bcd(11 downto 4) = x"00" else
+          op2_bcd(7 downto 4) when pres="01" else
+          x"E" when res_bcd(23 downto 4) = x"00000" else
+          res_bcd(7 downto 4);
+
+-- D3 (centenas o signo negativo si centenas = 0)
+sig_d3 <= x"F" when pres="00" and op1_bcd(11 downto 8)=x"0" and op1_sgn='1' else
+          x"E" when pres="00" and op1_bcd(11 downto 8)=x"0" else
+          op1_bcd(11 downto 8) when pres="00" else
+          ...;
+\end{lstlisting}
+
+\subsection{Decodificación 4\,bits $\to$ 7 segmentos}
+
+La función \texttt{decode\_seg} implementa la tabla de conversión. Se ha
+eliminado la variable interna que tenía la versión original; ahora usa
+\texttt{return} directo en cada rama del \texttt{case}:
+
+\begin{lstlisting}[caption={Función \texttt{decode\_seg} sin variables en \texttt{displays.vhd}}]
+function decode_seg(d : std_logic_vector(3 downto 0))
+         return std_logic_vector is
+begin
+    case d is
+        when x"0" => return "01111110";  -- 0: a,b,c,d,e,f
+        when x"1" => return "00110000";  -- 1: b,c
+        when x"2" => return "01101101";  -- 2: a,b,d,e,g
+        when x"3" => return "01111001";  -- 3: a,b,c,d,g
+        when x"4" => return "00110011";  -- 4: b,c,f,g
+        when x"5" => return "01011011";  -- 5: a,c,d,f,g
+        when x"6" => return "01011111";  -- 6: a,c,d,e,f,g
+        when x"7" => return "01110000";  -- 7: a,b,c
+        when x"8" => return "01111111";  -- 8: todos
+        when x"9" => return "01111011";  -- 9: a,b,c,d,f,g
+        when x"F" => return "00000001";  -- '-': solo g (signo negativo)
+        when x"E" => return "00000000";  -- blanco
+        when others => return "00000000";
+    end case;
+end function;
+\end{lstlisting}
+
+\begin{table}[H]
+  \centering
+  \caption{Caracteres especiales del display}
+  \begin{tabular}{clcc}
+    \toprule
+    \textbf{Código} & \textbf{Carácter} &
+    \textbf{Patrón (dp,a..g)} & \textbf{Uso} \\
+    \midrule
+    \texttt{x"F"} & \texttt{-} (guión) & \texttt{00000001} & Signo negativo \\
+    \texttt{x"E"} & blanco             & \texttt{00000000} & Supresión de ceros \\
+    \texttt{x"A"} & \texttt{A}         & \texttt{00110111} & Dígito hex A \\
+    \texttt{x"B"} & \texttt{P}         & \texttt{00011111} & Reservado \\
+    \texttt{x"C"} & \texttt{C}         & \texttt{01001110} & Reservado \\
+    \texttt{x"D"} & \texttt{r}         & \texttt{00000101} & Reservado \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\FloatBarrier
+
+% ===================================================================
+\section{Resultados de compilación y simulación}
+% ===================================================================
+
+Todos los módulos de la Fase~2 compilan correctamente en ModelSim~10.4d
+(Altera ASE) con la flag \texttt{-93} (VHDL-93):
+
+\begin{table}[H]
+  \centering
+  \caption{Resultado de compilación de todos los módulos}
+  \begin{tabular}{llcc}
+    \toprule
+    \textbf{Fichero} & \textbf{Entidad / Arquitectura} &
+    \textbf{Errores} & \textbf{Warnings} \\
+    \midrule
+    \texttt{fase1/bcd\_to\_bin.vhd}      & \texttt{bcd\_to\_bin / rtl}        & 0 & 0 \\
+    \texttt{fase1/bin\_to\_bcd.vhd}      & \texttt{bin\_to\_bcd / rtl}        & 0 & 0 \\
+    \texttt{fase2/lpm\_mult.vhd}         & \texttt{lpm\_mult / behavioral}    & 0 & 0 \\
+    \texttt{fase2/alu.vhd}               & \texttt{alu / rtl}                 & 0 & 0 \\
+    \texttt{fase2/timer.vhd}             & \texttt{timer / rtl}               & 0 & 0 \\
+    \texttt{fase2/clk\_div.vhd}          & \texttt{clk\_div / rtl}            & 0 & 0 \\
+    \texttt{fase2/ctrl\_tec.vhd}         & \texttt{ctrl\_tec / rtl}           & 0 & 0 \\
+    \texttt{fase2/interfaz\_teclado.vhd} & \texttt{interfaz\_teclado / est.}  & 0 & 0 \\
+    \texttt{fase2/displays.vhd}          & \texttt{displays / rtl}            & 0 & 0 \\
+    \texttt{fase2/tb\_alu.vhd}           & \texttt{tb\_alu / sim}             & 0 & 0 \\
+    \texttt{fase3/controlador.vhd}       & \texttt{controlador / rtl}         & 0 & 0 \\
+    \texttt{fase3/calculadora.vhd}       & \texttt{calculadora / estructural} & 0 & 0 \\
+    \texttt{fase3/tb\_calculadora.vhd}   & \texttt{tb\_calculadora / sim}     & 0 & 0 \\
+    \midrule
+    \textbf{Total}                       & & \textbf{0} & \textbf{0} \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+La simulación del testbench \texttt{tb\_alu} finaliza con el mensaje:
+
+\begin{verbatim}
+  # ** Note: tb_alu: todos los casos completados
+  # ** Failure: Assertion failure
+\end{verbatim}
+
+El \textit{Assertion failure} al final es el mecanismo de parada controlada
+(\texttt{assert false severity failure}), no un error del diseño.
+\FloatBarrier
+
+% ===================================================================
+\section{Conclusiones}
+% ===================================================================
+
+En esta fase se han diseñado, implementado y verificado todos los bloques
+intermedios de la calculadora:
+
+\begin{itemize}[leftmargin=1.6cm,itemsep=5pt]
+  \item \textbf{ALU} (\texttt{alu.vhd}): lógica combinacional pura,
+    implementada íntegramente con asignaciones concurrentes
+    \texttt{when/else}. Maneja suma, resta y multiplicación con signo en
+    complemento a~2, extrayendo la magnitud del resultado sin variables.
+
+  \item \textbf{Temporizadores} (\texttt{clk\_div}, \texttt{timer}):
+    generan tics de 5\,ms para el teclado y de 1\,ms para el mux de
+    displays, con genéricos que permiten reducir los valores en simulación.
+
+  \item \textbf{Controlador de teclado} (\texttt{ctrl\_tec}): antirebote
+    integrado de dos etapas (5\,ms de estabilidad), escaneo one-hot de filas,
+    detección de pulsación en el flanco de bajada, soporte de pulsación larga
+    (2\,s) con supresión del evento de release.
+
+  \item \textbf{Controlador de displays} (\texttt{displays}): multiplexación
+    a 125\,Hz, supresión de ceros a la izquierda con asignaciones concurrentes,
+    soporte de signo negativo.
+\end{itemize}
+
+El criterio de no usar variables se ha aplicado en todos los módulos RTL.
+Toda la lógica combinacional es visible como asignaciones concurrentes fuera
+de los procesos, lo que facilita la revisión del diseño y la correspondencia
+directa con el hardware sintetizado.
+
+\vspace{1em}
+\begin{tcolorbox}[colback=SoftBlue,colframe=MainBlue,boxrule=0.8pt,arc=2pt,
+  left=0.5cm,right=0.5cm,top=0.3cm,bottom=0.3cm]
+  \small\faArrowRight\enspace\textbf{Fase 3 (entrega 28/05):}
+  Diseño del módulo \texttt{controlador} (FSM principal) y del top-level
+  \texttt{calculadora}, que integra todos los bloques de las tres fases en
+  un sistema completo verificable con \texttt{tb\_calculadora}.
+\end{tcolorbox}
+
+% ===================================================================
+\newpage
+\appendix
+\section{Señales frente a variables en VHDL}
+\label{sec:senales-variables}
+% ===================================================================
+
+\subsection{Diferencia semántica}
+
+En VHDL existen dos mecanismos de almacenamiento temporal dentro de un proceso.
+
+\paragraph{Señal (\texttt{signal}):} La asignación \texttt{s <= expr} no
+produce ningún efecto inmediato. El nuevo valor de \texttt{s} solo es visible
+\textit{después} de que el proceso termine (en el siguiente delta-cycle).
+Esto modela directamente el comportamiento de un registro físico: la salida
+de un flip-flop solo cambia en el flanco de reloj, no en medio del ciclo.
+
+\paragraph{Variable (\texttt{variable}):} La asignación \texttt{v := expr}
+actualiza \texttt{v} inmediatamente. El siguiente uso de \texttt{v} en ese
+mismo proceso ya ve el valor nuevo. Este comportamiento es propio del
+software; en hardware no tiene equivalente directo, y el sintetizador debe
+inferir qué circuito produce ese comportamiento.
+
+\subsection{Ejemplo comparativo}
+
+\begin{lstlisting}[caption={Shift register con señales (correcto)}]
+process(clk)
+begin
+    if clk'event and clk = '1' then
+        a <= '1';   -- a todavia vale '0' aqui
+        b <= a;     -- b recibe el valor ANTIGUO de a
+        c <= b;     -- c recibe el valor ANTIGUO de b
+    end if;         -- al terminar: a='1', b=a_viejo, c=b_viejo
+end process;        -- -> shift register de 3 etapas (correcto)
+\end{lstlisting}
+
+\begin{lstlisting}[caption={Mismo código con variables (resultado diferente)}]
+process(clk)
+    variable a, b, c : std_logic;
+begin
+    if clk'event and clk = '1' then
+        a := '1';   -- a vale '1' AHORA MISMO
+        b := a;     -- b recibe '1' (valor nuevo)
+        c := b;     -- c recibe '1' tambien
+    end if;         -- resultado: a=b=c='1' en el mismo ciclo
+end process;        -- -> NO es un shift register
+\end{lstlisting}
+
+\subsection{Consecuencias prácticas}
+
+\begin{table}[H]
+  \centering
+  \caption{Comparación señales vs.\ variables en diseño RTL}
+  \begin{tabular}{lll}
+    \toprule
+    \textbf{Aspecto} & \textbf{Señal} & \textbf{Variable} \\
+    \midrule
+    Actualización      & Al terminar el proceso    & Inmediata \\
+    Modelado HW        & Registro / cable           & Memoria temporal software \\
+    Correspondencia HW & Directa y explícita        & Inferida por el sintetizador \\
+    Visible en waveform& \textbf{Sí}               & \textbf{No} \\
+    Depuración         & Sencilla                  & Difícil \\
+    Estilo RTL         & Recomendado IEEE           & Desaconsejado en síncronos \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsection{Regla práctica adoptada}
+
+En este proyecto se sigue la siguiente convención de forma estricta:
+
+\begin{enumerate}[leftmargin=1.8cm,itemsep=3pt]
+  \item \textbf{Dentro del proceso}: solo asignaciones \texttt{<=} a
+    registros (flip-flops). La condición de activación siempre es
+    \texttt{clk'event and clk = '1'}.
+  \item \textbf{Fuera del proceso}: toda la lógica combinacional como
+    asignaciones concurrentes con \texttt{<=} o \texttt{when/else}.
+\end{enumerate}
+
+Esta separación hace que el código sea autoexplicativo: leer los procesos
+muestra los registros del sistema, y leer las asignaciones concurrentes
+muestra la lógica combinacional entre ellos.
+
+\end{document}

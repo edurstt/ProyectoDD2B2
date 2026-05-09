@@ -8,26 +8,26 @@ z2
 !i10f 100
 cModel Technology
 Z0 dC:/Users/EDUARD~1/DOCUME~1/DD2/PROYEC~2
-Ebcd_to_bin
-Z1 w1778045874
+Ealu
+Z1 w1778166039
 Z2 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
 Z3 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
 Z4 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z5 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
 R0
-Z6 8fase1\bcd_to_bin.vhd
-Z7 Ffase1\bcd_to_bin.vhd
+Z6 8fase2\alu.vhd
+Z7 Ffase2\alu.vhd
 l0
-L11
-ViBc3=2Da56:^0;9l76:Lh3
-!s100 z@8lPdaJ2IXfFEZQVF7Wz3
+L21
+V5;I4ER2Q1FC>=k1^P>_BD3
+!s100 PbMUlJKFT]jGWkXia4T`J1
 Z8 OV;C;10.4d;61
 31
-Z9 !s110 1778099466
+Z9 !s110 1778169849
 !i10b 1
-Z10 !s108 1778099466.000000
-Z11 !s90 -93|-work|work|fase1\bcd_to_bin.vhd|fase1\bin_to_bcd.vhd|fase1\tb_bcd_to_bin.vhd|fase1\tb_bin_to_bcd.vhd|
-Z12 !s107 fase1\tb_bin_to_bcd.vhd|fase1\tb_bcd_to_bin.vhd|fase1\bin_to_bcd.vhd|fase1\bcd_to_bin.vhd|
+Z10 !s108 1778169849.000000
+Z11 !s90 -93|-work|work|fase1\bcd_to_bin.vhd|fase1\bin_to_bcd.vhd|fase2\lpm_mult.vhd|fase2\alu.vhd|fase2\timer.vhd|fase2\clk_div.vhd|fase2\ctrl_tec.vhd|fase2\interfaz_teclado.vhd|fase2\displays.vhd|fase2\tb_alu.vhd|fase3\controlador.vhd|fase3\calculadora.vhd|fase3\tb_calculadora.vhd|
+Z12 !s107 fase3\tb_calculadora.vhd|fase3\calculadora.vhd|fase3\controlador.vhd|fase2\tb_alu.vhd|fase2\displays.vhd|fase2\interfaz_teclado.vhd|fase2\ctrl_tec.vhd|fase2\clk_div.vhd|fase2\timer.vhd|fase2\alu.vhd|fase2\lpm_mult.vhd|fase1\bin_to_bcd.vhd|fase1\bcd_to_bin.vhd|
 !i113 1
 Z13 o-93 -work work
 Z14 tExplicit 1
@@ -36,7 +36,50 @@ R2
 R3
 R4
 R5
-Z15 DEx4 work 10 bcd_to_bin 0 22 iBc3=2Da56:^0;9l76:Lh3
+Z15 DEx4 work 3 alu 0 22 5;I4ER2Q1FC>=k1^P>_BD3
+l56
+L32
+VCnYJW]hafA2cfZH<mTML12
+!s100 H`Sc6LdjRJe:1RJ_EUKe60
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Ebcd_to_bin
+Z16 w1778045874
+R2
+R3
+R4
+R5
+R0
+Z17 8fase1\bcd_to_bin.vhd
+Z18 Ffase1\bcd_to_bin.vhd
+l0
+L11
+ViBc3=2Da56:^0;9l76:Lh3
+!s100 z@8lPdaJ2IXfFEZQVF7Wz3
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Artl
+R2
+R3
+R4
+R5
+Z19 DEx4 work 10 bcd_to_bin 0 22 iBc3=2Da56:^0;9l76:Lh3
 l25
 L18
 VEizMQ`RRbW=6oM[fR8X`a2
@@ -52,14 +95,14 @@ R12
 R13
 R14
 Ebin_to_bcd
-Z16 w1778099338
+Z20 w1778165303
 R2
 R3
 R4
 R5
 R0
-Z17 8fase1\bin_to_bcd.vhd
-Z18 Ffase1\bin_to_bcd.vhd
+Z21 8fase1\bin_to_bcd.vhd
+Z22 Ffase1\bin_to_bcd.vhd
 l0
 L10
 V>LmH1<4WHKC[2XDUIP1UZ3
@@ -79,11 +122,11 @@ R2
 R3
 R4
 R5
-Z19 DEx4 work 10 bin_to_bcd 0 22 >LmH1<4WHKC[2XDUIP1UZ3
-l28
+Z23 DEx4 work 10 bin_to_bcd 0 22 >LmH1<4WHKC[2XDUIP1UZ3
+l37
 L22
-VnETG3dSKW?0[Q?LJ21KJ>0
-!s100 8@CzC<MXWa5QPI9?C]L142
+VJ8P95d24g50N?gPL=nodg2
+!s100 ENZdgWLnPhJb9UQQLe?6L1
 R8
 31
 R9
@@ -94,19 +137,325 @@ R12
 !i113 1
 R13
 R14
-Etb_bcd_to_bin
-Z20 w1778052237
+Ecalculadora
+R20
 R2
 R3
 R4
 R5
 R0
-Z21 8fase1\tb_bcd_to_bin.vhd
-Z22 Ffase1\tb_bcd_to_bin.vhd
+Z24 8fase3\calculadora.vhd
+Z25 Ffase3\calculadora.vhd
 l0
-L9
-VfoA30I0QFT@4CjR96Pb>P0
-!s100 VGI>A4kUZ990B[F84gkNG3
+L24
+VhZD:KIK__EPFmV[?7;c_n2
+!s100 M3[k;CdJXRPRz64_ThJkc1
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Aestructural
+Z26 DEx4 work 8 displays 0 22 <ZLn:<6G0<c=N>2NZ;?b90
+Z27 DEx4 work 5 timer 0 22 <ljPZbbiY1G=cYD5@8Wj43
+R23
+R15
+R19
+Z28 DEx4 work 11 controlador 0 22 9[K;CWWHdfGZHh42U;M[W1
+Z29 DEx4 work 16 interfaz_teclado 0 22 QzZLLS=mW[MY_jPW=ZXe[1
+R2
+R3
+R4
+R5
+Z30 DEx4 work 11 calculadora 0 22 hZD:KIK__EPFmV[?7;c_n2
+l81
+L44
+VaQCIR_IHaiYJ4RKBa181n0
+!s100 G@iNFERoRNGb<;`AMIz][2
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Eclk_div
+R20
+R2
+R3
+R4
+R5
+R0
+Z31 8fase2\clk_div.vhd
+Z32 Ffase2\clk_div.vhd
+l0
+L11
+VBao5EZ7jC]daRY^;o`L?C0
+!s100 F>AKNIWcjLmX0jzV@h67h1
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Artl
+R2
+R3
+R4
+R5
+Z33 DEx4 work 7 clk_div 0 22 Bao5EZ7jC]daRY^;o`L?C0
+l25
+L22
+Vh:XDX8PPZenefUh9d<0jT2
+!s100 KVl<@5>GDlAZYOaZoUNCU3
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Econtrolador
+Z34 w1778166062
+R2
+R3
+R4
+R5
+R0
+Z35 8fase3\controlador.vhd
+Z36 Ffase3\controlador.vhd
+l0
+L25
+V9[K;CWWHdfGZHh42U;M[W1
+!s100 4nLT2n:JjYmae^]M?6<hL2
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Artl
+R2
+R3
+R4
+R5
+R28
+l70
+L54
+V9<n9:c_<]j_>bToQlg9U?0
+!s100 n@1k?XThgXF@4dmU8l1[@1
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Ectrl_tec
+R20
+R2
+R3
+R4
+R5
+R0
+Z37 8fase2\ctrl_tec.vhd
+Z38 Ffase2\ctrl_tec.vhd
+l0
+L24
+V5A17<PinQoWn^e8JSX3j]1
+!s100 W9D>ziR@Ho7gUzXQB[;b61
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Artl
+R2
+R3
+R4
+R5
+Z39 DEx4 work 8 ctrl_tec 0 22 5A17<PinQoWn^e8JSX3j]1
+l53
+L40
+V9TZkQc:eb4T3=_3Cj;ZTP2
+!s100 ^d:7Geb=F6Z2[AR[?9]z52
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Edisplays
+Z40 w1778166123
+R2
+R3
+R4
+R5
+R0
+Z41 8fase2\displays.vhd
+Z42 Ffase2\displays.vhd
+l0
+L38
+V<ZLn:<6G0<c=N>2NZ;?b90
+!s100 3:zfa<Uml_a^QiBNZEg>c1
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Artl
+R2
+R3
+R4
+R5
+R26
+l101
+L58
+VeDQ76?7aUO5B@aoDFezD[2
+!s100 HDXH7hWIfnihgI;mIOoLC2
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Einterfaz_teclado
+R20
+R4
+R5
+R0
+Z43 8fase2\interfaz_teclado.vhd
+Z44 Ffase2\interfaz_teclado.vhd
+l0
+L12
+VQzZLLS=mW[MY_jPW=ZXe[1
+!s100 Tj7HYz[6P[]6PQja^=]Wn0
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Aestructural
+R39
+R2
+R3
+R33
+R4
+R5
+R29
+l38
+L30
+Vm5oGk25eE35Bg4n00_NP_0
+!s100 :niVXEfVT:zO4fUJbY75X3
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Elpm_mult
+R20
+Z45 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+R4
+R5
+R0
+Z46 8fase2\lpm_mult.vhd
+Z47 Ffase2\lpm_mult.vhd
+l0
+L12
+VcNf_nY1Y^991_`F=6VEIj2
+!s100 FkZnUkU33IHg;5h>OG[^j2
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Abehavioral
+R45
+R4
+R5
+DEx4 work 8 lpm_mult 0 22 cNf_nY1Y^991_`F=6VEIj2
+l21
+L20
+V8?O6DLWi5UPnD8]SJMWoz3
+!s100 52_XZn4C]KT9:zU016fPb1
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Etb_alu
+R20
+R2
+R3
+R4
+R5
+R0
+Z48 8fase2\tb_alu.vhd
+Z49 Ffase2\tb_alu.vhd
+l0
+L26
+VEk=;ALKCEE5[Hh0X]O7661
+!s100 0VIYJLm4?_>E4Tdj<L0N<2
 R8
 31
 R9
@@ -123,11 +472,11 @@ R2
 R3
 R4
 R5
-DEx4 work 13 tb_bcd_to_bin 0 22 foA30I0QFT@4CjR96Pb>P0
-l15
-L12
-VJ4NzTmPNU_f[djO:WAZG@2
-!s100 N5?Od[Tfz3h9L8N5aIzl>1
+DEx4 work 6 tb_alu 0 22 Ek=;ALKCEE5[Hh0X]O7661
+l73
+L29
+VhN>@EPAGbJ?ZaRY<E5[^E1
+!s100 @=a]CUadlmOG81?Le^o4;2
 R8
 31
 R9
@@ -138,22 +487,22 @@ R12
 !i113 1
 R13
 R14
-Etb_bin_to_bcd
+Etb_calculadora
 R20
 R2
 R3
 R4
 R5
 R0
-Z23 8fase1\tb_bin_to_bcd.vhd
-Z24 Ffase1\tb_bin_to_bcd.vhd
+Z50 8fase3\tb_calculadora.vhd
+Z51 Ffase3\tb_calculadora.vhd
 l0
-L10
-VXMA[KiGV4g1GmXT<T6VU71
-!s100 lC=EMmbL><>ZcKXLWKn8V2
+L17
+VT3[H=lDF]bQeOXmjQojEL0
+!s100 d>fM2Ybi`m8FNU8zZRlRE1
 R8
 31
-Z25 !s110 1778099467
+R9
 !i10b 1
 R10
 R11
@@ -162,19 +511,62 @@ R12
 R13
 R14
 Asim
-R19
+R30
 R2
 R3
 R4
 R5
-DEx4 work 13 tb_bin_to_bcd 0 22 XMA[KiGV4g1GmXT<T6VU71
-l22
-L13
-VG80UN@9kG4`jcB=`5QLBQ0
-!s100 3lGF7`CUnURA[CkCVh7C]0
+DEx4 work 14 tb_calculadora 0 22 T3[H=lDF]bQeOXmjQojEL0
+l45
+L20
+VoIcV_QhzjLK=0M10S?oc=0
+!s100 L9Da;V7TbcK`n?[cQHV_I3
 R8
 31
-R25
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Etimer
+R20
+R2
+R3
+R4
+R5
+R0
+Z52 8fase2\timer.vhd
+Z53 Ffase2\timer.vhd
+l0
+L14
+V<ljPZbbiY1G=cYD5@8Wj43
+!s100 `;2X<[J2;A@:khMoUCkI^3
+R8
+31
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Artl
+R2
+R3
+R4
+R5
+R27
+l32
+L27
+V_JRBcj>MDF@fSbQ>NP2Ze1
+!s100 mnM@nfAYW1@6=E5HmI8Q00
+R8
+31
+R9
 !i10b 1
 R10
 R11

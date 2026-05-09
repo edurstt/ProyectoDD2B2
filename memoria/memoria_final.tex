@@ -1,0 +1,238 @@
+\documentclass[10pt, a4paper]{article}
+
+% =======================================================================
+% PREÁMBULO COMPARTIDO — usado por todos los subfiles de fase
+% =======================================================================
+
+% --- PAQUETES ---
+\usepackage[table,xcdraw,svgnames]{xcolor}
+\usepackage{geometry}
+\usepackage{fontspec}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage[spanish]{babel}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{placeins}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage[official]{eurosym}
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows.meta,positioning,fit,calc,shadows,backgrounds,automata,babel}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+\usepackage{fontawesome5}
+\usepackage{listings}
+\usepackage{subfiles}
+\usepackage[colorlinks=true,linkcolor=DarkBlue,urlcolor=DarkBlue]{hyperref}
+
+% --- FUENTES Y PÁGINA ---
+\setmainfont{CMU Sans Serif}
+\setsansfont{CMU Sans Serif}
+\renewcommand{\familydefault}{\sfdefault}
+\geometry{a4paper,left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
+
+% --- COLORES (unión de todas las fases) ---
+\definecolor{MainBlue}{RGB}{0,75,145}
+\definecolor{SoftBlue}{RGB}{235,245,255}
+\definecolor{MainGreen}{RGB}{20,100,40}
+\definecolor{SoftGreen}{RGB}{235,250,240}
+\definecolor{MainOrange}{RGB}{200,80,0}
+\definecolor{SoftOrange}{RGB}{255,245,230}
+\definecolor{DarkBlue}{HTML}{00008B}
+\definecolor{DarkRed}{HTML}{8B0000}
+\definecolor{SafeZone}{RGB}{225,250,225}
+\definecolor{PowerZone}{RGB}{250,225,225}
+\definecolor{vhdlbg}{RGB}{248,250,255}
+\definecolor{vhdlkw}{RGB}{0,0,180}
+\definecolor{vhdlcmt}{RGB}{100,100,100}
+\definecolor{vhdlstr}{RGB}{0,128,0}
+\definecolor{GrayBox}{RGB}{245,245,245}
+
+% --- TIKZ STYLES (unión de todas las fases) ---
+\tikzset{
+  bloque/.style={rectangle,draw=MainBlue,thick,fill=SoftBlue,
+    text width=2.8cm,align=center,minimum height=1.2cm,
+    rounded corners=4pt,drop shadow,font=\sffamily\footnotesize},
+  bloqueg/.style={rectangle,draw=MainGreen,thick,fill=SoftGreen,
+    text width=2.8cm,align=center,minimum height=1.2cm,
+    rounded corners=4pt,drop shadow,font=\sffamily\footnotesize},
+  bloqueo/.style={rectangle,draw=MainOrange,thick,fill=SoftOrange,
+    text width=2.8cm,align=center,minimum height=1.2cm,
+    rounded corners=4pt,drop shadow,font=\sffamily\footnotesize},
+  bloqueip/.style={rectangle,draw=orange!80,thick,fill=yellow!15,
+    text width=2cm,align=center,minimum height=1cm,
+    rounded corners=4pt,font=\sffamily\footnotesize},
+  nucleo/.style={rectangle,draw=black!50,thick,dashed,
+    fill=white!92!gray,inner sep=0.35cm,rounded corners=4pt},
+  estado/.style={circle,draw=MainBlue,thick,fill=SoftBlue,
+    minimum size=1.7cm,align=center,
+    font=\sffamily\small\bfseries,drop shadow},
+  flecha/.style={->,>=Latex,thick,color=MainBlue},
+  flechaO/.style={->,>=Latex,thick,color=MainOrange!80,dashed},
+  bus/.style={->,>=Latex,line width=1.8pt,color=MainBlue!70},
+  % Estilos heredados de Fase 1
+  esquema/.style={rectangle,draw=black,thick,fill=white,
+    align=center,minimum height=0.8cm},
+  comunicacion/.style={draw=red,line width=1.5pt,<->,>=Latex}
+}
+
+% --- VHDL LISTINGS ---
+\lstdefinelanguage{VHDLcustom}{
+  morekeywords={library,use,entity,is,port,in,out,buffer,inout,end,
+    architecture,of,signal,begin,process,if,then,else,elsif,
+    case,when,others,wait,until,for,generic,map,all,downto,to,
+    not,and,or,xor,nand,nor,type,integer,range,natural,buffer,
+    std_logic,std_logic_vector,ieee,component,return,function,
+    procedure,constant,variable,rising_edge,falling_edge},
+  sensitive=false,
+  morecomment=[l]{--},
+  morestring=[b]"
+}
+\lstset{
+  language=VHDLcustom,
+  basicstyle=\ttfamily\footnotesize,
+  keywordstyle=\bfseries\color{vhdlkw},
+  commentstyle=\itshape\color{vhdlcmt},
+  stringstyle=\color{vhdlstr},
+  backgroundcolor=\color{vhdlbg},
+  frame=single,framerule=0.5pt,
+  rulecolor=\color{MainBlue!40},
+  numbers=left,numberstyle=\tiny\color{gray!70},
+  numbersep=8pt,
+  breaklines=true,captionpos=b,
+  showstringspaces=false,
+  tabsize=4,xleftmargin=0.6cm,
+  aboveskip=8pt,belowskip=6pt
+}
+\renewcommand{\lstlistingname}{Listado}
+
+% --- CABECERA ---
+\pagestyle{fancy}
+\fancyhf{}
+\setlength{\headheight}{25pt}
+\fancyhead[L]{\small\textbf{Diseño Digital 2}}
+\fancyhead[R]{\small\textbf{Memoria Final}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% --- SECCIONES + PARTS ---
+\titleformat{\part}[display]
+  {\centering\Huge\bfseries\color{MainBlue}}
+  {{\fontsize{14}{16}\selectfont\color{MainBlue!60}BLOQUE II}\\\vspace{4pt}}
+  {0pt}{\rule{\textwidth}{1.5pt}\\\vspace{8pt}}[\vspace{4pt}\rule{\textwidth}{0.4pt}]
+\titleformat{\section}{\Large\bfseries\color{MainBlue}}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries\color{MainBlue}}{\thesubsection.}{0.5em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\color{MainBlue!80}}{\thesubsubsection.}{0.4em}{}
+
+% =======================================================================
+\begin{document}
+
+% -----------------------------------------------------------------------
+%  PORTADA FINAL
+% -----------------------------------------------------------------------
+\begin{titlepage}
+  \thispagestyle{empty}
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[white](current page.south west)rectangle(current page.north east);
+    \fill[MainBlue]
+      (current page.north west)rectangle
+      ([yshift=-0.22\paperheight]current page.north east);
+    \draw[MainBlue!40,line width=2pt]
+      ([yshift=-0.22\paperheight]current page.north west)--
+      ([yshift=-0.22\paperheight]current page.north east);
+  \end{tikzpicture}
+
+  \vspace*{-1cm}
+  \begin{flushleft}
+    {\fontsize{9}{12}\selectfont\color{white!80}
+      GRADO EN INGENIERÍA ELECTRÓNICA DE COMUNICACIONES}\\[1ex]
+    {\fontsize{24}{28}\selectfont\bfseries\color{white}
+      Diseño Digital 2}\\[1ex]
+    {\fontsize{11}{14}\selectfont\color{white!80}
+      Curso académico 2025--2026}
+  \end{flushleft}
+
+  \vspace*{0.11\paperheight}
+  \begin{center}
+    {\Large\color{MainBlue!80}\textbf{BLOQUE II}
+      \quad\textbullet\quad Calculadora BCD en VHDL}\\[0.8cm]
+
+    {\fontsize{30}{38}\selectfont\bfseries\color{MainBlue}
+      Memoria Final del Proyecto}\\[0.5cm]
+
+    {\fontsize{14}{20}\selectfont\color{MainBlue!80}
+      Fases 1, 2 y 3 --- Documento Completo}\\[0.4cm]
+
+    {\fontsize{12}{18}\selectfont\color{black!60}
+      Diseño, implementación y verificación en VHDL-93}\\[0.2cm]
+    {\fontsize{11}{14}\selectfont\ttfamily\color{black!50}
+      bcd\_to\_bin \quad bin\_to\_bcd \quad alu \quad ctrl\_tec
+      \quad displays \quad controlador \quad calculadora}\\[0.5cm]
+
+    {\fontsize{11}{14}\selectfont\bfseries\color{MainBlue}
+      Versión 1.0 --- Junio 2026}
+
+    \vspace{1cm}
+    \renewcommand{\arraystretch}{1.5}
+    \begin{tabular}{@{}r@{\hspace{1em}}l@{}}
+      {\small\color{MainBlue}\faCalendar}\enspace\textbf{Entrega Fase 1:}
+        & 6 de Mayo de 2026 \\
+      {\small\color{MainBlue}\faCalendar}\enspace\textbf{Entrega Fase 2:}
+        & 14 de Mayo de 2026 \\
+      {\small\color{MainBlue}\faCalendar}\enspace\textbf{Entrega Fase 3:}
+        & 28 de Mayo de 2026 \\
+      {\small\color{MainBlue}\faCalendar}\enspace\textbf{Memoria Final:}
+        & 3 de Junio de 2026 \\
+      {\small\color{MainBlue}\faMicrochip}\enspace\textbf{Plataforma:}
+        & DECA MAX10 + conector XDECA \\
+    \end{tabular}
+
+    \vspace{1cm}
+    \begin{tcolorbox}[
+      enhanced,width=0.80\textwidth,
+      colback=SoftBlue,colframe=MainBlue,
+      boxrule=0.8pt,arc=4pt,
+      title={\centering\textbf{\faUsers\quad Miembros del Grupo}},
+      coltitle=white,fonttitle=\large]
+      \begin{center}
+        \renewcommand{\arraystretch}{1.3}
+        \begin{tabular}{@{}ll@{}}
+          \textbf{Lucía Llana Carmona}   &\small\texttt{lucia.llana@alumnos.upm.es}\\
+          \textbf{María Moya Marcilla}    &\small\texttt{maria.moya.marcilla@alumnos.upm.es}\\
+          \textbf{Pedro Gil Bolaños}      &\small\texttt{pedro.gilb@alumnos.upm.es}\\
+          \textbf{Pedro Osma Moya}        &\small\texttt{p.osma@alumnos.upm.es}\\
+          \textbf{Eduardo Muñoz de Maya}  &\small\texttt{eduardo.mdemaya@alumnos.upm.es}\\
+        \end{tabular}
+      \end{center}
+    \end{tcolorbox}
+  \end{center}
+  \vfill
+  \begin{center}
+    {\fontsize{8}{10}\selectfont\color{black!40}
+      Grado en Ingeniería Electrónica de Comunicaciones
+      \quad$\cdot$\quad Diseño Digital 2}
+  \end{center}
+  \vspace{0.5cm}
+\end{titlepage}
+
+% -----------------------------------------------------------------------
+%  ÍNDICE GLOBAL
+% -----------------------------------------------------------------------
+\newpage
+\tableofcontents
+\newpage
+
+% =======================================================================
+%  FASES
+% =======================================================================
+
+\subfile{memoria_fase1}
+
+\subfile{memoria_fase2}
+
+\subfile{memoria_fase3}
+
+\end{document}

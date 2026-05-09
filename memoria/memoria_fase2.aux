@@ -1,0 +1,55 @@
+\relax 
+\providecommand \babel@aux [2]{\global \let \babel@toc \@gobbletwo }
+\@nameuse{bbl@beforestart}
+\catcode `"\active 
+\catcode `<\active 
+\catcode `>\active 
+\@nameuse{es@quoting}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand*\HyPL@Entry[1]{}
+\HyPL@Entry{0<</S/D>>}
+\babel@aux{spanish}{}
+\@writefile{toc}{\contentsline {part}{I\hspace  {1em}Fase 2: ALU, Teclado y Displays}{1}{part.1}\protected@file@percent }
+\HyPL@Entry{1<</S/D>>}
+\pgfsyspdfmark {pgfid1}{4712399}{49211963}
+\HyPL@Entry{2<</S/D>>}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introducción y objetivos}{2}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}Arquitectura global del sistema}{2}{section.2}\protected@file@percent }
+\newlabel{fig:arq-global}{{2}{2}{Arquitectura global del sistema}{section.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Señales de interconexión principales}{2}{subsection.2.1}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Señales clave entre módulos}}{2}{table.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}Unidad Aritmético-Lógica (\texttt  {alu.vhd})}{2}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Especificación}{2}{subsection.3.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Camino de datos}{2}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Implementación en VHDL}{3}{subsection.3.3}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {1}Extensión de signo y operaciones aritméticas en \texttt  {alu.vhd}}{3}{lstlisting.1}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {2}Instanciación del multiplicador IP en \texttt  {alu.vhd}}{3}{lstlisting.2}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3}Extracción de magnitud sin variables ni proceso en \texttt  {alu.vhd}}{3}{lstlisting.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Verificación: \texttt  {tb\_alu.vhd}}{4}{subsection.3.4}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4}Procedimiento \texttt  {check} del testbench \texttt  {tb\_alu}}{4}{lstlisting.4}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Casos de prueba del testbench \texttt  {tb\_alu} (10 casos)}}{4}{table.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Temporización: \texttt  {clk\_div.vhd} y \texttt  {timer.vhd}}{4}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Divisor de reloj genérico (\texttt  {clk\_div})}{4}{subsection.4.1}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5}Implementación de \texttt  {clk\_div.vhd}}{5}{lstlisting.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Instancias de \texttt  {clk\_div} en el proyecto}}{5}{table.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Temporizador doble (\texttt  {timer})}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {6}Generación de \texttt  {tic\_1ms} y \texttt  {tic\_5ms} en \texttt  {timer.vhd}}{5}{lstlisting.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Controlador de teclado (\texttt  {ctrl\_tec.vhd})}{5}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Descripción general y especificación de puertos}{5}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Mapa del teclado}{6}{subsection.5.2}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Distribución de teclas: código hex asignado a cada posición}}{6}{table.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Mecanismo de escaneo de filas}{6}{subsection.5.3}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {7}Rotación one-hot de filas en \texttt  {ctrl\_tec.vhd}}{6}{lstlisting.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Antirebote integrado}{6}{subsection.5.4}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {8}Antirebote de dos etapas en \texttt  {ctrl\_tec.vhd}}{7}{lstlisting.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Detección de pulsación corta y larga}{7}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Decodificador fila × columna}{7}{subsection.5.6}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {9}Decodificador fila/columna (fragmento) en \texttt  {ctrl\_tec.vhd}}{7}{lstlisting.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Jerarquía: \texttt  {interfaz\_teclado.vhd}}{7}{subsection.5.7}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {10}Integración en \texttt  {interfaz\_teclado.vhd}}{8}{lstlisting.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}Controlador de displays (\texttt  {displays.vhd})}{8}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Especificación}{8}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Multiplexación}{8}{subsection.6.2}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {11}Registro de multiplexación en \texttt  {displays.vhd}}{8}{lstlisting.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Cálculo de los 8 dígitos a mostrar}{8}{subsection.6.3}\protected@file@percent }
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {12}Supresión de ceros en \texttt  {displays.vhd} (fragmento)}{8}{lstlisting.12}\protected@file@percent }

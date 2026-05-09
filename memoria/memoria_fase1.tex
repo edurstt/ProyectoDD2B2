@@ -1,112 +1,11 @@
-\documentclass[10pt, a4paper]{article}
-
-% --- PAQUETES PRINCIPALES ---
-\usepackage[table,xcdraw,svgnames]{xcolor}
-\usepackage{geometry}
-\usepackage{fontspec}
-\usepackage{amsmath, amsfonts, amssymb}
-\usepackage{graphicx}
-\usepackage[spanish]{babel}
-\usepackage{titlesec}
-\usepackage{fancyhdr}
-\usepackage{placeins}
-\usepackage{enumitem}
-\usepackage{booktabs}
-\usepackage{float}
-\usepackage[official]{eurosym}
-\usepackage{tikz}
-% Añadimos la librería 'babel' para evitar conflictos con los caracteres < y >
-\usetikzlibrary{shapes, arrows.meta, positioning, fit, calc, shadows, backgrounds, automata, babel}
-\usepackage{tcolorbox}
-\tcbuselibrary{skins, breakable}
-\usepackage{fontawesome5}
-\usepackage{listings}
-\usepackage[colorlinks=true, linkcolor=DarkBlue, urlcolor=DarkBlue]{hyperref}
-
-% --- CONFIGURACIÓN ---
-\setmainfont{CMU Sans Serif}
-\setsansfont{CMU Sans Serif}
-\renewcommand{\familydefault}{\sfdefault}
-\geometry{a4paper,left=2cm,right=2cm,top=2.5cm,bottom=2.5cm}
-
-% --- DEFINICIÓN DE COLORES ---
-\definecolor{MainBlue}{RGB}{0, 75, 145}
-\definecolor{SoftBlue}{RGB}{235, 245, 255}
-\definecolor{MainGreen}{RGB}{20, 100, 40}
-\definecolor{SoftGreen}{RGB}{235, 250, 240}
-\definecolor{MainOrange}{RGB}{200, 80, 0}
-\definecolor{SoftOrange}{RGB}{255, 245, 230}
-\definecolor{DarkBlue}{HTML}{00008B}
-\definecolor{DarkRed}{HTML}{8B0000}
-\definecolor{SafeZone}{RGB}{225, 250, 225}
-\definecolor{PowerZone}{RGB}{250, 225, 225}
-\definecolor{vhdlbg}{RGB}{248, 250, 255}
-\definecolor{vhdlkw}{RGB}{0, 0, 180}
-\definecolor{vhdlcmt}{RGB}{100, 100, 100}
-\definecolor{vhdlstr}{RGB}{0, 128, 0}
-
-% --- ESTILOS TIKZ ---
-\tikzset{
-	bloque/.style={rectangle, draw=MainBlue, thick, fill=SoftBlue,
-		text width=3cm, align=center, minimum height=1.3cm,
-		rounded corners=4pt, drop shadow, font=\sffamily\small},
-	nucleo/.style={rectangle, draw=black!60, thick, dashed,
-		fill=white!90!gray, inner sep=0.4cm, align=center, rounded corners=4pt},
-	comunicacion/.style={draw=red, line width=1.5pt, <->, >=Latex},
-	esquema/.style={rectangle, draw=black, thick, fill=white,
-		align=center, minimum height=0.8cm},
-	estado/.style={circle, draw=MainBlue, thick, fill=SoftBlue,
-		minimum size=1.8cm, align=center, font=\sffamily\small\bfseries, drop shadow},
-	flecha/.style={->, >=Latex, thick, color=MainBlue}
-}
-
-% --- VHDL LISTINGS ---
-\lstdefinelanguage{VHDLcustom}{
-	morekeywords={library, use, entity, is, port, in, out, inout, end,
-		architecture, of, signal, begin, process, variable,
-		if, then, else, elsif, case, when, others,
-		rising_edge, falling_edge, wait, until, for,
-		generic, map, all, downto, to, not, and, or, xor,
-		nand, nor, type, integer, range, natural,
-		std_logic, std_logic_vector, ieee},
-	sensitive=false,
-	morecomment=[l]{--},
-	morestring=[b]"
-}
-\lstset{
-	language=VHDLcustom,
-	basicstyle=\ttfamily\small,
-	keywordstyle=\bfseries\color{vhdlkw},
-	commentstyle=\itshape\color{vhdlcmt},
-	stringstyle=\color{vhdlstr},
-	backgroundcolor=\color{vhdlbg},
-	frame=single, framerule=0.5pt,
-	rulecolor=\color{MainBlue!40},
-	numbers=left, numberstyle=\tiny\color{gray!70},
-	numbersep=8pt,
-	breaklines=true, captionpos=b,
-	showstringspaces=false,
-	tabsize=4,
-	xleftmargin=0.6cm,
-	aboveskip=8pt, belowskip=6pt
-}
-\renewcommand{\lstlistingname}{Listado}
-
-% --- CABECERA INTERACTIVA ---
-\pagestyle{fancy}
-\fancyhf{}
-\setlength{\headheight}{25pt}
-\fancyhead[L]{\small\textbf{\hyperlink{inicio}{Diseño Digital 2}}}
-\fancyhead[R]{\small\textbf{\hyperlink{section.\thesection}{Memoria --- Fase 1}}}
-\fancyfoot[C]{\thepage}
-\renewcommand{\footrulewidth}{0.4pt}
-
-% --- ESTILOS DE SECCIÓN ---
-\titleformat{\section}{\Large\bfseries\color{MainBlue}}{\thesection.}{0.5em}{}
-\titleformat{\subsection}{\large\bfseries\color{MainBlue}}{\thesubsection.}{0.5em}{}
-
-% =====================================================================
+\documentclass[memoria_final]{subfiles}
 \begin{document}
+\edef\@currjob{\jobname}
+\def\@mainjob{memoria_final}
+\ifx\@currjob\@mainjob
+  \clearpage
+  \part{Fase 1: Conversores de Código}
+\else
 	\hypertarget{inicio}{}
 	
 	% =====================================================================
@@ -205,13 +104,12 @@
 	\vspace{0.5cm}
 	
 \end{titlepage}
-	% =====================================================================
-	%  ÍNDICE
-	% =====================================================================
 	\newpage
 	\tableofcontents
 	\newpage
-	
+\fi% fin \ifx\@currjob\@mainjob
+\fancyhead[R]{\small\textbf{Memoria --- Fase 1 (Conversores de Código)}}
+
 	% =====================================================================
 	\section{Introducción y Objetivos}
 	% =====================================================================
@@ -621,5 +519,6 @@
 
 	Multiplicar por una potencia de dos equivale a un desplazamiento a la izquierda, que en VHDL se implementa mediante concatenación de ceros, sin coste alguno en lógica combinacional. Este enfoque no era conocido de antemano y se dedujo a partir del análisis de la representación binaria de los factores.
 
-	
+\end{document}
+
 \end{document}
