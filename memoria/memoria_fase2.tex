@@ -739,7 +739,7 @@ tecla_pulsada <= tp_s;  pulso_largo <= pl_s;
     \textbf{Hardware:}     &
       8 displays de 7 segmentos, cátodo común, activo alto (DECA + XDECA).\\[3pt]
     \textbf{Multiplexación:} &
-      Registro \texttt{mux\_reg} one-hot activo bajo; rota en cada
+      Puerto \texttt{mux\_disp} (buffer) one-hot activo bajo; rota en cada
       \texttt{tic\_1ms}.\\
     & Frecuencia de refresco: $1000\,\text{Hz} / 8 = 125\,\text{Hz}$
       (sin parpadeo visible).\\[3pt]
@@ -753,75 +753,58 @@ tecla_pulsada <= tp_s;  pulso_largo <= pl_s;
   \end{tabular}
 \end{tcolorbox}
 
+\subsection{Interfaz de puertos}
+
+Los puertos \texttt{mux\_disp} y \texttt{disp} se declaran como \texttt{buffer}
+(no \texttt{out}) porque su valor se lee internamente en la lógica de
+multiplexación. Los puertos de datos se nombran \texttt{op1}, \texttt{op2}
+y \texttt{res} (sin sufijo \texttt{\_bcd}).
+
 \subsection{Multiplexación}
 
-El registro \texttt{mux\_reg} es un one-hot activo bajo que rota hacia la
-izquierda en cada \texttt{tic\_1ms}, activando un display diferente en cada
-ciclo de refresco:
+El registro \texttt{mux\_disp} es un one-hot activo bajo que rota hacia la
+derecha en cada \texttt{tic\_1ms}, activando un display diferente en cada
+ciclo de refresco. Al ser \texttt{buffer}, puede leerse directamente en la
+asignación concurrente de \texttt{dig\_activo}:
 
 \begin{lstlisting}[caption={Registro de multiplexación en \texttt{displays.vhd}}]
-process(clk, nRst)
+catodos: process(clk, nRst)
 begin
-    if nRst = '0' then
-        mux_reg <= "11111110";   -- display 1 activo (bit 0 = '0')
-    elsif clk'event and clk = '1' then
-        if tic_1ms = '1' then
-            mux_reg <= mux_reg(6 downto 0) & mux_reg(7);  -- rotacion izq
-        end if;
+  if nRst = '0' then
+    mux_disp <= (0 => '0', others => '1');
+  elsif clk'event and clk = '1' then
+    if tic_1ms = '1' then
+      mux_disp <= mux_disp(6 downto 0) & mux_disp(7);
     end if;
-end process;
+  end if;
+end process catodos;
 \end{lstlisting}
 
-\subsection{Cálculo de los 8 dígitos a mostrar}
+\subsection{Preparación y supresión de ceros}
 
-Los 8 dígitos se calculan combinacionalmente como señales concurrentes
-\texttt{sig\_d1} \ldots \texttt{sig\_d8}, sin variables ni proceso. Cada
-señal usa una cadena \texttt{when/else} que considera el modo
-\texttt{pres} y aplica la supresión de ceros a la izquierda:
+Los tres vectores \texttt{op1\_c}, \texttt{op2\_c} y \texttt{res\_c} de
+32\,bits empaquetan, con asignaciones concurrentes \texttt{when/else}, tanto
+el identificador de modo (nibble alto) como los dígitos a mostrar con
+supresión de ceros no significativos. El nibble de signo se forma
+concatenando \texttt{"111"\&op\_sgn}, de modo que \texttt{x"E"} representa
+blanco y \texttt{x"F"} el guión negativo:
 
 \begin{lstlisting}[caption={Supresión de ceros en \texttt{displays.vhd} (fragmento)}]
--- D2 (decenas): blanco si tanto centenas como decenas son cero
-sig_d2 <= x"E" when pres="00" and op1_bcd(11 downto 4) = x"00" else
-          op1_bcd(7 downto 4) when pres="00" else
-          x"E" when pres="01" and op2_bcd(11 downto 4) = x"00" else
-          op2_bcd(7 downto 4) when pres="01" else
-          x"E" when res_bcd(23 downto 4) = x"00000" else
-          res_bcd(7 downto 4);
+sig1 <= "111" & op1_sgn;
 
--- D3 (centenas o signo negativo si centenas = 0)
-sig_d3 <= x"F" when pres="00" and op1_bcd(11 downto 8)=x"0" and op1_sgn='1' else
-          x"E" when pres="00" and op1_bcd(11 downto 8)=x"0" else
-          op1_bcd(11 downto 8) when pres="00" else
-          ...;
+op1_c <=
+  "0001"&"1110"&"1110"&"1110"&"1110"&"1110" & sig1 & op1(3 downto 0)
+    when op1(11 downto 4) = 0 else
+  "0001"&"1110"&"1110"&"1110"&"1110" & sig1 & op1(7 downto 4) & op1(3 downto 0)
+    when op1(11 downto 8) = 0 else
+  "0001"&"1110"&"1110"&"1110" & sig1 & op1(11 downto 8)
+                               & op1(7 downto 4) & op1(3 downto 0);
 \end{lstlisting}
 
 \subsection{Decodificación 4\,bits $\to$ 7 segmentos}
 
-La función \texttt{decode\_seg} implementa la tabla de conversión. Se ha
-eliminado la variable interna que tenía la versión original; ahora usa
-\texttt{return} directo en cada rama del \texttt{case}:
-
-\begin{lstlisting}[caption={Función \texttt{decode\_seg} sin variables en \texttt{displays.vhd}}]
-function decode_seg(d : std_logic_vector(3 downto 0))
-         return std_logic_vector is
-begin
-    case d is
-        when x"0" => return "01111110";  -- 0: a,b,c,d,e,f
-        when x"1" => return "00110000";  -- 1: b,c
-        when x"2" => return "01101101";  -- 2: a,b,d,e,g
-        when x"3" => return "01111001";  -- 3: a,b,c,d,g
-        when x"4" => return "00110011";  -- 4: b,c,f,g
-        when x"5" => return "01011011";  -- 5: a,c,d,f,g
-        when x"6" => return "01011111";  -- 6: a,c,d,e,f,g
-        when x"7" => return "01110000";  -- 7: a,b,c
-        when x"8" => return "01111111";  -- 8: todos
-        when x"9" => return "01111011";  -- 9: a,b,c,d,f,g
-        when x"F" => return "00000001";  -- '-': solo g (signo negativo)
-        when x"E" => return "00000000";  -- blanco
-        when others => return "00000000";
-    end case;
-end function;
-\end{lstlisting}
+La decodificación se realiza mediante un \texttt{process} con \texttt{case}
+directamente sobre la señal \texttt{dig\_activo}, sin función auxiliar:
 
 \begin{table}[H]
   \centering
@@ -833,8 +816,8 @@ end function;
     \midrule
     \texttt{x"F"} & \texttt{-} (guión) & \texttt{00000001} & Signo negativo \\
     \texttt{x"E"} & blanco             & \texttt{00000000} & Supresión de ceros \\
-    \texttt{x"A"} & \texttt{A}         & \texttt{00110111} & Dígito hex A \\
-    \texttt{x"B"} & \texttt{P}         & \texttt{00011111} & Reservado \\
+    \texttt{x"A"} & \texttt{A}         & \texttt{01110111} & Dígito hex A \\
+    \texttt{x"B"} & \texttt{P}         & \texttt{01100111} & Reservado \\
     \texttt{x"C"} & \texttt{C}         & \texttt{01001110} & Reservado \\
     \texttt{x"D"} & \texttt{r}         & \texttt{00000101} & Reservado \\
     \bottomrule

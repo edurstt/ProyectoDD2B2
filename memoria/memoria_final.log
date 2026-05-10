@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.1) (preloaded format=xelatex 2026.2.18)  7 MAY 2026 22:42
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.1) (preloaded format=xelatex 2026.2.18)  10 MAY 2026 21:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2107,32 +2107,102 @@ en el \TU/CMUSansSerif(0)/m/it/10 flanco de bajada \TU/CMUSansSerif(0)/m/n/10 d
 e \TU/lmtt/m/n/10 ctrl_tecla_pulsada
  []
 
-[7] [8]
+[7]
+memoria_fase2.tex:789: Argument of \language@active@arg" has an extra }.
+<inserted text> 
+                \par 
+l.789 ...111"\&op\_sgn}, de modo que \texttt{x"E"}
+                                                   representa
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+memoria_fase2.tex:789: Paragraph ended before \language@active@arg" was complet
+e.
+<to be read again> 
+                   \par 
+l.789 ...111"\&op\_sgn}, de modo que \texttt{x"E"}
+                                                   representa
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+memoria_fase2.tex:789: Argument of \language@active@arg" has an extra }.
+<inserted text> 
+                \par 
+l.789 ...111"\&op\_sgn}, de modo que \texttt{x"E"}
+                                                   representa
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+memoria_fase2.tex:789: Paragraph ended before \language@active@arg" was complet
+e.
+<to be read again> 
+                   \par 
+l.789 ...111"\&op\_sgn}, de modo que \texttt{x"E"}
+                                                   representa
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+memoria_fase2.tex:789: Argument of \language@active@arg" has an extra }.
+<inserted text> 
+                \par 
+l.789 ...111"\&op\_sgn}, de modo que \texttt{x"E"}
+                                                   representa
+I've run across a `}' that doesn't seem to match anything.
+For example, `\def\a#1{...}' and `\a}' would produce
+this error. If you simply proceed now, the `\par' that
+I've just inserted will cause me to report a runaway
+argument that might be the root of the problem. But if
+your `}' was spurious, just type `2' and it will go away.
+
+Runaway argument?
+memoria_fase2.tex:789: Paragraph ended before \language@active@arg" was complet
+e.
+<to be read again> 
+                   \par 
+l.789 ...111"\&op\_sgn}, de modo que \texttt{x"E"}
+                                                   representa
+I suspect you've forgotten a `}', causing me to apply this
+control sequence to too much text. How can we recover?
+My plan is to forget the whole thing and hope for the best.
+
+[8]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\leavevmode@ifvmode' on input line 798.
+(hyperref)                removing `\leavevmode@ifvmode' on input line 804.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \kern 1.66702pt
-(hyperref)                removed on input line 798.
+(hyperref)                removed on input line 804.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 798.
+(hyperref)                removing `math shift' on input line 804.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\to' on input line 798.
+(hyperref)                removing `\to' on input line 804.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 798.
+(hyperref)                removing `math shift' on input line 804.
 
-memoria_fase2.tex:835: Argument of \language@active@arg" has an extra }.
+memoria_fase2.tex:818: Argument of \language@active@arg" has an extra }.
 <inserted text> 
                 \par 
-l.835     \texttt{x"E"}
+l.818     \texttt{x"E"}
                         & blanco             & \texttt{00000000} & Supresión...
 I've run across a `}' that doesn't seem to match anything.
 For example, `\def\a#1{...}' and `\a}' would produce
@@ -2142,20 +2212,20 @@ argument that might be the root of the problem. But if
 your `}' was spurious, just type `2' and it will go away.
 
 Runaway argument?
-memoria_fase2.tex:835: Paragraph ended before \language@active@arg" was complet
+memoria_fase2.tex:818: Paragraph ended before \language@active@arg" was complet
 e.
 <to be read again> 
                    \par 
-l.835     \texttt{x"E"}
+l.818     \texttt{x"E"}
                         & blanco             & \texttt{00000000} & Supresión...
 I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
 My plan is to forget the whole thing and hope for the best.
 
-memoria_fase2.tex:835: Argument of \language@active@arg" has an extra }.
+memoria_fase2.tex:818: Argument of \language@active@arg" has an extra }.
 <inserted text> 
                 \par 
-l.835     \texttt{x"E"}
+l.818     \texttt{x"E"}
                         & blanco             & \texttt{00000000} & Supresión...
 I've run across a `}' that doesn't seem to match anything.
 For example, `\def\a#1{...}' and `\a}' would produce
@@ -2165,20 +2235,20 @@ argument that might be the root of the problem. But if
 your `}' was spurious, just type `2' and it will go away.
 
 Runaway argument?
-memoria_fase2.tex:835: Paragraph ended before \language@active@arg" was complet
+memoria_fase2.tex:818: Paragraph ended before \language@active@arg" was complet
 e.
 <to be read again> 
                    \par 
-l.835     \texttt{x"E"}
+l.818     \texttt{x"E"}
                         & blanco             & \texttt{00000000} & Supresión...
 I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
 My plan is to forget the whole thing and hope for the best.
 
-memoria_fase2.tex:835: Argument of \language@active@arg" has an extra }.
+memoria_fase2.tex:818: Argument of \language@active@arg" has an extra }.
 <inserted text> 
                 \par 
-l.835     \texttt{x"E"}
+l.818     \texttt{x"E"}
                         & blanco             & \texttt{00000000} & Supresión...
 I've run across a `}' that doesn't seem to match anything.
 For example, `\def\a#1{...}' and `\a}' would produce
@@ -2188,18 +2258,18 @@ argument that might be the root of the problem. But if
 your `}' was spurious, just type `2' and it will go away.
 
 Runaway argument?
-memoria_fase2.tex:835: Paragraph ended before \language@active@arg" was complet
+memoria_fase2.tex:818: Paragraph ended before \language@active@arg" was complet
 e.
 <to be read again> 
                    \par 
-l.835     \texttt{x"E"}
+l.818     \texttt{x"E"}
                         & blanco             & \texttt{00000000} & Supresión...
 I suspect you've forgotten a `}', causing me to apply this
 control sequence to too much text. How can we recover?
 My plan is to forget the whole thing and hope for the best.
 
-memoria_fase2.tex:835: Misplaced alignment tab character &.
-l.835     \texttt{x"E"} &
+memoria_fase2.tex:818: Misplaced alignment tab character &.
+l.818     \texttt{x"E"} &
                           blanco             & \texttt{00000000} & Supresión...
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -2208,8 +2278,8 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:835: Misplaced alignment tab character &.
-l.835     \texttt{x"E"} & blanco             &
+memoria_fase2.tex:818: Misplaced alignment tab character &.
+l.818     \texttt{x"E"} & blanco             &
                                                \texttt{00000000} & Supresión...
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -2218,8 +2288,8 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:835: Misplaced alignment tab character &.
-l.835 ... blanco             & \texttt{00000000} &
+memoria_fase2.tex:818: Misplaced alignment tab character &.
+l.818 ... blanco             & \texttt{00000000} &
                                                    Supresión de ceros \\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -2228,20 +2298,20 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:836: Misplaced \cr.
+memoria_fase2.tex:819: Misplaced \cr.
 \reserved@c ->\ifnum 0=`{}\fi \cr 
                                   
-l.836     \texttt
-                 {x"A"} & \texttt{A}         & \texttt{00110111} & Dígito he...
+l.819     \texttt
+                 {x"A"} & \texttt{A}         & \texttt{01110111} & Dígito he...
 I can't figure out why you would want to use a tab mark
 or \cr or \span just now. If something like a right brace
 up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:836: Misplaced alignment tab character &.
-l.836     \texttt{x"A"} &
-                          \texttt{A}         & \texttt{00110111} & Dígito he...
+memoria_fase2.tex:819: Misplaced alignment tab character &.
+l.819     \texttt{x"A"} &
+                          \texttt{A}         & \texttt{01110111} & Dígito he...
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -2249,9 +2319,9 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:836: Misplaced alignment tab character &.
-l.836     \texttt{x"A"} & \texttt{A}         &
-                                               \texttt{00110111} & Dígito he...
+memoria_fase2.tex:819: Misplaced alignment tab character &.
+l.819     \texttt{x"A"} & \texttt{A}         &
+                                               \texttt{01110111} & Dígito he...
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -2259,8 +2329,8 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:836: Misplaced alignment tab character &.
-l.836 ... \texttt{A}         & \texttt{00110111} &
+memoria_fase2.tex:819: Misplaced alignment tab character &.
+l.819 ... \texttt{A}         & \texttt{01110111} &
                                                    Dígito hex A \\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -2269,20 +2339,20 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:837: Misplaced \cr.
+memoria_fase2.tex:820: Misplaced \cr.
 \reserved@c ->\ifnum 0=`{}\fi \cr 
                                   
-l.837     \texttt
-                 {x"B"} & \texttt{P}         & \texttt{00011111} & Reservado \\
+l.820     \texttt
+                 {x"B"} & \texttt{P}         & \texttt{01100111} & Reservado \\
 I can't figure out why you would want to use a tab mark
 or \cr or \span just now. If something like a right brace
 up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:837: Misplaced alignment tab character &.
-l.837     \texttt{x"B"} &
-                          \texttt{P}         & \texttt{00011111} & Reservado \\
+memoria_fase2.tex:820: Misplaced alignment tab character &.
+l.820     \texttt{x"B"} &
+                          \texttt{P}         & \texttt{01100111} & Reservado \\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -2290,9 +2360,9 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:837: Misplaced alignment tab character &.
-l.837     \texttt{x"B"} & \texttt{P}         &
-                                               \texttt{00011111} & Reservado \\
+memoria_fase2.tex:820: Misplaced alignment tab character &.
+l.820     \texttt{x"B"} & \texttt{P}         &
+                                               \texttt{01100111} & Reservado \\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -2300,8 +2370,8 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:837: Misplaced alignment tab character &.
-l.837 ... \texttt{P}         & \texttt{00011111} &
+memoria_fase2.tex:820: Misplaced alignment tab character &.
+l.820 ... \texttt{P}         & \texttt{01100111} &
                                                    Reservado \\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -2310,10 +2380,10 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:838: Misplaced \cr.
+memoria_fase2.tex:821: Misplaced \cr.
 \reserved@c ->\ifnum 0=`{}\fi \cr 
                                   
-l.838     \texttt
+l.821     \texttt
                  {x"C"} & \texttt{C}         & \texttt{01001110} & Reservado \\
 I can't figure out why you would want to use a tab mark
 or \cr or \span just now. If something like a right brace
@@ -2321,8 +2391,8 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:838: Misplaced alignment tab character &.
-l.838     \texttt{x"C"} &
+memoria_fase2.tex:821: Misplaced alignment tab character &.
+l.821     \texttt{x"C"} &
                           \texttt{C}         & \texttt{01001110} & Reservado \\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -2331,8 +2401,8 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:838: Misplaced alignment tab character &.
-l.838     \texttt{x"C"} & \texttt{C}         &
+memoria_fase2.tex:821: Misplaced alignment tab character &.
+l.821     \texttt{x"C"} & \texttt{C}         &
                                                \texttt{01001110} & Reservado \\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -2341,8 +2411,8 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:838: Misplaced alignment tab character &.
-l.838 ... \texttt{C}         & \texttt{01001110} &
+memoria_fase2.tex:821: Misplaced alignment tab character &.
+l.821 ... \texttt{C}         & \texttt{01001110} &
                                                    Reservado \\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -2351,10 +2421,10 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:839: Misplaced \cr.
+memoria_fase2.tex:822: Misplaced \cr.
 \reserved@c ->\ifnum 0=`{}\fi \cr 
                                   
-l.839     \texttt
+l.822     \texttt
                  {x"D"} & \texttt{r}         & \texttt{00000101} & Reservado \\
 I can't figure out why you would want to use a tab mark
 or \cr or \span just now. If something like a right brace
@@ -2362,8 +2432,8 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:839: Misplaced alignment tab character &.
-l.839     \texttt{x"D"} &
+memoria_fase2.tex:822: Misplaced alignment tab character &.
+l.822     \texttt{x"D"} &
                           \texttt{r}         & \texttt{00000101} & Reservado \\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -2372,8 +2442,8 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:839: Misplaced alignment tab character &.
-l.839     \texttt{x"D"} & \texttt{r}         &
+memoria_fase2.tex:822: Misplaced alignment tab character &.
+l.822     \texttt{x"D"} & \texttt{r}         &
                                                \texttt{00000101} & Reservado \\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -2382,8 +2452,8 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:839: Misplaced alignment tab character &.
-l.839 ... \texttt{r}         & \texttt{00000101} &
+memoria_fase2.tex:822: Misplaced alignment tab character &.
+l.822 ... \texttt{r}         & \texttt{00000101} &
                                                    Reservado \\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -2392,10 +2462,10 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:840: Misplaced \cr.
+memoria_fase2.tex:823: Misplaced \cr.
 \reserved@c ->\ifnum 0=`{}\fi \cr 
                                   
-l.840     \bottomrule
+l.823     \bottomrule
                      
 I can't figure out why you would want to use a tab mark
 or \cr or \span just now. If something like a right brace
@@ -2403,18 +2473,18 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-memoria_fase2.tex:840: Misplaced \noalign.
+memoria_fase2.tex:823: Misplaced \noalign.
 \bottomrule ->\noalign 
                        {\ifnum 0=`}\fi \@aboverulesep =\aboverulesep \global...
-l.840     \bottomrule
+l.823     \bottomrule
                      
 I expect to see \noalign only after the \cr of
 an alignment. Proceed, and I'll ignore this case.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -2422,10 +2492,10 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-memoria_fase2.tex:841: Missing \endgroup inserted.
+memoria_fase2.tex:824: Missing \endgroup inserted.
 <inserted text> 
                 \endgroup 
-l.841   \end
+l.824   \end
             {tabular}
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -2433,10 +2503,10 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -2444,10 +2514,10 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -2455,10 +2525,10 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -2466,552 +2536,552 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
 
-memoria_fase2.tex:841: Missing \cr inserted.
+memoria_fase2.tex:824: Missing \cr inserted.
 <inserted text> 
                 \cr 
-l.841   \end
+l.824   \end
             {tabular}
 I'm guessing that you meant to end an alignment here.
 
-memoria_fase2.tex:841: Missing } inserted.
+memoria_fase2.tex:824: Missing } inserted.
 <inserted text> 
                 }
-l.841   \end
+l.824   \end
             {tabular}
 (That makes 100 errors; please try again.) 
 Here is how much of TeX's memory you used:
- 35494 strings out of 402982
- 735093 string characters out of 5446817
- 1546277 words of memory out of 5000000
- 63631 multiletter control sequences out of 15000+600000
+ 35491 strings out of 402982
+ 735059 string characters out of 5446817
+ 1470277 words of memory out of 5000000
+ 63628 multiletter control sequences out of 15000+600000
  636434 words of font info for 131 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  84i,13n,94p,496b,2062s stack positions out of 10000i,1000n,20000p,200000b,200000s
