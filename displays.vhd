@@ -44,9 +44,9 @@ begin
  res_c <= "1101"&"1110"&"1110"&"1110"&"1110"&"1110"& sigr& res(3 downto 0)  when res(23 downto 4) = 0 else
           "1101"&"1110"&"1110"&"1110"&"1110"       & sigr& res(7 downto 0)  when res(23 downto 8) = 0 else
           "1101"&"1110"&"1110"&"1110"              & sigr& res(11 downto 0) when res(23 downto 12) = 0 else
-		 "1101"&"1110"&"1110"                     & sigr& res(15 downto 0) when res(23 downto 16) = 0 else
-		 "1101"&"1110"                            & sigr& res(19 downto 0) when res(23 downto 20) = 0 else
-		 "1101"                                   & sigr& res(23 downto 0); 
+			 "1101"&"1110"&"1110"                     & sigr& res(15 downto 0) when res(23 downto 16) = 0 else
+			 "1101"&"1110"                            & sigr& res(19 downto 0) when res(23 downto 20) = 0 else
+			 "1101"                                   & sigr& res(23 downto 0); 
 
 -- Presentacion
  
