@@ -1,0 +1,400 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/altera/16.0
+Ealu_calc
+Z0 w1778149420
+Z1 DPx4 ieee 18 std_logic_unsigned 0 22 ;eZjO2D4ZDz<]0>8AL<ne1
+Z2 DPx4 ieee 15 std_logic_arith 0 22 [G314=:2zXJ`VORJe1J@Z1
+Z3 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z4 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z5 dC:/Universidad/Calculadora/modelsim
+Z6 8C:\Universidad\Calculadora\hdl\Conversor\ALU.vhd
+Z7 FC:\Universidad\Calculadora\hdl\Conversor\ALU.vhd
+l0
+L6
+VfEe<zQKbZCif26e_WXAM^1
+!s100 KH0gfnGaH5]cK:ez>_;<63
+Z8 OV;C;10.4d;61
+32
+Z9 !s110 1778158692
+!i10b 1
+Z10 !s108 1778158692.000000
+Z11 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:\Universidad\Calculadora\hdl\Conversor\ALU.vhd|
+Z12 !s107 C:\Universidad\Calculadora\hdl\Conversor\ALU.vhd|
+!i113 1
+Z13 o-work work -2002 -explicit
+Z14 tExplicit 1
+Artl
+R1
+R2
+R3
+R4
+Z15 DEx4 work 8 alu_calc 0 22 fEe<zQKbZCif26e_WXAM^1
+l39
+L18
+V];_QCD>SI=CocL8ID@]j@1
+!s100 9dGDDFTYkRSE;0MNcBXOz2
+R8
+32
+R9
+!i10b 1
+R10
+R11
+R12
+!i113 1
+R13
+R14
+Ebinariotobcd
+Z16 w1777295534
+R2
+R1
+R3
+R4
+R5
+Z17 8C:/Universidad/Calculadora/hdl/Conversor/BinarioToBCD.vhd
+Z18 FC:/Universidad/Calculadora/hdl/Conversor/BinarioToBCD.vhd
+l0
+L11
+VX>d>f12X5Pln`W<8^S2jm3
+!s100 3[?D@PZll@>G3S8C3?O982
+R8
+32
+R9
+!i10b 1
+R10
+Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Universidad/Calculadora/hdl/Conversor/BinarioToBCD.vhd|
+Z20 !s107 C:/Universidad/Calculadora/hdl/Conversor/BinarioToBCD.vhd|
+!i113 1
+R13
+R14
+Artl
+Z21 DEx4 work 19 sumadorbcd_6digitos 0 22 `IBWKlWOLL3d[NTzXm79M2
+R2
+R1
+R3
+R4
+Z22 DEx4 work 12 binariotobcd 0 22 X>d>f12X5Pln`W<8^S2jm3
+l35
+L22
+Vc7Rf9N33E:dbIW]a<;?a=2
+!s100 e<_=S>[<BJ8i85JTQZh^Z3
+R8
+32
+R9
+!i10b 1
+R10
+R19
+R20
+!i113 1
+R13
+R14
+Econtrolador_principal
+Z23 w1778157774
+R2
+R1
+R3
+R4
+R5
+Z24 8C:\Universidad\Calculadora\hdl\Controlador\Controlador_principal.vhd
+Z25 FC:\Universidad\Calculadora\hdl\Controlador\Controlador_principal.vhd
+l0
+L5
+V=h]XE]_dS7jTb=V85@1k_1
+!s100 K9aY0kll8Mmc@Bm7=U^C01
+R8
+32
+R9
+!i10b 1
+Z26 !s108 1778158691.000000
+Z27 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:\Universidad\Calculadora\hdl\Controlador\Controlador_principal.vhd|
+Z28 !s107 C:\Universidad\Calculadora\hdl\Controlador\Controlador_principal.vhd|
+!i113 1
+R13
+R14
+Artl
+R2
+R1
+R3
+R4
+Z29 DEx4 work 21 controlador_principal 0 22 =h]XE]_dS7jTb=V85@1k_1
+l45
+L32
+V5T=E??0>caLohPHXnEoe31
+!s100 ege9Tb]B=kTe2FileFYDB2
+R8
+32
+R9
+!i10b 1
+R26
+R27
+R28
+!i113 1
+R13
+R14
+Econv_bcd_bin
+Z30 w1777714344
+R2
+R1
+R3
+R4
+R5
+Z31 8C:\Universidad\Calculadora\hdl\Conversor\Conv_BCD_Bin.vhd
+Z32 FC:\Universidad\Calculadora\hdl\Conversor\Conv_BCD_Bin.vhd
+l0
+L19
+V[@7Ab6L[ZB8KW5nTNLUIo1
+!s100 T?h>YP7E7P<@O6o>M[mOc3
+R8
+32
+R9
+!i10b 1
+R10
+Z33 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:\Universidad\Calculadora\hdl\Conversor\Conv_BCD_Bin.vhd|
+Z34 !s107 C:\Universidad\Calculadora\hdl\Conversor\Conv_BCD_Bin.vhd|
+!i113 1
+R13
+R14
+Artl
+R2
+R1
+R3
+R4
+Z35 DEx4 work 12 conv_bcd_bin 0 22 [@7Ab6L[ZB8KW5nTNLUIo1
+l43
+L34
+V9bkYQcjXijF28K>_OM>c^0
+!s100 ;JhkRQV2;^OXhhV>iFDVP3
+R8
+32
+R9
+!i10b 1
+R10
+R33
+R34
+!i113 1
+R13
+R14
+Einterfaz_calculadora
+Z36 w1778156888
+R2
+R1
+R3
+R4
+R5
+Z37 8C:\Universidad\Calculadora\hdl\Interfaz_calculadora.vhd
+Z38 FC:\Universidad\Calculadora\hdl\Interfaz_calculadora.vhd
+l0
+L5
+V^=0`hkAGcg=1jBmg3KNF:3
+!s100 1RMM7GI0g@kIeEo<zfO:f2
+R8
+32
+R9
+!i10b 1
+R10
+Z39 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:\Universidad\Calculadora\hdl\Interfaz_calculadora.vhd|
+Z40 !s107 C:\Universidad\Calculadora\hdl\Interfaz_calculadora.vhd|
+!i113 1
+R13
+R14
+Artl
+R22
+R15
+R35
+R29
+R2
+R1
+R3
+R4
+Z41 DEx4 work 20 interfaz_calculadora 0 22 ^=0`hkAGcg=1jBmg3KNF:3
+l45
+L22
+VPHPVGCK2ID83I>Paa`kl:3
+!s100 FKHaJ1PNbTIQ_VQHo]VF]0
+R8
+32
+R9
+!i10b 1
+R10
+R39
+R40
+!i113 1
+R13
+R14
+Elpm_mult
+Z42 w1778147680
+R3
+R4
+R5
+Z43 8C:/Universidad/Calculadora/hdl/Conversor/lpm_mult1j.vhd
+Z44 FC:/Universidad/Calculadora/hdl/Conversor/lpm_mult1j.vhd
+l0
+L43
+VH11DzSa?ESPZAfV]TKc;I2
+!s100 KEW0cczcIL:KU1YaBUR8m3
+R8
+32
+R9
+!i10b 1
+R10
+Z45 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Universidad/Calculadora/hdl/Conversor/lpm_mult1j.vhd|
+Z46 !s107 C:/Universidad/Calculadora/hdl/Conversor/lpm_mult1j.vhd|
+!i113 1
+R13
+R14
+Asyn
+R3
+R4
+DEx4 work 8 lpm_mult 0 22 H11DzSa?ESPZAfV]TKc;I2
+l75
+L53
+VN3W3:g[^`UGUS5J8N1`j^0
+!s100 g=N5U^lcnc0DTo>fO^J_L1
+R8
+32
+R9
+!i10b 1
+R10
+R45
+R46
+!i113 1
+R13
+R14
+Esumadorbcd_1digito
+Z47 w1777295584
+R2
+R1
+R3
+R4
+R5
+Z48 8C:/Universidad/Calculadora/hdl/Conversor/SumadorBCD_1Digito.vhd
+Z49 FC:/Universidad/Calculadora/hdl/Conversor/SumadorBCD_1Digito.vhd
+l0
+L14
+VYhne04Y6;g^;9XEJKc7VB3
+!s100 W1SkbOPIC2A2kH_O@V;gb0
+R8
+32
+R9
+!i10b 1
+R10
+Z50 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Universidad/Calculadora/hdl/Conversor/SumadorBCD_1Digito.vhd|
+Z51 !s107 C:/Universidad/Calculadora/hdl/Conversor/SumadorBCD_1Digito.vhd|
+!i113 1
+R13
+R14
+Artl
+R2
+R1
+R3
+R4
+Z52 DEx4 work 18 sumadorbcd_1digito 0 22 Yhne04Y6;g^;9XEJKc7VB3
+l26
+L24
+V_]0<<Wl?@3b2Bhez6dS8_1
+!s100 _3dF^dD=T9L_dl8ZYnWRa1
+R8
+32
+R9
+!i10b 1
+R10
+R50
+R51
+!i113 1
+R13
+R14
+Esumadorbcd_6digitos
+Z53 w1777295605
+R2
+R1
+R3
+R4
+R5
+Z54 8C:/Universidad/Calculadora/hdl/Conversor/SumadorBCD_6Digitos.vhd
+Z55 FC:/Universidad/Calculadora/hdl/Conversor/SumadorBCD_6Digitos.vhd
+l0
+L8
+V`IBWKlWOLL3d[NTzXm79M2
+!s100 _=:V5YHgz<a5ZihD5`hGN2
+R8
+32
+R9
+!i10b 1
+R10
+Z56 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Universidad/Calculadora/hdl/Conversor/SumadorBCD_6Digitos.vhd|
+Z57 !s107 C:/Universidad/Calculadora/hdl/Conversor/SumadorBCD_6Digitos.vhd|
+!i113 1
+R13
+R14
+Artl
+R52
+R2
+R1
+R3
+R4
+R21
+l24
+L18
+VeU6Z`TX2>RZc46Qb<f]Y23
+!s100 ez8I@i`J05f<9edWeFi6X0
+R8
+32
+R9
+!i10b 1
+R10
+R56
+R57
+!i113 1
+R13
+R14
+Etest_calculadora_completa
+Z58 w1778158687
+Z59 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+R3
+R4
+R5
+Z60 8C:\Universidad\Calculadora\modelsim\test_Calculadora_Completa.vhd
+Z61 FC:\Universidad\Calculadora\modelsim\test_Calculadora_Completa.vhd
+l0
+L5
+VI;lJh3EKbD^ezd>n0GPH`2
+!s100 UH`_`UQcmb@zR^DiJ^[Go0
+R8
+32
+R9
+!i10b 1
+R10
+Z62 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:\Universidad\Calculadora\modelsim\test_Calculadora_Completa.vhd|
+Z63 !s107 C:\Universidad\Calculadora\modelsim\test_Calculadora_Completa.vhd|
+!i113 1
+R13
+R14
+Atb
+R2
+R1
+R41
+R59
+R3
+R4
+Z64 DEx4 work 25 test_calculadora_completa 0 22 I;lJh3EKbD^ezd>n0GPH`2
+l46
+L8
+VagQ5287C_MM8n^5_^L4<d3
+!s100 0jg;jbgl[ma249zQnVWQ80
+R8
+32
+R9
+!i10b 1
+R10
+R62
+R63
+!i113 1
+R13
+R14
