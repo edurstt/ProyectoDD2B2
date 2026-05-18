@@ -31,7 +31,6 @@ end entity;
 
 architecture rtl of controlador_principal is
 signal op1_sgn_reg, op2_sgn_reg,res_sgn : std_logic;
-signal valor:  std_logic_vector(3 downto 0);
 signal reg_op1, reg_op2:   std_logic_vector(11 downto 0); 
 signal reg_OP: std_logic_vector(1 downto 0); 
 signal reg_pres : std_logic_vector (1 downto 0);
@@ -88,8 +87,8 @@ begin
 		if (tecla >= X"0" and tecla <= X"9")  then
 			if reg_op1 = X"0" and tecla = X"0" then
 			   reg_op1 <= (others => '0');
-			elsif (reg_op1 & valor) <= X"999" then 
-			   reg_op1 <= reg_op1(7 downto 0) & valor;
+				elsif (reg_op1 & tecla) <= X"999" then 
+			   reg_op1 <= reg_op1(7 downto 0) & tecla;
 			end if;
 		elsif tecla = X"C" then
 			op1_sgn_reg <= not op1_sgn_reg;
@@ -104,8 +103,8 @@ begin
 			if (tecla >= X"0" and tecla <= X"9") then
 				if reg_op2 =  X"0" and tecla = X"0" then
 			   		reg_op2 <= (others => '0');
-				elsif (reg_op2 & valor) <= X"999" then 
-			   		reg_op2 <= reg_op2(7 downto 0) & valor;
+					elsif (reg_op2 & tecla) <= X"999" then 
+			   		reg_op2 <= reg_op2(7 downto 0) & tecla;
 			end if;
 		elsif tecla = X"C" then
 			op2_sgn_reg <= not op2_sgn_reg;
@@ -163,8 +162,6 @@ end process;
 				reg_OP <= "01";
 			elsif tecla = X"E" then
 				reg_OP <= "10";
-			else
-				  null;
 			end if;
 		end if;
 	end if;
@@ -173,26 +170,11 @@ end process;
 	
 
 
-process(tecla) --Valores a BCD
-  begin
-    case(tecla) is
-      when X"0" => valor <= "0000";
-      when X"1" => valor <= "0001";
-      when X"2" => valor <= "0010";
-      when X"3" => valor <= "0011";
-      when X"4" => valor <= "0100";
-      when X"5" => valor <= "0101";
-      when X"6" => valor <= "0110";
-      when X"7" => valor <= "0111";
-      when X"8" => valor <= "1000";
-      when X"9" => valor <= "1001";
-      when others => null;
-    end case;
-  end process;
 
 
 
---enlazamos las señales
+
+--enlazamos las seï¿½ales
 OP <= reg_OP;
 pres <= reg_pres;
 
